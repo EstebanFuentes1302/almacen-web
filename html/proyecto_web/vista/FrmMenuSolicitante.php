@@ -10,15 +10,19 @@
         </head>
 
         <body>
-        <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+        
+        <div class="topPanel">
+            <a class="back" href="../controlador/CtrlShowMenuPrincipal.php">&lt; Volver al Menú Principal</a>
+            <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+        </div>
         <h1 align="center">Gestión de Solicitantes</h1>
+        <hr class="hr">
         <div class="div-menu" align="center">
             <a class="button-menu2" href="../controlador/CtrlShowRegistrarSolicitante.php">Registrar Solicitante</a><br>
             <a class="button-menu2" href="../controlador/CtrlShowModificarSolicitante.php">Modificar Solicitante</a><br>
             <a class="button-menu2" href="../controlador/CtrlShowEliminarSolicitante.php">Eliminar Solicitante</a><br>
             <a class="button-menu2" href="../controlador/CtrlShowVerSolicitantes.php">Registro de Solicitante</a><br>
         </div>
-            <a class="back" href="../controlador/CtrlShowMenuPrincipal.php?r=value">&lt; Volver al Menú Principal</a>
         </body>
         </html>
     <?php

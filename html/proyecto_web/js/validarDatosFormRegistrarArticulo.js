@@ -7,7 +7,7 @@ const expresiones = {
     form_cantidad: /^\d+$/,
     celular: /9\d{2}[\s-]?\d{3}[\s-]?\d{3}/,
     correo: /^[\w-._]+@\w+\.[a-zA-Z]+$/,
-    codigo_solicitante: /^2\d{7}$/,
+    codigo_solicitante: /^[1-9]\d{7}$/,
     codigo: /^(?!1000)[1-9][0-9][0-9][0-9]$/,
     usuario: /^\w+(\S?\w+?)+$/,
     password: /^(([\w!@#\.])+){4,}$/,
@@ -101,9 +101,5 @@ $('#formRegistrarArticulo').submit(function(e){
         })
     }
 })
-
-function limpiarForm(){
-    $.each($)
-}
 
 

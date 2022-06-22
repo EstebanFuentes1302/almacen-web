@@ -17,8 +17,12 @@ h1{
     font-weight: 120;
     letter-spacing: 2px;
     color: white;
-    height: 50px;
-    margin: 20px 0px 20px 0px;
+    width: auto;
+    margin: 0px 0px 20px 0px;
+}
+
+.h1-left{
+    text-align: left;
 }
 
 .p{
@@ -162,10 +166,8 @@ h1{
     transform: scale(1.10);
 }
 
-
-
 .logout{
-    display: block;
+    display: inline-block;
     font-weight: 350;
     float: right;
     box-shadow: 0px 8px 8px rgba(27,27,27,1.00);
@@ -215,10 +217,11 @@ h1{
 
 .topPanel{
     overflow: hidden;
-    text-align: justify;
-    margin: 0px 0px 20px 0px;
+    text-align: center;
+    margin: 0px 0px 5px 0px;
     height: auto;
     width: auto;
+    padding: 5px 15px;
 }
 
 .tabla-menu{
@@ -269,7 +272,7 @@ h1{
 }
 
 .txtFieldFormIncorrecto{
-    border-color: #BB0003;
+    border-color: #D4070A;
 }
 
 .txtForm{
@@ -345,7 +348,7 @@ h1{
 }
 
 .dateFormIncorrecto{
-    border-color: rgba(187,0,3,1.00);
+    border-color: rgba(212,7,10,1.00);
 }
 
 .reset{
@@ -418,7 +421,7 @@ h1{
 
 .txtError{
     text-align: center;
-    color:#BB0003;
+    color:#D4070A;
     display: none;
     padding: 1px;
 }
