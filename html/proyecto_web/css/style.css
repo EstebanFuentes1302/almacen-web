@@ -1,0 +1,428 @@
+/* CSS Document */
+*{
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+body{
+    background-color: #121212;
+    margin: 45px 70px;
+}
+
+h1{
+    display: block;
+    text-align: center;
+    text-shadow: 2px 2px 3px white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 120;
+    letter-spacing: 2px;
+    color: white;
+    height: 50px;
+    margin: 20px 0px 20px 0px;
+}
+
+.p{
+    display:block;
+    text-align: center;
+    color:white;
+    font-weight: 350;
+    letter-spacing: 2.5;
+    margin: 20px 20px;
+    padding: 0px 0px;
+    line-height: 5px;
+    
+}
+
+.link-p{
+    background: #3A3A3A;
+    display:block;
+    text-align: center;
+    align-self: center;
+    color:white;
+    border-radius: 0px 0px 10px 10px;
+    text-decoration: none;
+    font-weight: 350;
+    letter-spacing: 2.5;
+    padding: 10px 25px;
+    line-height: 25px;
+    animation: all 0.3s ease;
+}
+
+.link-p:hover{
+    transform: scale(0.97);
+    border-radius: 10px 10px 10px 10px;
+}
+
+.tblMensaje{
+    height: auto;
+    width: auto;
+    margin: auto;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    border-radius: 15px;
+    color: white;
+}
+
+.headerMensaje{
+    display: block;
+    width: auto;
+    height: auto;
+    background: #490001;
+    border-radius: 10px 10px 0px 0px;
+    padding: 10px 10px;
+    color: white;
+    font-weight: 500;
+    letter-spacing: 2.5;
+}
+
+.tblShowDatos{
+    margin:auto;
+}
+
+.button-menu2{
+    background: #0D0D0D;
+    display: inline-block;
+    font-weight: 350;
+    box-shadow: 1.5px 1.5px 10px rgba(27,27,27,1.00);
+    letter-spacing: 1px;
+    margin: 20px 20px 20px 20px;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: white;
+    border-radius: 35px;
+    padding: 25px 70px;
+    transition: all 0.3s ease 0s;
+    color: white;
+    font-size: 16px;
+    
+    text-decoration: none;
+}
+
+.button-menu2:hover {
+    background-color: #FFFFFF;
+    border-color: black;
+    box-shadow: 1.5px 1.5px 10px rgba(255,255,255,1.00);
+    color: black;
+    transform: translateY(-4px);
+}
+
+.button-menu{
+    display: inline-block;
+    font-weight: 350;
+    box-shadow: 1.5px 1.5px 10px rgba(27,27,27,1.00);
+    letter-spacing: 1px;
+    margin:40px 30px;
+    padding: 40px 70px;
+    background: #0D0D0D;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: white;
+    border-radius: 35px;
+    transition: all 0.3s ease 0s;
+    color: white;
+    font-size: 16px;
+    
+    text-decoration: none;
+}
+
+.button-menu:hover {
+    background-color: #FFFFFF;
+    border-color: black;
+    box-shadow: 1.5px 1.5px 10px rgba(255,255,255,1.00);
+    color: black;
+    transform: translateY(-10px);
+}
+
+.button-submit{
+    display: inline-block;
+    font-weight: 300;
+    box-shadow: 0px 5px 5px rgba(27,27,27,1.00);
+    letter-spacing: 1px;
+    margin:20px 10px;
+    padding: 10px 40px 10px 40px;
+    background: #000000;
+    line-height: 20px;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: white;
+    border-radius: 35px;
+    transition: all 0.3s ease 0s;
+    color: white;
+    font-size: 16px;
+    
+    text-decoration: none;
+}
+
+.button-submit:hover {
+    background-color: #FFFFFF;
+    border-color: black;
+    box-shadow: 3px 3px 8px rgba(255,255,255,1.00);
+    color: black;
+    transform: scale(1.10);
+}
+
+
+
+.logout{
+    display: block;
+    font-weight: 350;
+    float: right;
+    box-shadow: 0px 8px 8px rgba(27,27,27,1.00);
+    letter-spacing: 1px;
+    margin: 0px auto 0px 0px;
+    text-align: center;
+    background: #4F1819;
+    border-color: black;
+    border-radius: 40px;
+    padding: 12px 25px;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.logout:hover{
+    background-color: #000000;
+    border-color: white;
+    color: white;
+}
+
+.back{
+    text-align: center;
+    display: inline-block;
+    float: left;
+    vertical-align: middle;
+    font-weight: 350;
+    box-shadow: 0px 8px 8px rgba(27,27,27,1.00);
+    letter-spacing: 1px;
+    background: #000000;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: black;
+    border-radius: 40px;
+    padding: 12px 25px;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.back:hover{
+    background-color: #000000;
+    border-color: white;
+    color: white;
+    transform: scale(1.10);
+}
+
+.topPanel{
+    overflow: hidden;
+    text-align: justify;
+    margin: 0px 0px 20px 0px;
+    height: auto;
+    width: auto;
+}
+
+.tabla-menu{
+    border: none;
+}
+
+.div-menu{
+    height: auto;
+    margin: 0px 0px 40px 0px;
+}
+
+.div-Form{
+    height: auto;
+    margin: 0px 0px 40px 0px;
+}
+
+.div-ver{
+    height: auto;
+    margin: 0px 0px 40px 0px;
+}
+
+.txtFieldForm{
+    text-align: center;
+    background-color: #121212;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: white;
+    border-radius: 40px;
+    padding: 10px 15px;
+    caret-color: white;
+    margin: 20px 5px;
+    color: white;
+    font-size: 17px;
+}
+
+.txtFieldFormReadonly{
+    text-align: center;
+    background-color: #363636;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: white;
+    border-radius: 40px;
+    padding: 10px 15px;
+    caret-color: white;
+    margin: 20px 5px;
+    color: white;
+    font-size: 17px;
+}
+
+.txtFieldFormIncorrecto{
+    border-color: #BB0003;
+}
+
+.txtForm{
+    font-weight: 300; 
+    letter-spacing: 1px;
+    color: white;
+}
+
+.txtAreaForm{
+    width: 250px;
+    height: 80px;
+    text-align: left;
+    background-color: #121212;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: white;
+    border-radius: 20px;
+    padding: 20px 20px;
+    caret-color: white;
+    margin: 20px 5px;
+    color: white;
+    font-size: 17px;
+}
+
+.fileForm{
+    width: 280px;
+    text-align: center;
+    background-color: #121212;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: white;
+    border-radius: 40px;
+    padding: 10px 15px;
+    margin: 20px 5px;
+    font-size: 17px;
+    color:white;
+}
+
+.selectForm{
+    text-align: center;
+    background-color: #121212;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: white;
+    border-radius: 40px;
+    padding: 10px 20px;
+    caret-color: white;
+    margin: 20px 5px;
+    color: white;
+    font-size: 17px;
+}
+
+::-webkit-selection{
+    filter: invert();
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.dateForm{
+    text-align: center;
+    background-color: #121212;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: white;
+    border-radius: 40px;
+    padding: 10px 15px;
+    caret-color: white;
+    margin: 10px 5px;
+    color: white;
+    font-size: 17px;
+}
+
+.dateFormIncorrecto{
+    border-color: rgba(187,0,3,1.00);
+}
+
+.reset{
+    background: none;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin: 0px 10px;
+    padding: 10px 40px;
+    line-height: 10px;
+    border:none;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.reset:hover{
+    text-decoration: underline;
+}
+
+.hr{
+    margin:15px auto ;
+    width: 850px;
+}
+
+.txtHeader{
+    width: 120px;
+    padding: 12px;
+    margin: 30px auto; 
+    font-weight: 400; 
+    letter-spacing: 1px;
+    color: white;
+}
+
+.tblShow{
+    width: auto;
+    margin: auto;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    border-radius: 15px;
+    color: white;
+}
+
+.txtRow{
+    margin: 30px auto; 
+    padding: 10px 5px;
+    font-weight: 300; 
+    letter-spacing: 1px;
+    color: white;
+}
+
+.fotoShow{
+    width: 200px;
+    height: 200px;
+    box-shadow: 0px 8px 8px rgba(27,27,27,1.00);
+    margin:30px 20px;
+    padding: 20px 30px;
+    background: #000000;
+    line-height: 120px;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: white;
+    border-radius: 25px;
+    
+    color: white;
+    font-size: 16px;
+    
+    text-decoration: none;
+}
+
+.txtError{
+    text-align: center;
+    color:#BB0003;
+    display: none;
+    padding: 1px;
+}
+
+.txtErrorShow{
+    display:block;
+}
