@@ -63,9 +63,9 @@ const validarFormModificarPedido = (e) => {
     }
 }
 
-var codigo;
-
-
+var codigo = null;
+var cod_articulo = null;
+var old_cantidad = null;
 
 
 $('#formBuscarPedido').submit(function(e){
@@ -87,8 +87,11 @@ $('#formBuscarPedido').submit(function(e){
                         color: 'white'
                     })
                     document.getElementById('tblModificarPedido').style.display = 'block';
+                    //console.log(response);
                     let pedido = JSON.parse(response);
                     let template = '';
+                    cod_articulo = pedido.codigo_articulo;
+                    old_cantidad = pedido.cantidad;
                     template+= `
                         <tr>
                           <td class="txtForm" width="169" height="35">Código de Pedido</td>
@@ -110,7 +113,7 @@ $('#formBuscarPedido').submit(function(e){
                     template2=`
                         <tr>
                           <td class="txtForm" height="35">Fecha de Pedido</td>
-                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${pedido.fecha_pedido}"></td>
+                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${pedido.fecha_registro}"></td>
                         </tr>
                         <tr>
                           <td height="39" colspan="2" align="center" valign="middle"><input class="button-submit" type="submit" name="btnModificar" id="btnModificar" value="Modificar"></td>
@@ -156,56 +159,58 @@ $('#formBuscarPedido').submit(function(e){
     }
 });
 
-$('#formModificarArticulo').submit(function(e){
+$('#formModificarPedido').submit(function(e){
     e.preventDefault();
-    console.log($('#txtNombre').val());
-    let nombre = $('#txtNombre').val();
+    
     let cantidad = $('#txtCantidad').val();
+    let codigo_articulo = cod_articulo;
+    let oldcantidad = old_cantidad;
     //let dataModificar={codigo, nombre, cantidad}
     //console.log(JSON.stringify(dataModificar));
     //console.log(codigo);
-    if(camposModificar['nombre'] && camposModificar['cantidad']){
-        $.ajax({
-            url: '../controlador/CtrlModificarArticulo.php',
-            type: 'POST',
-            data: {codigo, nombre, cantidad},
-            success: function(response){
-                console.log(response);
-                if(JSON.parse(response)=='true'){
-                    Swal.fire({
-                        title: 'Artículo Modificado!',
-                        text: 'El artículo ha sido modificado correctamente',
-                        icon: 'success',
+    if(oldcantidad != cantidad){
+        if(camposModificar['cantidad']){
+            $.ajax({
+                url: '../controlador/CtrlModificarPedido.php',
+                type: 'POST',
+                data: {codigo, codigo_articulo, cantidad, oldcantidad},
+                success: function(response){
+                    console.log(response);
+                    if(JSON.parse(response)=='true'){
+                        Swal.fire({
+                            title: 'Artículo Modificado!',
+                            text: 'El artículo ha sido modificado correctamente',
+                            icon: 'success',
+                            background: '#121212',
+                            color: 'white'
+                            })
+                        }
+
+                    },
+                    fail: function(res){
+                        Swal.fire({
+                        title: 'Error',
+                        text: 'Error al modificar Artículo',
+                        icon: 'error',
                         background: '#121212',
                         color: 'white'
-                    })
-                    document.getElementById('tblModificarArticulo').style.display = 'none';
-                }else{
-                    Swal.fire({
-                    title: 'Error',
-                    text: 'Error al modificar Artículo',
-                    icon: 'error',
-                    background: '#121212',
-                    color: 'white'
-                    })
-                }
-                
-            },
-            fail: function(res){
-                Swal.fire({
-                title: 'Error',
-                text: 'Error al modificar Artículo',
-                icon: 'error',
-                background: '#121212',
-                color: 'white'
-                })
-            }
-        });
-    }else{
-        Swal.fire({
+                        })
+                    }
+                });    
+        }else{
+            Swal.fire({
                 title: 'Error',
                 text: 'Los datos ingresados no son correctos',
                 icon: 'error',
+                background: '#121212',
+                color: 'white'
+            })
+        }
+    }else{
+        Swal.fire({
+                title: 'Aviso',
+                text: 'No se han realizado cambios',
+                icon: 'warning',
                 background: '#121212',
                 color: 'white'
         })

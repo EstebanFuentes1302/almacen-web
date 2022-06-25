@@ -1,30 +1,29 @@
 <?php
     session_start();
     $sesion=$_SESSION['usuario'];
-    $boton=$_POST['btnModificar'];
-    $codigo=$_GET['r'];
-    $oldcantidad=$_GET['s'];
-    $codigo_articulo=$_GET['t'];
+    $codigo=$_POST['codigo'];
+    $codigo_articulo=$_POST['codigo_articulo'];
+    $cantidad=$_POST['cantidad'];
+    $oldcantidad = $_POST['oldcantidad'];
     if($sesion!=null){
-        if(isset($boton)){
+        if(isset($codigo) && isset($codigo_articulo) && isset($cantidad) && isset($oldcantidad)){
             include_once('../modelo/Pedido.php');
-            $cantidad=$_POST['txtCantidad'];
+            
             $fecha=$_POST['txtFecha'];
-            $result=modificarPedido($codigo,$codigo_articulo,$cantidad,$oldcantidad,$fecha);
+            $result=modificarPedido($codigo,$codigo_articulo,$cantidad,$oldcantidad);
             if($result){
-                include_once('../vista/FrmMensajeAprobado.php');
-                frmMensajeAprobadoShow("Pedido modificado","Pedido Modificado Correctamente",array("<a href='../controlador/CtrlShowModificarPedido.php?r=value'>Modificar Otro Artículo</a>","<a href='../controlador/CtrlShowMenuPedido.php?r=value'>Volver Al Menú</a>"));
+                echo json_encode('true');
             }else{
-                include_once('../vista/FrmMensaje.php');
-                frmMensajeShow("Error al modificar Pedido","<a href='../controlador/CtrlShowModificarPedido.php'>Intentar Nuevamente</a>");
+                echo json_encode('false');
             }
         }else{
             include_once('../vista/FrmMensaje.php');
-            frmMensajeShow("No es el acceso correcto","<a href='../controlador/CtrlShowMenuPedido.php'>Volver Al Menú</a>");
+            frmMensajeShow("<p class='p'>No es el acceso correcto<p>","<a class='link-p'  href='../controlador/CtrlShowMenuPedido.php?r=value>Volver</a>");
+            die();
         }
     }else{
         include_once('../vista/FrmMensaje.php');
-        frmMensajeShow("Acceso Denegado, no ha iniciado sesión","<a href='../controlador/CtrlShowLogin.php?'>Inicio de sesión</a>");
+        frmMensajeShow("<p class='p'>Acceso Denegado, no ha iniciado sesión<p>","<a class='link-p' href='../controlador/CtrlShowLogin.php?r=value'>Inicio de sesión</a>");
         die();
     }
     

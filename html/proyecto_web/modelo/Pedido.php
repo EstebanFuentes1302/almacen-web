@@ -45,7 +45,7 @@
         return(mysqli_fetch_array($result));
     }
     
-    function modificarPedido($codigo,$codigo_articulo,$cantidad,$oldcantidad,$fecha){
+    function modificarPedido($codigo,$codigo_articulo,$cantidad,$oldcantidad){
         $con = conectar();
         $diff = $cantidad-$oldcantidad;
         $sql = "select cantidad from Articulo where codigo='$codigo_articulo'";
@@ -55,7 +55,7 @@
         if($c){
             $sum=$c['cantidad']-$diff;
             if($sum>=0){
-                $sql2 = "update Pedido set cantidad=$cantidad, fecha_pedido='$fecha' where codigo_pedido='$codigo'";
+                $sql2 = "update Pedido set cantidad=$cantidad where codigo_pedido='$codigo'";
                 //echo $sql2;
                 $query = mysqli_query($con,$sql2);
                 if($query){
