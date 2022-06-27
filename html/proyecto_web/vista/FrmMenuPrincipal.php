@@ -4,7 +4,7 @@
         <html>
         <head>
         <meta charset="utf-8">
-            <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <title>Menú Principal</title>
         </head>
         <body>
@@ -12,7 +12,6 @@
             <h1 class="h1-left">MENÚ PRINCIPAL</h1>
             <div class="div-menu" align="center">
                 <div>
-                
                 </div>
                 <a class="button-menu" href="../controlador/CtrlShowMenuArticulo.php">Gestionar Articulos</a>
                 <a class="button-menu" href="../controlador/CtrlShowMenuPedido.php">Gestionar Pedidos</a>

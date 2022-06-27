@@ -9,7 +9,11 @@
         <title>Ver Pedidos</title>
         </head>
         <body>
-            <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+            <div class="topPanel">
+                <a class="back" href="../controlador/CtrlShowMenuArticulo.php?r=value">&lt; Ir Al Menú</a>
+                <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+            </div>
+            
         <h1 align="center">Artículos Registrados</h1>
         <div class="div-ver">
             <table class="tblShow" width="573">
@@ -33,7 +37,6 @@
                 ?>
             </table>
         </div>
-        <a class="back" href="../controlador/CtrlShowMenuArticulo.php?r=value">&lt; Ir Al Menú</a>
         </body>
         </html>
     <?php

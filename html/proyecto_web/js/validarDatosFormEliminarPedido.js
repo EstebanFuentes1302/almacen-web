@@ -1,6 +1,6 @@
 // JavaScript Document
 
-const formModificarPedido = document.getElementById('formModificarPedido');
+const formEliminarPedido = document.getElementById('formEliminarPedido');
 const formBuscarPedido = document.getElementById('formBuscarPedido');
 
 const formBuscarPedidoInputs = document.querySelectorAll('#formBuscarPedido input');
@@ -22,9 +22,6 @@ const camposBuscar = {
     codigo: false
 }
 
-const camposModificar = {
-    cantidad: true
-}
 
 const validarFormBuscarPedido = (e) => {
     switch(e.target.name){
@@ -47,25 +44,9 @@ formBuscarPedidoInputs.forEach((input)=>{
     input.addEventListener('blur',validarFormBuscarPedido);
 })
 
-const validarFormModificarPedido = (e) => {
-    switch(e.target.name){
-        case "txtCantidad":
-            if(expresiones.form_cantidad.test(e.target.value)){
-                document.getElementById('txtCantidad').classList.remove('txtFieldFormIncorrecto');
-                document.getElementById('txtErrorCantidad').classList.remove('txtErrorShow');
-                camposModificar['cantidad']=true;
-            }else{
-                document.getElementById('txtCantidad').classList.add('txtFieldFormIncorrecto');
-                document.getElementById('txtErrorCantidad').classList.add('txtErrorShow');
-                camposModificar['cantidad']=false;
-            }
-        break;
-    }
-}
-
 var codigo = null;
 var cod_articulo = null;
-var old_cantidad = null;
+var cant_pedido = null;
 
 
 $('#formBuscarPedido').submit(function(e){
@@ -86,12 +67,12 @@ $('#formBuscarPedido').submit(function(e){
                         background: '#121212',
                         color: 'white'
                     })
-                    document.getElementById('tblModificarPedido').style.display = 'block';
+                    document.getElementById('tblEliminarPedido').style.display = 'block';
                     //console.log(response);
                     let pedido = JSON.parse(response);
                     let template = '';
                     cod_articulo = pedido.codigo_articulo;
-                    old_cantidad = pedido.cantidad;
+                    cant_pedido = pedido.cantidad;
                     template+= `
                         <tr>
                           <td class="txtForm" width="169" height="35">Código de Pedido</td>
@@ -107,30 +88,21 @@ $('#formBuscarPedido').submit(function(e){
                           </tr>
                         <tr>
                           <td class="txtForm" height="35">Cantidad</td>
-                          <td align="center" valign="middle"><input class="txtFieldForm" type="text" name="txtCantidad" id="txtCantidad" value="${pedido.cantidad}"></td>
+                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtCantidad" id="txtCantidad" value="${pedido.cantidad}"></td>
                         </tr>
-                    `;
-                    template2=`
                         <tr>
                           <td class="txtForm" height="35">Fecha de Pedido</td>
                           <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${pedido.fecha_registro}"></td>
                         </tr>
                         <tr>
-                          <td height="39" colspan="2" align="center" valign="middle"><input class="button-submit" type="submit" name="btnModificar" id="btnModificar" value="Modificar"></td>
+                          <td height="39" colspan="2" align="center" valign="middle"><input class="button-submit" type="submit" name="btnModificar" id="btnModificar" value="Eliminar"></td>
                       </tr>
                     `;
-                    $('#tbodyPedido').html(template);
-                    $('#tbodyPedido2').html(template2);
-                    const formModificarPedidoInputs = document.querySelectorAll('#formModificarPedido input');
-                    //console.log(formModificarArticuloInputs);
-                    formModificarPedidoInputs.forEach((input)=>{
-                        input.addEventListener('keyup',validarFormModificarPedido);
-                        input.addEventListener('blur',validarFormModificarPedido);
-                    })
+                    $('#tbodyEliminarPedido').html(template);
                 }else{
                     Swal.fire({
                     title: 'Error',
-                    text: 'No se pudo encontrar Pedido',
+                    text: 'No se pudo encontrar Artículo',
                     icon: 'error',
                     background: '#121212',
                     color: 'white'
@@ -141,7 +113,7 @@ $('#formBuscarPedido').submit(function(e){
             fail: function(response){
                 Swal.fire({
                 title: 'Error',
-                text: 'Error al encontrar Pedido',
+                text: 'Error al encontrar Artículo',
                 icon: 'error',
                 background: '#121212',
                 color: 'white'
@@ -159,61 +131,40 @@ $('#formBuscarPedido').submit(function(e){
     }
 });
 
-$('#formModificarPedido').submit(function(e){
+$('#formEliminarPedido').submit(function(e){
     e.preventDefault();
-    
-    let cantidad = $('#txtCantidad').val();
+
     let codigo_articulo = cod_articulo;
-    let oldcantidad = old_cantidad;
+    let cantidad_pedido = cant_pedido;
     //let dataModificar={codigo, nombre, cantidad}
     //console.log(JSON.stringify(dataModificar));
     //console.log(codigo);
-    if(oldcantidad != cantidad){
-        if(camposModificar['cantidad']){
-            $.ajax({
-                url: '../controlador/CtrlModificarPedido.php',
-                type: 'POST',
-                data: {codigo, codigo_articulo, cantidad, oldcantidad},
-                success: function(response){
-                    console.log(response);
-                    if(JSON.parse(response)=='true'){
-                        Swal.fire({
-                            title: 'Pedido Modificado!',
-                            text: 'El artículo ha sido modificado correctamente',
-                            icon: 'success',
-                            background: '#121212',
-                            color: 'white'
-                            })
-                        }
-
-                    },
-                    fail: function(res){
-                        Swal.fire({
-                        title: 'Error',
-                        text: 'Error al modificar Pedido',
-                        icon: 'error',
-                        background: '#121212',
-                        color: 'white'
-                        })
-                    }
-                });    
-        }else{
-            Swal.fire({
+    $.ajax({
+        url: '../controlador/CtrlEliminarPedido.php',
+        type: 'POST',
+        data: { codigo, codigo_articulo, cantidad_pedido },
+        success: function(response){
+            //console.log(response);
+            if(JSON.parse(response)=='true'){
+                Swal.fire({
+                    title: 'Pedido Eliminado!',
+                    text: 'El pedido se ha eliminado correctamente',
+                    icon: 'success',
+                    background: '#121212',
+                    color: 'white'
+                    })
+                }
+                document.getElementById('tblEliminarPedido').style.display = 'none';
+            },
+            fail: function(){
+                Swal.fire({
                 title: 'Error',
-                text: 'Los datos ingresados no son correctos',
+                text: 'Error al modificar Pedido',
                 icon: 'error',
                 background: '#121212',
                 color: 'white'
-            })
-        }
-    }else{
-        Swal.fire({
-                title: 'Aviso',
-                text: 'No se han realizado cambios',
-                icon: 'warning',
-                background: '#121212',
-                color: 'white'
-        })
-    }
+                })
+            }
+        });    
     
 });

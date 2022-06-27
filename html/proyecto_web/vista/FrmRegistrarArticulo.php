@@ -10,7 +10,10 @@
         <title>Registrar Artículo</title>
         </head>
         <body>
-            <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+            <div class="topPanel">
+                <a class="back" href="../controlador/CtrlShowMenuArticulo.php">&lt; Volver al Menú</a>
+                <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+            </div>
             <h1 align="center">Registrar Artículo</h1>
             <div class="div-menu">
                 <form class="form-registrar-articulo" id="formRegistrarArticulo" method="post">
@@ -52,7 +55,7 @@
                     </table>
                 </form>
                 </div>
-                <a class="back" href="../controlador/CtrlShowMenuArticulo.php">&lt; Volver al Menú</a>
+                
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script src="../js/validarDatosFormRegistrarArticulo.js"></script>

@@ -11,8 +11,10 @@
         </head>
 
         <body>
-            <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
-            <a class="back" href="../controlador/CtrlShowMenuPedido.php">&lt; Volver Al Menú</a>
+            <div class="topPanel">
+                <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+                <a class="back" href="../controlador/CtrlShowMenuPedido.php">&lt; Volver Al Menú</a>
+            </div>
             <h1>Modificar Pedido</h1>
             <form id=formBuscarPedido method="post">
               <table width="648" border="0" align="center">

@@ -11,7 +11,10 @@
         </head>
 
         <body>
+        <div class="topPanel">
+            <a class="back" href="../controlador/CtrlShowMenuArticulo.php">&lt; Volver al Menú</a>
             <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+        </div>
         <h1 align="center">Modificar Articulo</h1>
             <form id="formBuscarArticulo" method="post">
               <table width="675" border="0" align="center">
@@ -47,7 +50,6 @@
                     </table>
                     </form>
             </div>
-            <a class="back" href="../controlador/CtrlShowMenuArticulo.php?r=value">&lt; Volver Al Menú</a>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script src="../js/validarDatosFormModificarArticulo.js"></script>
