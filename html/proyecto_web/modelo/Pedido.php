@@ -1,6 +1,6 @@
 
 <?php
-    include '../controlador/CtrlConexionBD.php';
+    include 'ConexionDB.php';
 
     function registrarPedido($cod_articulo,$cod_solicitante,$estado,$fecha,$cantidad){
         try{
@@ -42,7 +42,11 @@
         $con=conectar();
         $sql="select * from Pedido where codigo_pedido='$codigo'";
         $result=mysqli_query($con,$sql);
-        return(mysqli_fetch_array($result));
+        if(mysqli_num_rows($result)>0){
+            return(mysqli_fetch_array($result));
+        }else{
+            return(null);
+        }
     }
     
     function modificarPedido($codigo,$codigo_articulo,$cantidad,$oldcantidad){
@@ -73,7 +77,18 @@
         }
         mysqli_close($con);
     }
-
+    
+    function isDevuelto($codigo){
+        $con = conectar();
+        $sql = "select * from Pedido where codigo_pedido = '$codigo' and estado != 'Devuelto'";
+        $result = mysqli_query($con, $sql);
+        if(mysqli_num_rows($result) == 0){
+            return(true);
+        }else{
+            return(false);
+        }
+    }
+    
     function devolverPedido($codigo_pedido,$codigo_articulo,$cantidad){
         $con = conectar();
         $sql = "select cantidad from Articulo where codigo='$codigo_articulo'";

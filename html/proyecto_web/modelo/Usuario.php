@@ -1,5 +1,5 @@
 <?php
-    include '../controlador/CtrlConexionBD.php';
+    include 'ConexionDB.php';
     function validarUsuario($usuario, $password){
         $con=conectar();
         $sql="select * from Usuario where id_usuario='$usuario' and password='$password'";

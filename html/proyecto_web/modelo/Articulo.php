@@ -1,5 +1,5 @@
 <?php
-    include '../controlador/CtrlConexionBD.php';
+    include 'ConexionDB.php';
 
     function registrarArticulo($nombre,$cantidad,$fecha){
         try{
@@ -22,6 +22,21 @@
         
     }
     
+    function isUsedArticulo($codigo){
+        $con = conectar();
+        $sql = "select * from Pedido where codigo_articulo='$codigo'";
+        $result = mysqli_query($con, $sql);
+        if($result){
+            if(mysqli_num_rows($result) > 0){
+                return(true);
+            }else{
+                return(false);
+            }
+        }else{
+            return(false);
+        }
+    }
+
     function getArticulos(){
         $con=conectar();
         $sql="select * from Articulo";
@@ -34,7 +49,11 @@
         $sql="select * from Articulo where codigo='$codigo'";
         $result=mysqli_query($con,$sql);
         
-        return(mysqli_fetch_array($result));
+        if(mysqli_num_rows($result)>0){
+            return(mysqli_fetch_array($result));
+        }else{
+            return(null);
+        }
     }
 
     function modificarArticulo($codigo,$nombre,$cantidad,$fecha){

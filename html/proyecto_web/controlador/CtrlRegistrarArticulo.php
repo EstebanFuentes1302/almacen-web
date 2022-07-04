@@ -23,15 +23,13 @@
             } 
         }else{
             include_once('../vista/FrmMensaje.php');
-            frmMensajeShow("No es el acceso correcto","<a href='../controlador/CtrlShowMenuArticulo.php'>Volver Al Menú</a>");
+            frmMensajeShow("<p class='p'>No es el acceso correcto<p>","<a class='link-p'  href='../controlador/CtrlShowMenuArticulo.php>Volver</a>");
             die();
-        }
-            
+        }     
     }else{
-        echo json_encode('false');
-        /*include_once('../vista/FrmMensaje.php');
-        frmMensajeShow("Acceso Denegado, no ha iniciado sesión","<a href='../controlador/CtrlShowLogin.php?r=value'>Inicio de sesión</a>");
-        die();*/
+        include_once('../vista/FrmMensaje.php');
+        frmMensajeShow("<p class='p'>Acceso Denegado, no ha iniciado sesión<p>","<a class='link-p' href='../controlador/CtrlShowLogin.php?r=value'>Inicio de sesión</a>");
+        die();
     }
     
     

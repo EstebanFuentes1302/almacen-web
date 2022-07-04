@@ -4,7 +4,7 @@
     
     if($sesion!=null){
             include_once('../modelo/Pedido.php');
-            $codigo=$_POST['codigo'];
+            $codigo=$_POST['codigo_pedido'];
             if(isset($codigo)){
                 $pedido=buscarPedido($codigo);
                 if($pedido){
@@ -18,10 +18,10 @@
                     );
                     echo json_encode($json);
                 }else{
-                    echo json_encode(null);
+                    echo json_encode("null");
                 }      
             }else{
-                  echo json_encode(null);
+                  echo json_encode("null");
             }
     }else{
         include_once('../vista/FrmMensaje.php');

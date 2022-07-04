@@ -31,7 +31,7 @@
             
             <div class="div-Form">
                 <hr class="hr">
-                    <form id="formModificarPedido" method="post"?>">
+                    <form id="formModificarPedido" method="post"?>
                     <table id="tblModificarPedido" width="512" border="0" align="center">
                       <tbody id="tbodyPedido">
                         

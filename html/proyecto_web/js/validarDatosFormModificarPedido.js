@@ -78,7 +78,8 @@ $('#formBuscarPedido').submit(function(e){
             type: 'POST',
             data: { codigo },
             success: function(response){
-                if(response){
+                console.log(JSON.parse(response));
+                if(JSON.parse(response)!='null'){
                     Swal.fire({
                         title: 'Pedido Encontrado!',
                         text: 'El pedido ha sido encontrado',

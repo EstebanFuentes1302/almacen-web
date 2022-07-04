@@ -7,15 +7,7 @@ const formBuscarArticuloInputs = document.querySelectorAll('#formBuscarArticulo 
 
 
 const expresiones = {
-    nombre: /^(([ \u00c0-\u00ffa-zA-Z'\-])+){3,}$/,
-    form_nombre: /^((\w|[ \u0021-\u002f]|[\u00c0-\u00ff])+){2,}/,
-    form_cantidad: /^\d+$/,
-    celular: /9\d{2}[\s-]?\d{3}[\s-]?\d{3}/,
-    correo: /^[\w-._]+@\w+\.[a-zA-Z]+$/,
-    codigo_solicitante: /^2\d{7}$/,
     codigo: /^(?!1000)[1-9][0-9][0-9][0-9]$/,
-    usuario: /^\w+(\S?\w+?)+$/,
-    password: /^(([\w!@#\.])+){4,}$/,
 }
 
 const camposBuscar = {
@@ -90,7 +82,8 @@ $('#formBuscarArticulo').submit(function(e){
             type: 'POST',
             data: { codigo },
             success: function(response){
-                if(response){
+                console.log(response);
+                if(JSON.parse(response) != 'null'){
                     Swal.fire({
                         title: 'Artículo Encontrado!',
                         text: 'El artículo ha sido encontrado',
@@ -147,7 +140,10 @@ $('#formBuscarArticulo').submit(function(e){
                     color: 'white'
                     })
                     $('#tbodyArticulo').html('');
+                    $('#tbodyArticulo2').html('');
+                    $('#tbodyArticulo3').html('');
                 }
+                
             },
             fail: function(response){
                 Swal.fire({
@@ -158,8 +154,10 @@ $('#formBuscarArticulo').submit(function(e){
                 color: 'white'
                 })
             }
+            
         })
     }else{
+        document.getElementById('tblModificarArticulo').style.display = 'none';
         Swal.fire({
                 title: 'Error',
                 text: 'Los datos ingresados no son correctos',

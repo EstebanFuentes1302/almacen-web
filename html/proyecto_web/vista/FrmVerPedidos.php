@@ -18,6 +18,7 @@
                         <td class="txtHeader" width="131" align="center" valign="middle">Código de Artículo</td>
                         <td class="txtHeader" width="79" align="center" valign="middle">Código de Solicitante</td>
                         <td class="txtHeader" width="83" align="center" valign="middle">Cantidad</td>
+                        <td class="txtHeader" width="83" align="center" valign="middle">Estado</td>
                         <td class="txtHeader" width="130" align="center" valign="middle">Fecha de Registro</td>
                     </tr>
                     <?php
@@ -28,6 +29,7 @@
                             <td class="txtRow" align="center" valign="middle"><?php echo $array['codigo_articulo']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $array['codigo_solicitante']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $array['cantidad']?></td>
+                            <td class="txtRow" align="center" valign="middle"><?php echo $array['estado']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $array['fecha_pedido']?></td>
                   </tr>
                     <?php                

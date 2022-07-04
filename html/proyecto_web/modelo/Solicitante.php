@@ -1,5 +1,5 @@
 <?php
-    require '../controlador/CtrlConexionBD.php';
+    require 'ConexionDB.php';
     function registrarSolicitante($nombre,$email,$telefono,$ruta_foto){
         try{
             $sql="insert into Solicitante(nombre,email,telefono,foto) values('$nombre','$email','$telefono','$ruta_foto')";

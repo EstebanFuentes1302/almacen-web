@@ -16,7 +16,7 @@
                 $jsonstring = json_encode($json);
                 echo $jsonstring;
             }else{
-                echo json_encode('false');
+                echo json_encode("null");
             }
     }else{
         include_once('../vista/FrmMensaje.php');

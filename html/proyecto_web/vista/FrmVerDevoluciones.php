@@ -9,7 +9,10 @@
         <title>Ver Devoluciones</title>
         </head>
         <body>
-            <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+            <div class="topPanel">
+                <a class="back" href="../controlador/CtrlShowMenuDevolucion.php">&lt; Volver Al Menú</a>
+                <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+            </div>
         <h1 align="center">Devoluciones</h1>
         <div class="div-Form">
             <table class="tblShow">
@@ -31,12 +34,8 @@
                     <?php                
                         }
                     ?>
-                    <tr>
-                          <td height="35" colspan="4" align="right" valign="middle"></td>
-                    </tr>
             </table>
         </div>
-            <a class="back" href="../controlador/CtrlShowMenuDevolucion.php">&lt; Ir Al Menú</a>
         </body>
         </html>
     <?php

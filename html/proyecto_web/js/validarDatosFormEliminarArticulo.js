@@ -56,7 +56,7 @@ $('#formBuscarArticulo').submit(function(e){
             type: 'POST',
             data: { codigo },
             success: function(response){
-                if(response){
+                if(JSON.parse(response) != 'null'){
                     Swal.fire({
                         title: 'Artículo Encontrado!',
                         text: 'El artículo ha sido encontrado',
@@ -100,6 +100,8 @@ $('#formBuscarArticulo').submit(function(e){
                     color: 'white'
                     })
                     $('#tbodyArticulo').html('');
+                    $('#tbodyArticulo2').html('');
+                    $('#tbodyArticulo3').html('');
                 }
             },
             fail: function(response){
@@ -141,7 +143,7 @@ $('#formEliminarArticulo').submit(function(e){
                     color: 'white'
                 })
                 document.getElementById('tblEliminarArticuloDatos').style.display = 'none';
-            }else{
+            }else if(JSON.parse(response) == 'false'){
                 Swal.fire({
                 title: 'Error',
                 text: 'Error al eliminar Artículo',
@@ -149,8 +151,15 @@ $('#formEliminarArticulo').submit(function(e){
                 background: '#121212',
                 color: 'white'
                 })
+            }else if(JSON.parse(response) == 'used'){
+                Swal.fire({
+                title: 'Error',
+                text: 'No se puede eliminar el artículo porque ya ha tiene registros',
+                icon: 'error',
+                background: '#121212',
+                color: 'white'
+                })
             }
-
         },
         fail: function(res){
             Swal.fire({
