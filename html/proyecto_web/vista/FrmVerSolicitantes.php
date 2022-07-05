@@ -9,7 +9,10 @@
         <title>Solicitantes</title>
         </head>
         <body>
-            <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+            <div class="topPanel">
+                <a class="back" href="../controlador/CtrlShowMenuSolicitante.php">&lt; Volver al Menú</a>
+                <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+            </div>
         <h1 align="center">Solicitantes Registrados</h1>
             <div class="div-ver">
                 <table class="tblShow">
@@ -35,8 +38,6 @@
                     ?>
                 </table>    
             </div>
-            
-            <a class="back" href="../controlador/CtrlShowMenuSolicitante.php?r=value">&lt; Ir Al Menú</a>
         </body>
         </html>
     <?php

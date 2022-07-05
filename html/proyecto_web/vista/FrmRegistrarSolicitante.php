@@ -14,7 +14,8 @@
                 <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
             </div>
             <h1 align="center">Registrar Solicitante</h1>
-            <form method="post" id="formRegistrarSolicitante" enctype="multipart/form-data"><table width="652" border="0" align="center" >
+            <hr class="hr">
+            <form method="post" id="formRegistrarSolicitante" enctype="multipart/form-data"><table width="652" border="0" align="center">
           <tbody>
             <tr>
               <td width="184" height="41" align="center" valign="middle" class="txtForm">Nombre</td>

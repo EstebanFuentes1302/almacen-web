@@ -18,6 +18,17 @@
         mysqli_close($con);
     }
     
+    function isUsed($codigo){
+        $con = conectar();
+        $sql = "select * from Pedido where codigo_solicitante='$codigo'";
+        $result = mysqli_query($con, $sql);
+        if(mysqli_num_rows($result) > 0){
+            return(true);
+        }else{
+            return(false);
+        }
+    }
+
     function buscarSolicitante($codigo){
         $con=conectar();
         $sql="select * from Solicitante where codigo_solicitante='$codigo'";

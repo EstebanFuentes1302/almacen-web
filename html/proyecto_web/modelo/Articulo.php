@@ -1,6 +1,7 @@
 <?php
     include 'ConexionDB.php';
-
+    include 'SingletonConexionDB.php';
+    
     function registrarArticulo($nombre,$cantidad,$fecha){
         try{
             //echo "$cod_articulo\t$nombre_articulo/t$cantidad\t$fecha";

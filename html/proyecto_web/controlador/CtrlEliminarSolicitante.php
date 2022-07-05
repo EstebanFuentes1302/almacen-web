@@ -3,24 +3,29 @@
     $sesion=$_SESSION['usuario'];
 
     if($sesion!=null){
-        $codigo=$_GET['r'];
+        $codigo=$_POST['codigo'];
         if(isset($codigo)){
             include_once('../modelo/Solicitante.php');
-            $result=eliminarSolicitante($codigo);
-            if($result){
-                include_once('../vista/FrmMensajeAprobado.php');
-                frmMensajeAprobadoShow("Solicitante eliminado","Solicitante Eliminado Correctamente",array("<a href='../controlador/CtrlShowEliminarSolicitante.php'>Eliminar Otro Solicitante</a>","<a href='../controlador/CtrlShowMenuSolicitante.php'>Volver Al Menú</a>"));
+            $used = isUsed($codigo);
+            $result = eliminarSolicitante($codigo);
+            if($used == false){
+                if($result){
+                echo json_encode("true");
+                }else{
+                    echo json_encode("false");
+                }    
             }else{
-                include_once('../vista/FrmMensaje.php');
-                frmMensajeShow("Error al eliminar Solicitante","<a href='../controlador/CtrlShowModificarSolicitante.php?r=value>Intentar Nuevamente</a>");
+                echo json_encode("used");
             }
+            
         }else{
             include_once('../vista/FrmMensaje.php');
-            frmMensajeShow("No es el acceso correcto","<a href='../controlador/CtrlShowLogin.php?r=value'>Inicio de sesión</a>");
+            frmMensajeShow("<p class='p'>No es el acceso correcto<p>","<a class='link-p'  href='../controlador/CtrlShowMenuSolicitante.php>Volver</a>");
+            die();
         }
     }else{
         include_once('../vista/FrmMensaje.php');
-        frmMensajeShow("No es el acceso correcto","<a href='../controlador/CtrlShowLogin.php?r=value'>Inicio de sesión</a>");
+        frmMensajeShow("<p class='p'>Acceso Denegado, no ha iniciado sesión<p>","<a class='link-p' href='../controlador/CtrlShowLogin.php'>Inicio de sesión</a>");
         die();
     }
 

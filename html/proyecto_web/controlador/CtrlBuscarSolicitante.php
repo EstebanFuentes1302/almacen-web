@@ -9,7 +9,7 @@
             if($solicitante != null){
                 echo json_encode($solicitante);
             }else{
-                echo json_encode(null);
+                echo json_encode('null');
             }
         }else{
             include_once('../vista/FrmMensaje.php');
