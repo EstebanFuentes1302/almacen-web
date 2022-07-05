@@ -59,11 +59,11 @@ const validarFormRegistrarSolicitante = (e) => {
         case "foto":
             console.log(e.target.value);
             if(expresiones.foto.test(e.target.value)){
-                document.getElementById('foto').classList.remove('txtFieldFormIncorrecto');
+                document.getElementById('foto').classList.remove('fileFormIncorrecto');
                 document.getElementById('txtErrorFoto').classList.remove('txtErrorShow');
                 campos['foto']=true;
             }else{
-                document.getElementById('foto').classList.add('txtFieldFormIncorrecto');
+                document.getElementById('foto').classList.add('fileFormIncorrecto');
                 document.getElementById('txtErrorFoto').classList.add('txtErrorShow');
                 campos['foto']=false;
             }
@@ -87,9 +87,11 @@ $('#formRegistrarSolicitante').submit(function(e){
     var correo = $('#txtCorreo').val();
     var telefono = $('#txtTelefono').val();
     
-    for (var pair of formData.entries()) {
+    //PARA VER EL FORMDATA
+    /*for (var pair of formData.entries()) {
         console.log(pair[0]+ ', ' + pair[1]); 
-    }
+    }*/
+    
     if(campos['foto']){
         if(campos['nombre'] && campos['correo'] && campos['telefono']){
             $.ajax({
@@ -99,7 +101,7 @@ $('#formRegistrarSolicitante').submit(function(e){
                 contentType: false,
                 processData: false,
                 success: function (response){
-                    console.log(response);
+                    //console.log(response);
                     if(JSON.parse(response)=='true'){
                         Swal.fire({
                                 title: 'Solicitante Registrado!',
@@ -108,7 +110,7 @@ $('#formRegistrarSolicitante').submit(function(e){
                                 background: '#121212',
                                 color: 'white'
                             });
-                        $('#formRegistrarArticulo').trigger('reset');
+                        $('#formRegistrarSolicitante').trigger('reset');
                     }else if(JSON.parse(response)=='false'){
                         Swal.fire({
                         title: 'Error',
@@ -125,7 +127,7 @@ $('#formRegistrarSolicitante').submit(function(e){
                         background: '#121212',
                         color: 'white'
                         })
-                        $('#formRegistrarArticulo').trigger('reset');
+                        $('#formRegistrarSolicitante').trigger('reset');
                     }
                 }
             });  

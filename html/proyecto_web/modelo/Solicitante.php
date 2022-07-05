@@ -1,5 +1,5 @@
 <?php
-    require 'ConexionDB.php';
+    include 'ConexionDB.php';
     function registrarSolicitante($nombre,$email,$telefono,$ruta_foto){
         try{
             $sql="insert into Solicitante(nombre,email,telefono,foto) values('$nombre','$email','$telefono','$ruta_foto')";
@@ -21,9 +21,12 @@
     function buscarSolicitante($codigo){
         $con=conectar();
         $sql="select * from Solicitante where codigo_solicitante='$codigo'";
-        $result=mysqli_query($con,$sql);
-        return(mysqli_fetch_array($result));
-        mysqli_close($con);
+        $result=mysqli_query($con, $sql);
+        if(mysqli_num_rows($result) > 0){
+            return(mysqli_fetch_array($result));
+        }else{
+            return(null);
+        }
     }
     
     function modificarSolicitante($codigo,$nombre,$email,$tel){

@@ -1,30 +1,26 @@
 <?php
     session_start();
     $sesion=$_SESSION['usuario'];
-    $boton=$_POST['btnModificar'];
-    $codigo=$_GET['r'];
+    $codigo=$_POST['codigo'];
     if($sesion!=null){
-        if(isset($boton) and isset($codigo)){
+        if(isset($codigo)){
             include_once('../modelo/Solicitante.php');
-            $nombre=$_POST['txtNombre'];
-            $correo=$_POST['txtCorreo'];
-            $tel=$_POST['txtTelefono'];
+            $nombre=$_POST['nombre'];
+            $correo=$_POST['email'];
+            $tel=$_POST['telefono'];
             $result=modificarSolicitante($codigo,$nombre,$correo,$tel);
             if($result){
-                include_once('../vista/FrmMensajeAprobado.php');
-                frmMensajeAprobadoShow("Solicitante modificado","Solicitante Modificado Correctamente",array("<a href='../controlador/CtrlShowModificarSolicitante.php'>Modificar Otro Solicitante</a>","<a href='../controlador/CtrlShowMenuSolicitante.php'>Volver Al Menú</a>"));
+                echo json_encode("true");
             }else{
-                include_once('../vista/FrmMensaje.php');
-                frmMensajeShow("Error al modificar Solicitante","<a href='../controlador/CtrlShowModificarArticulo.php>Intentar Nuevamente</a>");
-                die();
+                echo json_encode("false");
             }
         }else{
             include_once('../vista/FrmMensaje.php');
-            frmMensajeShow("No es el acceso correcto","<a href='../controlador/CtrlShowMenuSolicitante.php>Volver Al Menú</a>");
+            frmMensajeShow("<p class='p'>No es el acceso correcto<p>","<a class='link-p'  href='../controlador/CtrlShowMenuSolicitante.php>Volver</a>");
             die();
         }
     }else{
         include_once('../vista/FrmMensaje.php');
-        frmMensajeShow("Acceso Denegado, no ha iniciado sesión","<a href='../controlador/CtrlShowLogin.php'>Inicio de sesión</a>");
+        frmMensajeShow("<p class='p'>Acceso Denegado, no ha iniciado sesión<p>","<a class='link-p' href='../controlador/CtrlShowLogin.php'>Inicio de sesión</a>");
         die();
     }

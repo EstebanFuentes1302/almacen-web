@@ -15,7 +15,7 @@ const expresiones = {
     codigo_solicitante: /^2\d{7}$/,
     codigo: /^(?!1000)[1-9][0-9][0-9][0-9]$/,
     usuario: /^\w+(\S?\w+?)+$/,
-    password: /^(([\w!@#\.])+){4,}$/,
+    password: /^(([\w!@#\.])+){4,}$/
 }
 
 const camposBuscar = {

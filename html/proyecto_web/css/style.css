@@ -310,6 +310,10 @@ h1{
     color:white;
 }
 
+.fileFormIncorrecto{
+    border-color: #D4070A;
+}
+
 .selectForm{
     text-align: center;
     background-color: #121212;

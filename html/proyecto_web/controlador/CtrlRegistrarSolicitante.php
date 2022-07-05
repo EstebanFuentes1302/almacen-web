@@ -3,6 +3,7 @@
     $sesion=$_SESSION['usuario'];
 
     if($sesion!=null){
+        
         $nombre=$_POST['txtNombreSolicitante'];
         $email=$_POST['txtCorreo'];
         $telefono=$_POST['txtTelefono'];
@@ -13,8 +14,9 @@
         $carpeta='../img/solicitante';
         $ruta_foto=$carpeta.'/'.$nombre_imagen;
         //echo $ruta_foto;
-
-        if(move_uploaded_file($temporal,$ruta_foto)){
+        
+        if(isset($nombre) && isset($email) && isset($telefono) && isset($temporal)){
+            if(move_uploaded_file($temporal,$ruta_foto)){
             include_once('../modelo/Solicitante.php');
             $registrar=registrarSolicitante($nombre,$email,$telefono,$ruta_foto);
             if($registrar){
@@ -22,9 +24,11 @@
             }else{
                 echo json_encode('false');
             }
-        }else{
-            echo json_encode('noupload');
+            }else{
+                echo json_encode('noupload');
+            }
         }
+        
     }else{
         include_once('../vista/FrmMensaje.php');
         frmMensajeShow("<p class='p'>Acceso Denegado, no ha iniciado sesión<p>","<a class='link-p' href='../controlador/CtrlShowLogin.php?r=value'>Inicio de sesión</a>");
