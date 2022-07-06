@@ -8,7 +8,8 @@
         $cantidad=$_POST['cantidad'];
         if(isset($nombre) && isset($cantidad) && isset($codigo)){
             include_once('../modelo/Articulo.php');
-            $result=modificarArticulo($codigo, $nombre, $cantidad, $fecha);
+            $a = new Articulo;
+            $result = $a -> modificarArticulo($codigo, $nombre, $cantidad, $fecha);
             if($result){
                 echo json_encode('true');
             }else{

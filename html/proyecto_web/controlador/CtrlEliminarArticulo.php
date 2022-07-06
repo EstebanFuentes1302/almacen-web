@@ -5,9 +5,10 @@
         $codigo=$_POST['codigo'];
         if(isset($codigo)){
             include_once('../modelo/Articulo.php');
-            $isused = isUsedArticulo($codigo);
+            $a = new Articulo;
+            $isused = $a -> isUsedArticulo($codigo);
             if(!$isused){
-                $result=eliminarArticulo($codigo);
+                $result = $a -> eliminarArticulo($codigo);
                 if($result){
                     echo json_encode('true');
                 }else{

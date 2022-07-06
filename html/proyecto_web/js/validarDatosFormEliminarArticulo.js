@@ -154,7 +154,7 @@ $('#formEliminarArticulo').submit(function(e){
             }else if(JSON.parse(response) == 'used'){
                 Swal.fire({
                 title: 'Error',
-                text: 'No se puede eliminar el artículo porque ya ha tiene registros',
+                text: 'No se puede eliminar el artículo porque ya tiene registros en el sistema',
                 icon: 'error',
                 background: '#121212',
                 color: 'white'

@@ -5,7 +5,8 @@
     if($sesion!=null){
         include_once('../vista/FrmVerArticulos.php');
         include_once('../modelo/Articulo.php');
-        $articulos=getArticulos();
+        $a = new Articulo;
+        $articulos = $a -> getArticulos();
         frmVerArticulosShow($articulos);
     }else{
         include_once('../vista/FrmMensaje.php');

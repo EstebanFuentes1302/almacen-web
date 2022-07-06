@@ -71,7 +71,7 @@ $('#formRegistrarArticulo').submit(function(e){
     }
     if(campos['nombre'] && campos ['cantidad'] && date){
         $.post('../controlador/CtrlRegistrarArticulo.php',data, function (response){
-            //console.log(response);
+            console.log(response);
             if(JSON.parse(response)=='true'){
                 Swal.fire({
                         title: 'Artículo Registrado!',
