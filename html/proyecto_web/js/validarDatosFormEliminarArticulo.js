@@ -174,3 +174,18 @@ $('#formEliminarArticulo').submit(function(e){
 
     
 });
+
+function verArticulos(){
+    let action = 'popup';
+    $.ajax({
+        url: '../controlador/CtrlShowVerArticulos.php',
+        data: { action },
+        type: 'POST',
+        success: function (response){
+            console.log(response);
+            var VerArticulosPopUp = window.open('', '', 'width=700, height=900');
+            VerArticulosPopUp.document.write(response);
+        }
+    });
+    
+}

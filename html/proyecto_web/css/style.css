@@ -103,19 +103,21 @@ h1{
 }
 
 .button-menu2:hover {
-    background-color: #FFFFFF;
+    filter: invert();
+    /*background-color: #FFFFFF;
     border-color: black;
     box-shadow: 1.5px 1.5px 10px rgba(255,255,255,1.00);
-    color: black;
+    color: black;*/
     transform: translateY(-4px);
 }
 
 .button-menu{
     display: inline-block;
+    width: 100px;
     font-weight: 350;
     box-shadow: 1.5px 1.5px 10px rgba(27,27,27,1.00);
     letter-spacing: 1px;
-    margin:40px 30px;
+    margin: 20px 20px;
     padding: 40px 70px;
     background: #0D0D0D;
     border-style: solid;
@@ -130,20 +132,21 @@ h1{
 }
 
 .button-menu:hover {
-    background-color: #FFFFFF;
+    filter: invert();
+    /*background-color: #FFFFFF;
     border-color: black;
     box-shadow: 1.5px 1.5px 10px rgba(255,255,255,1.00);
-    color: black;
+    color: black;*/
     transform: translateY(-10px);
 }
 
 .button-submit{
-    display: inline-block;
+    display: block;
     vertical-align: middle;
     font-weight: 300;
-    box-shadow: 0px 5px 5px rgba(27,27,27,1.00);
+    box-shadow: 3px 3px 8px rgba(27,27,27,1.00);
     letter-spacing: 1px;
-    margin:20px 10px;
+    margin: 30px auto 10px auto;
     padding: 10px 40px 10px 40px;
     background: #000000;
     line-height: 20px;
@@ -159,20 +162,21 @@ h1{
 }
 
 .button-submit:hover {
-    background-color: #FFFFFF;
+    filter: invert();
+    /*background-color: #FFFFFF;
     border-color: black;
     box-shadow: 3px 3px 8px rgba(255,255,255,1.00);
-    color: black;
+    color: black;*/
     transform: scale(1.10);
 }
 
 .button-search{
-    height: 45px;
+    height: auto;
     display: inline-block;
     vertical-align: middle;
     font-weight: 300;
     box-shadow: 3px 3px 8px rgba(27,27,27,1.00);
-    margin:10px 10px;
+    margin: auto 10px;
     padding: 10px 20px;
     background: #000000;
     border-style: solid;
@@ -187,6 +191,31 @@ h1{
 }
 
 .button-search:hover {
+    filter: invert();
+    transform: scale(1.10);
+}
+
+.button-ver{
+    height: 45px;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 300;
+    box-shadow: 3px 3px 8px rgba(27,27,27,1.00);
+    margin: auto 10px;
+    padding: 10px 20px;
+    background: #000000;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: white;
+    border-radius: 35px;
+    transition: all 0.3s ease 0s;
+    color: white;
+    font-size: 16px;
+    
+    text-decoration: none;
+}
+
+.button-ver:hover {
     filter: invert();
     transform: scale(1.10);
 }
@@ -260,7 +289,7 @@ h1{
 
 .div-Form{
     height: auto;
-    margin: 0px 0px 40px 0px;
+    margin: 40px 0px 40px 0px;
 }
 
 .div-ver{
@@ -268,17 +297,29 @@ h1{
     margin: 0px 0px 40px 0px;
 }
 
-/*.div-buscar{
-    vertical-align: middle;
+.div-buscar{
+    overflow: hidden;
+    margin: 20px 0px;
+    /*vertical-align: middle;*/
     text-align: center;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
 }
 
-.div-buscar:after {
-    content: '';
+.div-form-row{
+    margin: 25px 0px;
+    text-align: center;
+}
+
+.div-txt-form-row{
     display: inline-block;
-    width: 100%;
-}*/
+    height: auto;
+    width: 200px;
+}
+
+.div-input-form-row{
+    display: inline-block;
+    width: 300px;
+}
 
 .txtFieldFormulario{
     display: inline-block;
@@ -297,15 +338,18 @@ h1{
 
 
 .txtFieldForm{
+    height: 100%;
+    display: inline-block;
     text-align: center;
     background-color: #121212;
+    height: auto;
     border-style: solid;
     border-width: 1.5px;
     border-color: white;
     border-radius: 40px;
     padding: 10px 15px;
     caret-color: white;
-    margin: 20px 5px;
+    margin: auto 10px;
     color: white;
     font-size: 17px;
 }
@@ -329,7 +373,17 @@ h1{
 }
 
 .txtForm{
+    display: inline-block;
     font-weight: 300; 
+    letter-spacing: 1px;
+    color: white;
+}
+
+.txtFormBuscar{
+    height: 100%;
+    display: inline-block;
+    font-weight: 300;
+    margin: auto 15px;
     letter-spacing: 1px;
     color: white;
 }
@@ -398,6 +452,7 @@ h1{
 }
 
 .dateForm{
+    height: auto;
     text-align: center;
     background-color: #121212;
     border-style: solid;
@@ -406,7 +461,6 @@ h1{
     border-radius: 40px;
     padding: 10px 15px;
     caret-color: white;
-    margin: 10px 5px;
     color: white;
     font-size: 17px;
 }
@@ -416,10 +470,11 @@ h1{
 }
 
 .reset{
+    display: block;
     background: none;
     font-weight: 300;
     letter-spacing: 1px;
-    margin: 0px 10px;
+    margin: auto;
     padding: 10px 40px;
     line-height: 10px;
     border:none;
@@ -433,8 +488,9 @@ h1{
 }
 
 .hr{
-    margin:15px auto ;
-    width: 850px;
+    
+    margin: 15px auto;
+    width: 600px;
 }
 
 .txtHeader{
@@ -499,4 +555,21 @@ h1{
     vertical-align: middle;
     width: 25px;
     height: 25px;
+}
+
+.icon-menu{
+    filter: invert();
+    vertical-align: middle;
+    margin: 0px 15px 0px 0px;
+    width: 25px;
+    height: 25px;
+}
+
+.icon-menu-principal{
+    display: block;
+    filter: invert();
+    vertical-align: middle;
+    margin: 0px 0px 15px 0px;
+    width: 45px;
+    height: 45px;
 }

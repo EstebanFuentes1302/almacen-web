@@ -18,13 +18,16 @@
                 </div>
             <h1 align="center">Eliminar Articulo</h1>
                 <form id="formBuscarArticulo" method="post">
-                  <table width="645" border="0" align="center">
+                  <table width="925" border="0" align="center">
                     <tbody>
                       <tr>
-                        <td class="txtForm" width="122" height="35" >Buscar Código</td>
-                        <td width="513" align="center" valign="middle"><input class="txtFieldForm" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
+                        <td width="253" height="35" align="center" class="txtForm" >Buscar Código</td>
+                        <td width="662" align="center" valign="middle"><input class="txtFieldForm" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
                           <button class="button-search" type="submit" name="btnBuscar" id="btnBuscar">
                                 <img class="icon-buscar" src="../img/icons/lupa.png">
+                            </button>
+                            <button type="button" class="button-ver" name="btnVerArticulos" id="btnVerArticulos" title="Ver Artículos" onClick="verArticulos()">
+                                <img class="icon-menu" src="../img/icons/tabla.png">Ver Articulos
                             </button>
                           </td>
                       </tr>

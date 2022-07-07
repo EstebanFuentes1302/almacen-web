@@ -20,10 +20,26 @@
             <hr class="hr">
             <div class="div-menu" align="center">
 
-                <a class="button-menu2" href="../controlador/CtrlShowRegistrarPedido.php">Registrar Pedido</a><br>
-                <a class="button-menu2" href="../controlador/CtrlShowModificarPedido.php">Modificar Pedido</a><br>
-                <a class="button-menu2" href="../controlador/CtrlShowEliminarPedido.php">Eliminar Pedido</a><br>
-                <a class="button-menu2" href="../controlador/CtrlShowVerPedidos.php">Registro de Pedidos</a><br>
+                <a class="button-menu2" href="../controlador/CtrlShowRegistrarPedido.php">
+                    <img class="icon-menu" src="../img/icons/registrar_pedido.png">
+                    Registrar Pedido
+                </a>
+                <br>
+                <a class="button-menu2" href="../controlador/CtrlShowModificarPedido.php">
+                    <img class="icon-menu" src="../img/icons/modificar_pedido.png">
+                    Modificar Pedido
+                </a>
+                <br>
+                <a class="button-menu2" href="../controlador/CtrlShowEliminarPedido.php">
+                    <img class="icon-menu" src="../img/icons/eliminar.png">
+                    Eliminar Pedido
+                </a>
+                <br>
+                <a class="button-menu2" href="../controlador/CtrlShowVerPedidos.php">
+                    <img class="icon-menu" src="../img/icons/tabla.png">
+                    Registro de Pedidos
+                </a>
+                <br>
             </div>
             </body>
             </html>

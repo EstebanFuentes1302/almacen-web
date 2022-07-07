@@ -19,8 +19,15 @@
             <h1 align="center">Gestión de Devoluciones</h1>
             <hr class="hr">
             <div class="div-menu" align="center">
-                <a class="button-menu2" href="../controlador/CtrlShowRegistrarDevolucion.php">Devolver Pedido</a><br>
-                <a class="button-menu2" href="../controlador/CtrlShowVerDevoluciones.php">Registro de Devoluciones</a>
+                <a class="button-menu2" href="../controlador/CtrlShowRegistrarDevolucion.php">
+                    <img class="icon-menu" src="../img/icons/devolver.png">
+                    Devolver Pedido
+                </a>
+                <br>
+                <a class="button-menu2" href="../controlador/CtrlShowVerDevoluciones.php">
+                    <img class="icon-menu" src="../img/icons/tabla.png">
+                    Registro de Devoluciones
+                </a>
             </div>
             </body>
             </html>

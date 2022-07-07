@@ -17,21 +17,37 @@
                 <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
             </div>
             <h1 align="center">Modificar Articulo</h1>
-                <form id="formBuscarArticulo" method="post">
-                  <table width="675" border="0" align="center">
+                <div class="div-buscar">
+                    <form id="formBuscarArticulo" method="post">
+                        <p class="txtFormBuscar">Buscar Código</p>
+                        <input class="txtFieldForm" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
+                        <button class="button-search" type="submit" name="btnBuscar" id="btnBuscar">
+                            <img class="icon-buscar" src="../img/icons/lupa.png">
+                        </button>
+                        <button type="button" class="button-ver" name="btnVerArticulos" id="btnVerArticulos" title="Ver Artículos" onClick="verArticulos()">
+                            <img class="icon-menu" src="../img/icons/tabla.png">Ver Articulos
+                        </button>
+                        <p class="txtError" id="txtErrorCodigo">El código de artículo debe contener un número entre 1001 y 9999</p>
+                    </form>
+                </div>
+                <!--<form id="formBuscarArticulo" method="post">
+                  <table width="925" border="0" align="center">
                     <tbody>
                       <tr>
-                        <td class="txtForm" width="148" height="35">Buscar Código</td>
-                        <td width="517" align="center" valign="middle"><input class="txtFieldForm" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
+                        <td width="253" height="35" align="center" valign="middle" class="txtForm">Buscar Código</td>
+                        <td width="662" align="center" valign="middle"><input class="txtFieldForm" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
                           <button class="button-search" type="submit" name="btnBuscar" id="btnBuscar">
                                 <img class="icon-buscar" src="../img/icons/lupa.png">
+                            </button>
+                            <button type="button" class="button-ver" name="btnVerArticulos" id="btnVerArticulos" title="Ver Artículos" onClick="verArticulos()">
+                                <img class="icon-menu" src="../img/icons/tabla.png">Ver Articulos
                             </button>
                           </td>
                       </tr>
                     </tbody>
                   </table>
                     <p class="txtError" id="txtErrorCodigo">El código de artículo debe contener un número entre 1001 y 9999</p>
-                </form>
+                </form>-->
                 <div class="div-Form">
                     <hr class="hr">
                         <form id="formModificarArticulo" method="post"?>">
