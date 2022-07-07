@@ -10,7 +10,8 @@
             $estado=$_POST['estado'];
         if(isset($cod_articulo) && isset($cod_articulo) && isset($cod_solicitante) && isset($cantidad) && isset($estado)){
             include_once('../modelo/Pedido.php');
-            $registrar=registrarPedido($cod_articulo,$cod_solicitante,$estado,$fecha,$cantidad);
+            $p = new Pedido;
+            $registrar = $p -> registrarPedido($cod_articulo,$cod_solicitante,$estado,$fecha,$cantidad);
             if($registrar){
                 echo json_encode('true');
             }else{

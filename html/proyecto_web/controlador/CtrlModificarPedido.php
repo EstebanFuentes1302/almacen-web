@@ -10,7 +10,8 @@
             include_once('../modelo/Pedido.php');
             
             $fecha=$_POST['txtFecha'];
-            $result=modificarPedido($codigo,$codigo_articulo,$cantidad,$oldcantidad);
+            $p = new Pedido;
+            $result = $p -> modificarPedido($codigo,$codigo_articulo,$cantidad,$oldcantidad);
             if($result){
                 echo json_encode('true');
             }else{

@@ -1,5 +1,4 @@
 <?php
-    include 'ConexionDB.php';
     include 'SingletonConexionDB.php';
     
     class Articulo

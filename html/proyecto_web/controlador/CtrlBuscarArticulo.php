@@ -5,7 +5,8 @@
     if($sesion!=null){
             include_once('../modelo/Articulo.php');
             $codigo=$_POST['codigo'];
-            $articulo=buscarArticulo($codigo);
+            $a = new Articulo;
+            $articulo = $a -> buscarArticulo($codigo);
             if($articulo){
                 $json = array(
                         'codigo' => $articulo['codigo'],

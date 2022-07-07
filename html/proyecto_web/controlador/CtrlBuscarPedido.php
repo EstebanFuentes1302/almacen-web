@@ -4,9 +4,10 @@
     
     if($sesion!=null){
             include_once('../modelo/Pedido.php');
-            $codigo=$_POST['codigo_pedido'];
+            $codigo=$_POST['codigo'];
             if(isset($codigo)){
-                $pedido=buscarPedido($codigo);
+                $p = new Pedido;
+                $pedido = $p -> buscarPedido($codigo);
                 if($pedido){
                     $json = array(
                         'codigo_pedido' => $pedido['codigo_pedido'],

@@ -1,5 +1,7 @@
 <?php
-    function frmVerArticulosShow($articulos){
+class FrmVerArticulos
+{
+    public function frmVerArticulosShow($articulos){
     ?>
         <!doctype html>
         <html>
@@ -41,6 +43,7 @@
         </html>
     <?php
     }
+}
 
 ?>
 

@@ -18,7 +18,8 @@
         if(isset($nombre) && isset($email) && isset($telefono) && isset($temporal)){
             if(move_uploaded_file($temporal,$ruta_foto)){
             include_once('../modelo/Solicitante.php');
-            $registrar=registrarSolicitante($nombre,$email,$telefono,$ruta_foto);
+            $s = new Solicitante;
+            $registrar = $s -> registrarSolicitante($nombre, $email, $telefono, $ruta_foto);
             if($registrar){
                 echo json_encode('true');
             }else{

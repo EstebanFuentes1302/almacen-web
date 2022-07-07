@@ -1,5 +1,7 @@
 <?php
-    function frmVerArticulosShow($articulos){
+class FrmVerPedidos
+{
+    public function frmVerPedidosShow($pedidos){
     ?>
         <!doctype html>
         <html>
@@ -22,7 +24,7 @@
                         <td class="txtHeader" width="130" align="center" valign="middle">Fecha de Registro</td>
                     </tr>
                     <?php
-                        while($array=mysqli_fetch_array($articulos)){
+                        while($array=mysqli_fetch_array($pedidos)){
                     ?>
                         <tr>
                             <td class="txtRow" height="35" align="center" valign="middle"><?php echo $array['codigo_pedido']?></td>
@@ -42,6 +44,7 @@
         </html>
     <?php
     }
+}
 
 ?>
 

@@ -15,7 +15,7 @@ const expresiones = {
     password: /^(([\w!@#\.])+){4,}$/,
 }
 
-var codigo_pedido;
+var codigo;
 var codigo_articulo;
 var cantidad;
 var txtAreaE;
@@ -51,7 +51,7 @@ formBuscarDevolucionInputs.forEach((input)=>{
 });
 
 const validarFormRegistrarDevolucion = (e) => {
-    console.log(e.target.name);
+    //console.log(e.target.name);
     switch(e.target.name){
         case "fecha_devolucion":
             //console.log(Date.parse($('#date').val()));
@@ -82,15 +82,15 @@ const validarFormRegistrarDevolucion = (e) => {
 
 $('#formBuscarDevolucion').submit(function(e){
     e.preventDefault();
-    codigo_pedido = $('#txtCodigoBuscar').val();
+    codigo = $('#txtCodigoBuscar').val();
     //console.log(codigo);
     if(camposBuscar['codigo']){
         $.ajax({
             url: '../controlador/CtrlBuscarPedido.php',
             type: 'POST',
-            data: { codigo_pedido },
+            data: { codigo },
             success: function(response){
-                console.log(JSON.parse(response));
+                //console.log(JSON.parse(response));
                 if(JSON.parse(response) != 'null'){
                     Swal.fire({
                         title: 'Pedido Encontrado!',
@@ -193,7 +193,7 @@ $('#formRegistrarDevolucion').submit(function(e){
     e.preventDefault();
     
     const data = {
-        codigo_pedido: codigo_pedido,
+        codigo: codigo,
         codigo_articulo: codigo_articulo,
         fecha_devolucion: $('#fecha_devolucion').val(),
         cantidad: cantidad,
@@ -202,7 +202,7 @@ $('#formRegistrarDevolucion').submit(function(e){
     
     if(camposRegistrar['date'] && $('#txtaDetalles').val().length<=100){
         $.post('../controlador/CtrlRegistrarDevolucion.php',data, function (response){
-            console.log(response);
+            //console.log(response);
             if(JSON.parse(response) == 'true'){
                 Swal.fire({
                         title: 'Pedido Devuelto!',

@@ -43,8 +43,8 @@ const validarFormBuscarPedido = (e) => {
 }
 
 formBuscarPedidoInputs.forEach((input)=>{
-    input.addEventListener('keyup',validarFormBuscarPedido);
-    input.addEventListener('blur',validarFormBuscarPedido);
+    input.addEventListener('keyup', validarFormBuscarPedido);
+    input.addEventListener('blur', validarFormBuscarPedido);
 })
 
 const validarFormModificarPedido = (e) => {
@@ -79,7 +79,7 @@ $('#formBuscarPedido').submit(function(e){
             data: { codigo },
             success: function(response){
                 console.log(JSON.parse(response));
-                if(JSON.parse(response)!='null'){
+                if(JSON.parse(response) != 'null'){
                     Swal.fire({
                         title: 'Pedido Encontrado!',
                         text: 'El pedido ha sido encontrado',

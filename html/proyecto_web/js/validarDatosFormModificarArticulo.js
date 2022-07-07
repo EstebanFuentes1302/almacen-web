@@ -8,6 +8,7 @@ const formBuscarArticuloInputs = document.querySelectorAll('#formBuscarArticulo 
 
 const expresiones = {
     codigo: /^(?!1000)[1-9][0-9][0-9][0-9]$/,
+    form_nombre: /^((\w|[ \u0021-\u002f]|[\u00c0-\u00ff])+){2,}/
 }
 
 const camposBuscar = {
@@ -82,7 +83,7 @@ $('#formBuscarArticulo').submit(function(e){
             type: 'POST',
             data: { codigo },
             success: function(response){
-                console.log(response);
+                //console.log(response);
                 if(JSON.parse(response) != 'null'){
                     Swal.fire({
                         title: 'Artículo Encontrado!',
@@ -170,7 +171,7 @@ $('#formBuscarArticulo').submit(function(e){
 
 $('#formModificarArticulo').submit(function(e){
     e.preventDefault();
-    console.log($('#txtNombre').val());
+    //console.log($('#txtNombre').val());
     let nombre = $('#txtNombre').val();
     let cantidad = $('#txtCantidad').val();
     //let dataModificar={codigo, nombre, cantidad}
@@ -182,7 +183,7 @@ $('#formModificarArticulo').submit(function(e){
             type: 'POST',
             data: {codigo, nombre, cantidad},
             success: function(response){
-                console.log(response);
+                //console.log(response);
                 if(JSON.parse(response)=='true'){
                     Swal.fire({
                         title: 'Artículo Modificado!',

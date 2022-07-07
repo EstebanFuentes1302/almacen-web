@@ -3,9 +3,11 @@
     $sesion = $_SESSION['usuario'];
     if($sesion!=null){
         include_once('vista/FrmMenuPrincipal.php');
-        frmMenuPrincipalShow();
+        $frm = new FrmMenuPrincipal;
+        $frm -> frmMenuPrincipalShow();
     }else{
         include_once('vista/FrmLogin.php');
-        frmLoginShow();
+        $frm = new FrmLogin;
+        $frm -> frmLoginShow();
     } 
 ?> 

@@ -8,7 +8,8 @@
         $cantidad=$_POST['cantidad_pedido'];
         if(isset($codigo) and isset($codigo_articulo) and isset($cantidad)){
             include_once('../modelo/Pedido.php');
-            $result=eliminarPedido($codigo,$codigo_articulo,$cantidad);
+            $p = new Pedido;
+            $result = $p -> eliminarPedido($codigo,$codigo_articulo,$cantidad);
             if($result){
                 echo json_encode('true');
             }else{
