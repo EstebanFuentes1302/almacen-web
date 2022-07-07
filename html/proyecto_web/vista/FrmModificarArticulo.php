@@ -23,7 +23,10 @@
                       <tr>
                         <td class="txtForm" width="148" height="35">Buscar Código</td>
                         <td width="517" align="center" valign="middle"><input class="txtFieldForm" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
-                          <input class="button-submit" type="submit" name="btnBuscar" id="btnBuscar" value="Buscar"></td>
+                          <button class="button-search" type="submit" name="btnBuscar" id="btnBuscar">
+                                <img class="icon-buscar" src="../img/icons/lupa.png">
+                            </button>
+                          </td>
                       </tr>
                     </tbody>
                   </table>

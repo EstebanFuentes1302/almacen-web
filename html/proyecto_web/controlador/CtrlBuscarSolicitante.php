@@ -5,7 +5,8 @@
         $codigo=$_POST['codigo'];
         if(isset($codigo)){
             include_once('../modelo/Solicitante.php');
-            $solicitante = buscarSolicitante($codigo);
+            $s = new Solicitante;
+            $solicitante = $s ->  buscarSolicitante($codigo);
             if($solicitante != null){
                 echo json_encode($solicitante);
             }else{

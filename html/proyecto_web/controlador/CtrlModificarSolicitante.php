@@ -8,7 +8,8 @@
             $nombre=$_POST['nombre'];
             $correo=$_POST['email'];
             $tel=$_POST['telefono'];
-            $result=modificarSolicitante($codigo,$nombre,$correo,$tel);
+            $s = new Solicitante;
+            $result = $s -> modificarSolicitante($codigo,$nombre,$correo,$tel);
             if($result){
                 echo json_encode("true");
             }else{

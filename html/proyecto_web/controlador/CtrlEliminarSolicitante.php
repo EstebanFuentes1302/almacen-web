@@ -6,8 +6,9 @@
         $codigo=$_POST['codigo'];
         if(isset($codigo)){
             include_once('../modelo/Solicitante.php');
-            $used = isUsed($codigo);
-            $result = eliminarSolicitante($codigo);
+            $s = new Solicitante;
+            $used = $s -> isUsed($codigo);
+            $result = $s -> eliminarSolicitante($codigo);
             if($used == false){
                 if($result){
                 echo json_encode("true");
