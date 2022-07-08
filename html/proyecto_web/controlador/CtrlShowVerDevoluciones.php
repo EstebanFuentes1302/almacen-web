@@ -1,16 +1,25 @@
 <?php
     session_start();
     $sesion=$_SESSION['usuario'];
+    $action = $_POST['action'];
+    if(!isset($action)){
+        $action = '';
+    }
 
     if($sesion!=null){
         include_once('../vista/FrmVerDevoluciones.php');
         include_once('../modelo/Devolucion.php');
         
-        
         $d = new Devolucion;
         $devoluciones = $d -> getDevoluciones();
-        $frm = new FrmVerDevoluciones;
-        $frm -> frmVerDevolucionesShow($devoluciones);
+        if($action == 'popup'){
+            $frm = new FrmVerDevoluciones;
+            $frm -> frmVerDevolucionesPopUpShow($devoluciones);
+        }else if($action == ''){
+            $frm = new FrmVerDevoluciones;
+            $frm -> frmVerDevolucionesShow($devoluciones);
+        }
+        
     }else{
         include_once('../vista/FrmMensaje.php');
         $frm = new FrmMensaje;

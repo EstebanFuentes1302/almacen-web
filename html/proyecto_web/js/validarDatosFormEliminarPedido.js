@@ -168,3 +168,17 @@ $('#formEliminarPedido').submit(function(e){
         });    
     
 });
+
+function verPedidos(){
+    let action = 'popup';
+    $.ajax({
+        url: '../controlador/CtrlShowVerPedidos.php',
+        data: { action },
+        type: 'POST',
+        success: function (response){
+            var VerArticulosPopUp = window.open('', '', 'width=700, height=900');
+            VerArticulosPopUp.document.write(response);
+        }
+    });
+    
+}

@@ -109,46 +109,58 @@ $('#formBuscarSolicitante').submit(function(e){
                         background: '#121212',
                         color: 'white'
                     })
-                    document.getElementById('tblModificarSolicitante').style.display = 'block';
+                    
                     //console.log(response);
                     let solicitante = JSON.parse(response);
                     let template = '';
                     template+= `
-                        <tr>
-                          <td class="txtForm"  width="182" height="35">Código</td>
-                          <td width="270" align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtCodigo" id="txtCodigo" value="${solicitante.codigo_solicitante}"></td>
-                        </tr>
-                        <tr>
-                          <td class="txtForm"  width="182" height="35">Nombre</td>
-                          <td width="270" align="center" valign="middle"><input class="txtFieldForm" type="text" name="txtNombre" id="txtNombre" value="${solicitante.nombre}"></td>
-                          </tr>
-                        `;
-                    template2=`
-                        <tr>
-                          <td class="txtForm"  height="35">Correo Electrónico</td>
-                          <td align="center" valign="middle"><input class="txtFieldForm"  type="email" name="txtCorreo" id="txtCorreo" value="${solicitante.email}"></td>
-                          </tr>
-                        `;
-                    template3=`
-                        <tr>
-                          <td class="txtForm"  height="35">Teléfono</td>
-                          <td align="center" valign="middle"><input class="txtFieldForm" type="tel" name="txtTelefono" id="txtTelefono" value="${solicitante.telefono}"></td>
-                        </tr>`
-                    template4=`
-                        <tr>
-                          <td height="72" colspan="2" align="center" valign="middle"><img class="fotoShow" src="${solicitante.foto}" width="200px" height="200px"></td>
-                        </tr>
-                        <tr>
-                          <td height="39" colspan="2" align="center" valign="middle"><input class="button-submit" type="submit" name="btnModificar" id="btnModificar" value="Modificar">
-                            </td>
-                          </tr>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Código</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtCodigo" id="txtCodigo" value="${solicitante.codigo_solicitante}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Nombre</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldForm" type="text" name="txtNombre" id="txtNombre" value="${solicitante.nombre}">
+                            </div>
+                        </div>
+                        <p class="txtError" id="txtErrorNombre">El nombre debe tener 2 dígitos como mínimo</p>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Correo Electrónico</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldForm"  type="email" name="txtCorreo" id="txtCorreo" value="${solicitante.email}">
+                            </div>
+                        </div>
+                        <p class="txtError" id="txtErrorCorreo">El correo ingresado es incorrecto</p>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Teléfono</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldForm" type="tel" name="txtTelefono" id="txtTelefono" value="${solicitante.telefono}">
+                            </div>
+                        </div>
+                        <p class="txtError" id="txtErrorTelefono">El teléfono debe tener 9 dígitos y comenzar con "9"</p>
+                        <div class="div-form-row">
+                            <span class="txtBlock">Foto</span>
+                            <div class="div-input-form-row">
+                                <img class="fotoShow" src="${solicitante.foto}" width="200px" height="200px">
+                            </div>
+                        </div>
+                        <input class="button-submit" type="submit" name="btnModificar" id="btnModificar" value="Modificar">
                     `;
-                    $('#tbodyModificarSolicitante').html(template);
-                    $('#tbodyModificarSolicitante2').html(template2);
-                    $('#tbodyModificarSolicitante3').html(template3);
-                    $('#tbodyModificarSolicitante4').html(template4);
+
                     const formModificarSolicitanteInputs = document.querySelectorAll('#formModificarSolicitante input');
                     //console.log(formModificarArticuloInputs);
+                   document.getElementById('divModificarSolicitante').innerHTML = template;
                     formModificarSolicitanteInputs.forEach((input)=>{
                         input.addEventListener('keyup', validarFormModificarArticulo);
                         input.addEventListener('blur', validarFormModificarArticulo);
@@ -161,11 +173,7 @@ $('#formBuscarSolicitante').submit(function(e){
                     background: '#121212',
                     color: 'white'
                     })
-                    document.getElementById('tblModificarSolicitante').style.display = 'none';
-                    $('#tbodyModificarSolicitante').html('');
-                    $('#tbodyModificarSolicitante2').html('');
-                    $('#tbodyModificarSolicitante3').html('');
-                    $('#tbodyModificarSolicitante4').html('');
+                    document.getElementById('divModificarSolicitante').innerHTML = '';
                 }
                 
             },
@@ -215,7 +223,7 @@ $('#formModificarSolicitante').submit(function(e){
                         background: '#121212',
                         color: 'white'
                     })
-                    document.getElementById('tblModificarSolicitante').style.display = 'none';
+                   document.getElementById('divModificarSolicitante').innerHTML = '';
                 }else if(JSON.parse(response) == 'false'){
                     Swal.fire({
                     title: 'Error',
@@ -248,3 +256,17 @@ $('#formModificarSolicitante').submit(function(e){
     }
     
 });
+
+function verSolicitantes(){
+    let action = 'popup';
+    $.ajax({
+        url: '../controlador/CtrlShowVerSolicitantes.php',
+        data: { action },
+        type: 'POST',
+        success: function (response){
+            console.log(response);
+            var VerArticulosPopUp = window.open('', '', 'width=700, height=900');
+            VerArticulosPopUp.document.write(response);
+        }
+    });
+}

@@ -19,53 +19,70 @@
                 <h1>Registrar Pedido</h1>
                 <div class="div-Form">
                 <form id="formRegistrarPedido" method="post">
-                    <table width="474" border="0" align="center">
-                      <tbody>
-                        <tr>
-                            <td width="174" height="47" align="center" valign="middle" class="txtForm">Código de articulo</td>
-                            <td align="center" valign="middle"><input class="txtFieldForm" type="text" name="txtCodigoArticulo" id="txtCodigoArticulo"></td>
-                        </tr>
-                            <tr>
-                              <td height="0" colspan="2" align="center" valign="middle"><p class="txtError" id="txtErrorCodigoArticulo">El código del artículo debe contener un número del 1001 al 9999</p></td>
-                            </tr>
-                        <tr>
-                          <td class="txtForm"  height="41" align="center" valign="middle">Código de solicitante</td>
-                          <td width="278" align="center" valign="middle"><input class="txtFieldForm" type="text" name="txtCodigoSolicitante" id="txtCodigoSolicitante"></td>
-                        </tr>
-                        <tr>
-                          <td height="0" colspan="2" align="center" valign="middle"><p class="txtError" id="txtErrorCodigoSolicitante">El código de solicitante es un número de 8 dígitos y comienza con (1-9)</p></td>
-                        </tr>
-                        <tr>
-                          <td height="32" align="center" valign="middle" class="txtForm">Cantidad</td>
-                          <td align="center" valign="middle"><input class="txtFieldForm" type="text" name="txtCantidad" id="txtCantidad"></td>
-                        </tr>
-                        <tr>
-                          <td height="0" colspan="2" align="center" valign="middle"><p class="txtError" id="txtErrorCantidad">La cantidad debe ser un número entero</p></td>
-                        </tr>
-                        <tr>
-                          <td height="47" align="center" valign="middle" class="txtForm">Estado</td>
-                          <td align="center" valign="middle">
-                              <select class="selectForm" name="sEstado" id="sEstado">
+                    <div class="div-form-row">
+                        <div class="div-txt-form-row">
+                            <span class="txtForm">Código de articulo</span>
+                        </div>
+                        <div class="div-input-form-row">
+                            <input class="txtFieldForm" type="text" name="txtCodigoArticulo" id="txtCodigoArticulo">
+                        </div>
+                        <button class="button-search" type="button" name="btnBuscar" id="btnBuscar" onClick="buscarArticulo()">
+                            <img class="icon-buscar" src="../img/icons/lupa.png">
+                        </button>
+                        <button type="button" class="button-ver" name="btnVerArticulos" id="btnVerArticulos" title="Ver Artículos" onClick="verArticulos()">
+                            <img class="icon-menu" src="../img/icons/tabla.png">Ver Articulos
+                        </button>
+                    </div>
+                    <p class="txtError" id="txtErrorCodigoArticulo">El código del artículo debe contener un número del 1001 al 9999</p>
+                    <div id="divArticulo" class="div-form-row"></div>
+                    <div class="div-form-row">
+                        <div class="div-txt-form-row">
+                            <span class="txtForm">Código de solicitante</span>
+                        </div>
+                        <div class="div-input-form-row">
+                            <input class="txtFieldForm" type="text" name="txtCodigoSolicitante" id="txtCodigoSolicitante">
+                        </div>
+                        <button class="button-search" type="button" name="btnBuscar" id="btnBuscar" onClick="buscarSolicitante()">
+                            <img class="icon-buscar" src="../img/icons/lupa.png">
+                        </button>
+                        <button type="button" class="button-ver" name="btnVerArticulos" id="btnVerArticulos" title="Ver Artículos" onClick="verSolicitantes()">
+                            <img class="icon-menu" src="../img/icons/tabla.png">Ver Solicitantes
+                        </button>
+                    </div>
+                    <p class="txtError" id="txtErrorCodigoSolicitante">El código de solicitante es un número de 8 dígitos y comienza con (1-9)</p>
+                    <div id="divSolicitante" class="div-form-row"></div>
+                    <div class="div-form-row">
+                        <div class="div-txt-form-row">
+                            <span class="txtForm">Cantidad</span>
+                        </div>
+                        <div class="div-input-form-row">
+                            <input class="txtFieldForm" type="text" name="txtCantidad" id="txtCantidad">
+                        </div>
+                    </div>
+                    <p class="txtError" id="txtErrorCantidad">La cantidad debe ser un número entero</p>
+                    <div class="div-form-row">
+                        <div class="div-txt-form-row">
+                            <span class="txtForm">Estado</span>
+                        </div>
+                        <div class="div-input-form-row">
+                            <select class="selectForm" name="sEstado" id="sEstado">
                                 <option value="Entregado">Entregado</option>
                                 <option value="Por Entregar">Por Entregar</option>
-                              </select>
-                            </td>
-                        </tr>
-                        <tr>
-                          <td height="47" align="center" valign="middle" class="txtForm">Fecha de registro</td>
-                          <td align="center" valign="middle"><input class="txtFieldForm" type="date" name="date" id="date"></td>
-                        </tr>
-                        <tr>
-                          <td height="0" colspan="2" align="center" valign="middle"><p class="txtError" id="txtErrorFecha">La fecha está incompleta</p></td>
-                        </tr>
-                        <tr>
-                          <td height="47" colspan="2" align="center" valign="middle">
-                               <input class="button-submit" type="submit" name="btnRegistrarPedido" id="btnRegistrarPedido" value="Registrar Pedido"><br>
-                                <input class="reset" type="reset" name="btnLimpiar" id="btnLimpiar" value="Limpiar">
-                            </td>
-                          </tr>
-                        </tbody>
-                    </table>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="div-form-row">
+                        <div class="div-txt-form-row">
+                            <span class="txtForm">Fecha de registro</span>
+                        </div>
+                        <div class="div-input-form-row">
+                            <input class="txtFieldForm" type="date" name="date" id="date">
+                        </div>
+                    </div>
+                    
+                    <p class="txtError" id="txtErrorFecha">La fecha está incompleta</p>
+                    <input class="button-submit" type="submit" name="btnRegistrarPedido" id="btnRegistrarPedido" value="Registrar Pedido">
+                    <input class="reset" type="reset" name="btnLimpiar" id="btnLimpiar" value="Limpiar">
                 </form>    
                 </div>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

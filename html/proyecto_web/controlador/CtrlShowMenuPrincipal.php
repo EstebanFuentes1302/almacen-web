@@ -3,9 +3,7 @@
     $sesion=$_SESSION['usuario'];
 
     if($sesion!=null){
-        include_once('../vista/FrmMenuPrincipal.php');
-        $frm = new FrmMenuPrincipal;
-        $frm -> frmMenuPrincipalShow();
+        header('Location:http://snowtankian.xyz/');
     }else{
         include_once('../vista/FrmMensaje.php');
         $frm = new FrmMensaje;

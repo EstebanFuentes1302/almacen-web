@@ -1,6 +1,9 @@
 const formRegistrarPedido = document.getElementById('formRegistrarPedido');
 const formRegistrarPedidoInputs = document.querySelectorAll('#formRegistrarPedido input');
 
+var codigo_articulo;
+var codigo_solicitante;
+
 const expresiones = {
     nombre: /^(([ \u00c0-\u00ffa-zA-Z'\-])+){3,}$/,
     form_nombre: /^((\w|[ \u0021-\u002f]|[\u00c0-\u00ff])+){2,}/,
@@ -48,12 +51,13 @@ const validarFormRegistrarPedido = (e) => {
             if(expresiones.codigo_solicitante.test(e.target.value)){
                 document.getElementById('txtCodigoSolicitante').classList.remove('txtFieldFormIncorrecto');
                 document.getElementById('txtErrorCodigoSolicitante').classList.remove('txtErrorShow');
-                campos['cod_solicitante']=true;
+                campos['codigo_solicitante']=true;
             }else{
                 document.getElementById('txtCodigoSolicitante').classList.add('txtFieldFormIncorrecto');
                 document.getElementById('txtErrorCodigoSolicitante').classList.add('txtErrorShow');
-                campos['cod_solicitante']=false;
+                campos['codigo_solicitante']=false;
             }
+            console.log(campos)
             break;
         case "date":
             //console.log(Date.parse($('#date').val()));
@@ -79,13 +83,13 @@ $('#formRegistrarPedido').submit(function(e){
     e.preventDefault();
     
     const data = {
-        cod_solicitante: $('#txtCodigoSolicitante').val(),
-        cod_articulo: $('#txtCodigoArticulo').val(),
+        cod_solicitante: codigo_solicitante,
+        cod_articulo: codigo_articulo,
         date: $('#date').val(),
         cantidad: $('#txtCantidad').val(),
         estado: $('#sEstado').val()
     }
-    if(campos['cod_articulo'] && campos['cod_solicitante'] && campos ['cantidad'] && campos['date']){
+    if(codigo_solicitante != '' && codigo_articulo != '' && campos ['cantidad'] && campos['date']){
         $.post('../controlador/CtrlRegistrarPedido.php',data, function (response){
             //console.log(response);
             if(JSON.parse(response)=='true'){
@@ -97,6 +101,10 @@ $('#formRegistrarPedido').submit(function(e){
                         color: 'white'
                     });
                 $('#formRegistrarPedido').trigger('reset');
+                document.getElementById('divArticulo').innerHTML = '';
+                document.getElementById('divSolicitante').innerHTML = '';
+                codigo_articulo = null;
+                codigo_solicitante = null;
             }else if(JSON.parse(response)=='false'){
                 Swal.fire({
                 title: 'Error',
@@ -117,3 +125,184 @@ $('#formRegistrarPedido').submit(function(e){
         })
     }
 })
+
+function verArticulos(){
+    let action = 'popup';
+    $.ajax({
+        url: '../controlador/CtrlShowVerArticulos.php',
+        data: { action },
+        type: 'POST',
+        success: function (response){
+            console.log(response);
+            var VerArticulosPopUp = window.open('', '', 'width=700, height=900');
+            VerArticulosPopUp.document.write(response);
+        }
+    });
+}
+
+function buscarArticulo(){
+    let codigo = $('#txtCodigoArticulo').val();
+    if(campos['cod_articulo']){
+        $.ajax({
+                url: '../controlador/CtrlBuscarArticulo.php',
+                type: 'POST',
+                data: { codigo },
+                success: function(response){
+                    //console.log(response);
+                    if(JSON.parse(response) != 'null'){
+                        Swal.fire({
+                            title: 'Artículo Encontrado!',
+                            text: 'El artículo ha sido encontrado',
+                            icon: 'success',
+                            background: '#121212',
+                            color: 'white'
+                        })
+                        //document.getElementById('tblModificarArticulo').style.display = 'block';
+                        //console.log(response);
+                        let articulo = JSON.parse(response);
+                        codigo_articulo = articulo.codigo;
+                        let temp = '';
+                        temp = `
+                            <div class="div-ver">
+                                <table class="tblShow">
+                                    <tbody>
+                                        <tr>
+                                          <th class="txtHeader">Código</th>
+                                          <th class="txtHeader">Nombre</th>
+                                          <th class="txtHeader">Cantidad</th>
+                                          <th class="txtHeader" width="150px">Fecha de Registro</th>
+                                        </tr>
+                                        <tr>
+                                          <td class="txtRow">${articulo.codigo}</td>
+                                          <td class="txtRow">${articulo.nombre}</td>
+                                          <td class="txtRow">${articulo.cantidad}</td>
+                                          <td class="txtRow">${articulo.fecha_registro}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        `;
+                        document.getElementById('divArticulo').innerHTML = temp;
+                        const formModificarArticuloInputs = document.querySelectorAll('#formModificarArticulo input');
+                    }else{
+                        Swal.fire({
+                        title: 'Error',
+                        text: 'No se pudo encontrar Artículo',
+                        icon: 'error',
+                        background: '#121212',
+                        color: 'white'
+                        })
+                        /*$('#tbodyArticulo').html('');
+                        $('#tbodyArticulo2').html('');
+                        $('#tbodyArticulo3').html('');*/
+                        document.getElementById('divArticulo').innerHTML = '';
+                    }
+
+                },
+                fail: function(response){
+                    Swal.fire({
+                    title: 'Error',
+                    text: 'Error al encontrar Artículo',
+                    icon: 'error',
+                    background: '#121212',
+                    color: 'white'
+                    })
+                }
+
+            });
+    }else{
+        Swal.fire({
+                title: 'Error',
+                text: 'Los datos ingresados no son correctos',
+                icon: 'error',
+                background: '#121212',
+                color: 'white'
+        })
+    }
+    
+    
+}
+
+function verSolicitantes(){
+    let action = 'popup';
+    $.ajax({
+        url: '../controlador/CtrlShowVerSolicitantes.php',
+        data: { action },
+        type: 'POST',
+        success: function (response){
+            console.log(response);
+            var VerArticulosPopUp = window.open('', '', 'width=700, height=900');
+            VerArticulosPopUp.document.write(response);
+        }
+    });
+}
+
+function buscarSolicitante(){
+    codigo = $('#txtCodigoSolicitante').val();
+    //console.log(codigo);
+    if(campos['codigo_solicitante']){
+        $.ajax({
+            url: '../controlador/CtrlBuscarSolicitante.php',
+            type: 'POST',
+            data: { codigo },
+            success: function(response){
+                //console.log(response);
+                if(JSON.parse(response) != 'null'){
+                    //console.log(response);
+                    
+                    let solicitante = JSON.parse(response);
+                    codigo_solicitante = solicitante.codigo_solicitante;
+                    let template = '';
+                    template+= `
+                        <div class="div-ver">
+                            <table class="tblShow">
+                                <tbody>
+                                    <tr>
+                                      <th class="txtHeader">Código</th>
+                                      <th class="txtHeader">Nombre</th>
+                                      <th class="txtHeader">Correo Electrónico</th>
+                                      <th class="txtHeader">Teléfono</th>
+                                    </tr>
+                                    <tr>
+                                      <td class="txtRow">${solicitante.codigo_solicitante}</td>
+                                      <td class="txtRow">${solicitante.nombre}</td>
+                                      <td class="txtRow">${solicitante.email}</td>
+                                      <td class="txtRow">${solicitante.telefono}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                    document.getElementById('divSolicitante').innerHTML = template;
+                }else{
+                    Swal.fire({
+                    title: 'Error',
+                    text: 'No se pudo encontrar al Solicitante',
+                    icon: 'error',
+                    background: '#121212',
+                    color: 'white'
+                    })
+                }
+            },
+            fail: function(response){
+                Swal.fire({
+                title: 'Error',
+                text: 'Error al buscar Solicitante',
+                icon: 'error',
+                background: '#121212',
+                color: 'white'
+                })
+            }
+            
+        })
+    }else{
+       document.getElementById('divSolicitante').innerHTML = '';
+        Swal.fire({
+                title: 'Error',
+                text: 'Los datos ingresados no son correctos',
+                icon: 'error',
+                background: '#121212',
+                color: 'white'
+        })
+    }
+};

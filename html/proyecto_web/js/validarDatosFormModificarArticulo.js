@@ -8,7 +8,8 @@ const formBuscarArticuloInputs = document.querySelectorAll('#formBuscarArticulo 
 
 const expresiones = {
     codigo: /^(?!1000)[1-9][0-9][0-9][0-9]$/,
-    form_nombre: /^((\w|[ \u0021-\u002f]|[\u00c0-\u00ff])+){2,}/
+    form_nombre: /^((\w|[ \u0021-\u002f]|[\u00c0-\u00ff])+){2,}/,
+    form_cantidad: /^\d+$/
 }
 
 const camposBuscar = {
@@ -38,7 +39,6 @@ const validadFormBuscarArticulo = (e) => {
 
 const validarFormModificarArticulo = (e) => {
     switch(e.target.name){
-        
         case "txtNombre":
             if(expresiones.form_nombre.test(e.target.value)){
                 document.getElementById('txtNombre').classList.remove('txtFieldFormIncorrecto');
@@ -67,8 +67,8 @@ const validarFormModificarArticulo = (e) => {
 var codigo;
 
 formBuscarArticuloInputs.forEach((input)=>{
-    input.addEventListener('keyup',validadFormBuscarArticulo);
-    input.addEventListener('blur',validadFormBuscarArticulo);
+    input.addEventListener('keyup', validadFormBuscarArticulo);
+    input.addEventListener('blur', validadFormBuscarArticulo);
 })
 
 
@@ -93,45 +93,54 @@ $('#formBuscarArticulo').submit(function(e){
                         background: '#121212',
                         color: 'white'
                     })
-                    document.getElementById('tblModificarArticulo').style.display = 'block';
+                    //document.getElementById('tblModificarArticulo').style.display = 'block';
                     //console.log(response);
                     let articulo = JSON.parse(response);
-                    let template = '';
-                    template+= `
-                        <tr>
-                          <td class="txtForm" width="169" height="35">Código</td>
-                          <td width="333" align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtCodigo" id="txtCodigo" value="${articulo.codigo}"></td>
-                        </tr>
-                        <tr>
-                          <td class="txtForm" width="169" height="35">Nombre</td>
-                          <td width="333" align="center" valign="middle"><input class="txtFieldForm" type="text" name="txtNombre" id="txtNombre" value="${articulo.nombre}"></td>
-                        </tr>
+                    let temp = '';
+                    temp = `
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Código</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtCodigo" id="txtCodigo" value="${articulo.codigo}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Nombre</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldForm" type="text" name="txtNombre" id="txtNombre" value="${articulo.nombre}">
+                            </div>
+                        </div>
+                        <p class="txtError" id="txtErrorNombre">El nombre del artículo debe contener más de 2 dígitos</p>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Cantidad</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldForm" type="text" name="txtCantidad" id="txtCantidad" value="${articulo.cantidad}">
+                            </div>
+                        </div>
+                        <p class="txtError" id="txtErrorCantidad">La cantidad debe ser un número entero</p>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Fecha de Registro</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${articulo.fecha_registro}">
+                            </div>
+                        </div>
+                        <p class="txtError" id="txtErrorFecha">La fecha está incompleta</p>
+                        <input class="button-submit" type="submit" name="btnModificar" id="btnModificar" value="Modificar">
                     `;
-                    //console.log(template);
-                    template2=`
-                        <tr>
-                          <td class="txtForm" height="35">Cantidad</td>
-                          <td align="center" valign="middle"><input class="txtFieldForm" type="text" name="txtCantidad" id="txtCantidad" value="${articulo.cantidad}"></td>
-                          </tr>
-                        
-                    `
-                    template3=`
-                        <tr>
-                          <td class="txtForm" height="35">Fecha de Registro</td>
-                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${articulo.fecha_registro}"></td>
-                        </tr>
-                        <tr>
-                          <td height="39" colspan="2" align="center" valign="middle"><input class="button-submit" type="submit" name="btnModificar" id="btnModificar" value="Modificar"></td>
-                      </tr>
-                    `
-                    $('#tbodyArticulo').html(template);
-                    $('#tbodyArticulo2').html(template2);
-                    $('#tbodyArticulo3').html(template3);
+                    document.getElementById('divForm').innerHTML = temp;
                     const formModificarArticuloInputs = document.querySelectorAll('#formModificarArticulo input');
                     //console.log(formModificarArticuloInputs);
                     formModificarArticuloInputs.forEach((input)=>{
-                        input.addEventListener('keyup',validarFormModificarArticulo);
-                        input.addEventListener('blur',validarFormModificarArticulo);
+                        input.addEventListener('keyup', validarFormModificarArticulo);
+                        input.addEventListener('blur', validarFormModificarArticulo);
                     })
                 }else{
                     Swal.fire({
@@ -141,9 +150,10 @@ $('#formBuscarArticulo').submit(function(e){
                     background: '#121212',
                     color: 'white'
                     })
-                    $('#tbodyArticulo').html('');
+                    /*$('#tbodyArticulo').html('');
                     $('#tbodyArticulo2').html('');
-                    $('#tbodyArticulo3').html('');
+                    $('#tbodyArticulo3').html('');*/
+                    document.getElementById('divForm').innerHTML = '';
                 }
                 
             },
@@ -175,9 +185,7 @@ $('#formModificarArticulo').submit(function(e){
     //console.log($('#txtNombre').val());
     let nombre = $('#txtNombre').val();
     let cantidad = $('#txtCantidad').val();
-    //let dataModificar={codigo, nombre, cantidad}
-    //console.log(JSON.stringify(dataModificar));
-    //console.log(codigo);
+    
     if(camposModificar['nombre'] && camposModificar['cantidad']){
         $.ajax({
             url: '../controlador/CtrlModificarArticulo.php',
@@ -193,7 +201,7 @@ $('#formModificarArticulo').submit(function(e){
                         background: '#121212',
                         color: 'white'
                     })
-                    document.getElementById('tblModificarArticulo').style.display = 'none';
+                    document.getElementById('divForm').innerHTML = '';
                 }else{
                     Swal.fire({
                     title: 'Error',

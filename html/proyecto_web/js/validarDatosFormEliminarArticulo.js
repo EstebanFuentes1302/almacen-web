@@ -65,32 +65,45 @@ $('#formBuscarArticulo').submit(function(e){
                         color: 'white'
                     })
                     
-                    document.getElementById('tblEliminarArticuloDatos').style.display = 'block';
                     //console.log(response);
                     let articulo = JSON.parse(response);
                     let template = '';
                     template+= `
-                        <tr>
-                          <td class="txtForm" width="169" height="35">Código</td>
-                          <td width="333" align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtCodigo" id="txtCodigo" value="${articulo.codigo}"></td>
-                        </tr>
-                        <tr>
-                          <td class="txtForm" width="169" height="35">Nombre</td>
-                          <td width="333" align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtNombre" id="txtNombre" value="${articulo.nombre}"></td>
-                        </tr>
-                        <tr>
-                          <td class="txtForm" height="35">Cantidad</td>
-                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" type="text" readonly name="txtCantidad" id="txtCantidad" value="${articulo.cantidad}"></td>
-                          </tr>
-                        <tr>
-                          <td class="txtForm" height="35">Fecha de Registro</td>
-                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${articulo.fecha_registro}"></td>
-                        </tr>
-                        <tr>
-                          <td height="39" colspan="2" align="center" valign="middle"><input class="button-submit" type="submit" name="btnEliminar" id="btnEliminar" value="Eliminar"></td>
-                      </tr>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Código</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtCodigo" id="txtCodigo" value="${articulo.codigo}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Nombre</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtNombre" id="txtNombre" value="${articulo.nombre}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Cantidad</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" type="text" readonly name="txtCantidad" id="txtCantidad" value="${articulo.cantidad}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Fecha de Registro</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${articulo.fecha_registro}">
+                            </div>
+                        </div>
+                        <input class="button-submit" type="submit" name="btnEliminar" id="btnEliminar" value="Eliminar">
                     `
-                    $('#tbodyArticulo').html(template);
+                    document.getElementById('divEliminarArticulo').innerHTML = template;
                 }else{
                     Swal.fire({
                     title: 'Error',
@@ -99,9 +112,7 @@ $('#formBuscarArticulo').submit(function(e){
                     background: '#121212',
                     color: 'white'
                     })
-                    $('#tbodyArticulo').html('');
-                    $('#tbodyArticulo2').html('');
-                    $('#tbodyArticulo3').html('');
+                    
                 }
             },
             fail: function(response){
@@ -133,7 +144,7 @@ $('#formEliminarArticulo').submit(function(e){
         type: 'POST',
         data: {codigo},
         success: function(response){
-            console.log(response);
+            //console.log(response);
             if(JSON.parse(response)=='true'){
                 Swal.fire({
                     title: 'Artículo Eliminado!',
@@ -142,7 +153,7 @@ $('#formEliminarArticulo').submit(function(e){
                     background: '#121212',
                     color: 'white'
                 })
-                document.getElementById('tblEliminarArticuloDatos').style.display = 'none';
+                document.getElementById('divEliminarArticulo').innerHTML = '';
             }else if(JSON.parse(response) == 'false'){
                 Swal.fire({
                 title: 'Error',
@@ -159,6 +170,7 @@ $('#formEliminarArticulo').submit(function(e){
                 background: '#121212',
                 color: 'white'
                 })
+                document.getElementById('divEliminarArticulo').innerHTML = '';
             }
         },
         fail: function(res){

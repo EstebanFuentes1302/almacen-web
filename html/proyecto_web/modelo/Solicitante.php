@@ -1,10 +1,10 @@
 <?php
-    include 'SingletonConexionDB.php';
 
     class Solicitante
     {
         public function registrarSolicitante($nombre, $email, $telefono, $ruta_foto){
             try{
+                include_once('SingletonConexionDB.php');
                 $i = conexionSingleton::getInstance();
                 $con = $i -> getConexion();
                 
@@ -23,6 +23,7 @@
         }
 
         public function isUsed($codigo){
+            include_once('SingletonConexionDB.php');
             $i = conexionSingleton::getInstance();
             $con = $i -> getConexion();
             $sql = "select * from Pedido where codigo_solicitante='$codigo'";
@@ -35,6 +36,7 @@
         }
 
         public function buscarSolicitante($codigo){
+            include_once('SingletonConexionDB.php');
             $i = conexionSingleton::getInstance();
             $con = $i -> getConexion();
             $sql="select * from Solicitante where codigo_solicitante='$codigo'";
@@ -47,6 +49,7 @@
         }
 
         public function modificarSolicitante($codigo,$nombre,$email,$tel){
+            include_once('SingletonConexionDB.php');
             $i = conexionSingleton::getInstance();
             $con = $i -> getConexion();
             $sql="update Solicitante set nombre='$nombre',email='$email',telefono='$tel' where codigo_solicitante='$codigo'";
@@ -62,6 +65,7 @@
         }
 
         public function getSolicitantes(){
+            include_once('SingletonConexionDB.php');
             $i = conexionSingleton::getInstance();
             $con = $i -> getConexion();
             $sql="select * from Solicitante";
@@ -71,6 +75,7 @@
         }
 
         public function eliminarSolicitante($codigo){
+            include_once('SingletonConexionDB.php');
             $i = conexionSingleton::getInstance();
             $con = $i -> getConexion();
             $sql="delete from Solicitante where codigo_solicitante='$codigo'";
