@@ -176,7 +176,7 @@ function verPedidos(){
         data: { action },
         type: 'POST',
         success: function (response){
-            var VerArticulosPopUp = window.open('', '', 'width=700, height=900');
+            var VerArticulosPopUp = window.open('', '', 'width=1200, height=900');
             VerArticulosPopUp.document.write(response);
         }
     });

@@ -16,7 +16,7 @@
                 $detalles=$_POST['detalles'];
                 $devolver = $p -> devolverPedido($codigo,$codigo_articulo,$cantidad);
                 if($devolver){
-                    $registrar = $d -> registrarDevolucion($codigo,$fecha_devolucion,$detalles);
+                    $registrar = $d -> registrarDevolucion($codigo, $fecha_devolucion, $detalles);
                     if($registrar){
                         echo json_encode('true');
                     }else{

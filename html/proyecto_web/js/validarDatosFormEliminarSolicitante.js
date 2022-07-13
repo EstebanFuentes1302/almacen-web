@@ -37,6 +37,11 @@ formBuscarSolicitanteInputs.forEach((input)=>{
     input.addEventListener('blur', validarFormBuscarSolicitante);
 })
 
+document.getElementById('btnBuscar').onkeypress=function(e){
+    if(e.keyCode==13){
+        document.getElementById('linkadd').click();
+    }
+}
 
 $('#formBuscarSolicitante').submit(function(e){
     e.preventDefault();
@@ -48,7 +53,7 @@ $('#formBuscarSolicitante').submit(function(e){
             type: 'POST',
             data: { codigo },
             success: function(response){
-                //console.log(response);
+                console.log(response);
                 if(JSON.parse(response) != 'null'){
                     Swal.fire({
                         title: 'Solicitante Encontrado!',
@@ -57,36 +62,54 @@ $('#formBuscarSolicitante').submit(function(e){
                         background: '#121212',
                         color: 'white'
                     })
-                    document.getElementById('tblEliminarSolicitante').style.display = 'block';
-                    console.log(response);
+                    
                     let solicitante = JSON.parse(response);
                     let template = '';
                     template+= `
-                        <tr>
-                          <td class="txtForm"  width="182" height="35">Código</td>
-                          <td width="270" align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtCodigo" id="txtCodigo" value="${solicitante.codigo_solicitante}"></td>
-                        </tr>
-                        <tr>
-                          <td class="txtForm"  width="182" height="35">Nombre</td>
-                          <td width="270" align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtNombre" id="txtNombre" value="${solicitante.nombre}"></td>
-                          </tr>
-                        <tr>
-                          <td class="txtForm"  height="35">Correo Electrónico</td>
-                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly  type="email" name="txtCorreo" id="txtCorreo" value="${solicitante.email}"></td>
-                          </tr>
-                        <tr>
-                          <td class="txtForm"  height="35">Teléfono</td>
-                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="tel" name="txtTelefono" id="txtTelefono" value="${solicitante.telefono}"></td>
-                        </tr>
-                        <tr>
-                          <td height="72" colspan="2" align="center" valign="middle"><img class="fotoShow" src="${solicitante.foto}" width="200px" height="200px"></td>
-                        </tr>
-                        <tr>
-                          <td height="39" colspan="2" align="center" valign="middle"><input class="button-submit" type="submit" name="btnEliminar" id="btnEliminar" value="Eliminar">
-                            </td>
-                          </tr>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Código</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtCodigo" id="txtCodigo" value="${solicitante.codigo_solicitante}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Nombre</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtNombre" id="txtNombre" value="${solicitante.nombre}">
+                            </div>
+                        </div>
+                        <p class="txtError" id="txtErrorNombre">El nombre debe tener 2 dígitos como mínimo</p>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Correo Electrónico</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="email" name="txtCorreo" id="txtCorreo" value="${solicitante.email}">
+                            </div>
+                        </div>
+                        <p class="txtError" id="txtErrorCorreo">El correo ingresado es incorrecto</p>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Teléfono</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="tel" name="txtTelefono" id="txtTelefono" value="${solicitante.telefono}">
+                            </div>
+                        </div>
+                        <p class="txtError" id="txtErrorTelefono">El teléfono debe tener 9 dígitos y comenzar con "9"</p>
+                        <div class="div-form-row">
+                            <p class="txtBlock">Foto</p>
+                        </div>
+                        <div class="div-form-row">
+                            <img class="fotoShow" src="${solicitante.foto}" width="200px" height="200px">
+                        </div>
+                        <input class="button-submit" type="submit" name="btnEliminar" id="btnEliminar" value="Eliminar">
                     `;
-                    $('#tbodyEliminarSolicitante').html(template);
+                    document.getElementById('divSolicitante').innerHTML = template;
                 }else{
                     Swal.fire({
                     title: 'Error',
@@ -95,12 +118,10 @@ $('#formBuscarSolicitante').submit(function(e){
                     background: '#121212',
                     color: 'white'
                     })
-                    document.getElementById('tblEliminarSolicitante').style.display = 'none';
-                    $('#tbodyEliminarSolicitante').html('');
                 }
                 
             },
-            fail: function(response){
+            fail: function(){
                 Swal.fire({
                 title: 'Error',
                 text: 'Error al buscar Solicitante',
@@ -133,17 +154,17 @@ $('#formEliminarSolicitante').submit(function(e){
             //console.log(response);
             if(JSON.parse(response) == 'true'){
                 Swal.fire({
-                    title: 'Solicitante Modificado!',
-                    text: 'El solicitante ha sido modificado correctamente',
+                    title: 'Solicitante Eliminado!',
+                    text: 'El solicitante ha sido eliminado correctamente',
                     icon: 'success',
                     background: '#121212',
                     color: 'white'
                 })
-                document.getElementById('tblModificarSolicitante').style.display = 'none';
+                document.getElementById('divSolicitante').innerHTML = '';
             }else if(JSON.parse(response) == 'false'){
                 Swal.fire({
                 title: 'Error',
-                text: 'Error al modificar Solicitante',
+                text: 'Error al eliminar Solicitante',
                 icon: 'error',
                 background: '#121212',
                 color: 'white'
@@ -162,7 +183,7 @@ $('#formEliminarSolicitante').submit(function(e){
         fail: function(res){
             Swal.fire({
             title: 'Error',
-            text: 'Error al modificar Solicitante',
+            text: 'Error al eliminar Solicitante',
             icon: 'error',
             background: '#121212',
             color: 'white'
@@ -171,3 +192,17 @@ $('#formEliminarSolicitante').submit(function(e){
     });
     
 });
+
+function verSolicitantes(){
+    let action = 'popup';
+    $.ajax({
+        url: '../controlador/CtrlShowVerSolicitantes.php',
+        data: { action },
+        type: 'POST',
+        success: function (response){
+            console.log(response);
+            var VerArticulosPopUp = window.open('', '', 'width=800, height=900');
+            VerArticulosPopUp.document.write(response);
+        }
+    });
+}

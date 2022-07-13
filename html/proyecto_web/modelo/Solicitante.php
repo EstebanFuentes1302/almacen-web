@@ -5,8 +5,8 @@
         public function registrarSolicitante($nombre, $email, $telefono, $ruta_foto){
             try{
                 include_once('SingletonConexionDB.php');
-                $i = conexionSingleton::getInstance();
-                $con = $i -> getConexion();
+                conexionSingleton::getInstance();
+                $con = conexionSingleton::getConexion();
                 
                 $sql = "insert into Solicitante(nombre,email,telefono,foto) values('$nombre','$email','$telefono','$ruta_foto')";
                 $query = mysqli_query($con,$sql);
@@ -24,8 +24,8 @@
 
         public function isUsed($codigo){
             include_once('SingletonConexionDB.php');
-            $i = conexionSingleton::getInstance();
-            $con = $i -> getConexion();
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
             $sql = "select * from Pedido where codigo_solicitante='$codigo'";
             $result = mysqli_query($con, $sql);
             if(mysqli_num_rows($result) > 0){
@@ -37,8 +37,8 @@
 
         public function buscarSolicitante($codigo){
             include_once('SingletonConexionDB.php');
-            $i = conexionSingleton::getInstance();
-            $con = $i -> getConexion();
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
             $sql="select * from Solicitante where codigo_solicitante='$codigo'";
             $result=mysqli_query($con, $sql);
             if(mysqli_num_rows($result) > 0){
@@ -47,11 +47,26 @@
                 return(null);
             }
         }
-
+        
+        public function getAutoIncrement(){
+            include_once('SingletonConexionDB.php');
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
+            $sql = "SHOW TABLE STATUS FROM bd_almacen";
+            $result = mysqli_query($con, $sql);
+            while($arr = mysqli_fetch_assoc($result)){
+                if($arr['Name'] == "Solicitante"){
+                    $auto = $arr['Auto_increment'];
+                    break;
+                }
+            }
+            return($auto);
+        }
+        
         public function modificarSolicitante($codigo,$nombre,$email,$tel){
             include_once('SingletonConexionDB.php');
-            $i = conexionSingleton::getInstance();
-            $con = $i -> getConexion();
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
             $sql="update Solicitante set nombre='$nombre',email='$email',telefono='$tel' where codigo_solicitante='$codigo'";
             //echo $sql."<br>";
             $query=mysqli_query($con,$sql);
@@ -66,8 +81,8 @@
 
         public function getSolicitantes(){
             include_once('SingletonConexionDB.php');
-            $i = conexionSingleton::getInstance();
-            $con = $i -> getConexion();
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
             $sql="select * from Solicitante";
             $result=mysqli_query($con,$sql);
             mysqli_close($con);

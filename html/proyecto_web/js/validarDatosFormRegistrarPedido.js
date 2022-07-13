@@ -57,7 +57,6 @@ const validarFormRegistrarPedido = (e) => {
                 document.getElementById('txtErrorCodigoSolicitante').classList.add('txtErrorShow');
                 campos['codigo_solicitante']=false;
             }
-            console.log(campos)
             break;
         case "date":
             //console.log(Date.parse($('#date').val()));
@@ -150,14 +149,6 @@ function buscarArticulo(){
                 success: function(response){
                     //console.log(response);
                     if(JSON.parse(response) != 'null'){
-                        Swal.fire({
-                            title: 'Artículo Encontrado!',
-                            text: 'El artículo ha sido encontrado',
-                            icon: 'success',
-                            background: '#121212',
-                            color: 'white'
-                        })
-                        //document.getElementById('tblModificarArticulo').style.display = 'block';
                         //console.log(response);
                         let articulo = JSON.parse(response);
                         codigo_articulo = articulo.codigo;

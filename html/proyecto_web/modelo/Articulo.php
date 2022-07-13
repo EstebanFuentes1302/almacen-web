@@ -5,8 +5,8 @@
     {
         public function registrarArticulo($nombre, $cantidad, $fecha){
             include_once('SingletonConexionDB.php');
-            $i = conexionSingleton::getInstance();
-            $con = $i -> getConexion();
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
             //$con = conectar();
             $sql = "insert into Articulo(nombre,cantidad,fecha_registro) values ('$nombre',$cantidad,'$fecha')";
             $query = mysqli_query($con, $sql);
@@ -36,8 +36,8 @@
 
         public function getArticulos(){
             include_once('SingletonConexionDB.php');
-            $i = conexionSingleton::getInstance();
-            $con = $i -> getConexion();
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
             $sql="select * from Articulo";
             $result=mysqli_query($con,$sql);
             return($result);
@@ -45,8 +45,8 @@
 
         public function buscarArticulo($codigo){
             include_once('SingletonConexionDB.php');
-            $i = conexionSingleton::getInstance();
-            $con = $i -> getConexion();
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
             $sql="select * from Articulo where codigo='$codigo'";
             $result=mysqli_query($con,$sql);
 
@@ -59,8 +59,8 @@
 
         public function modificarArticulo($codigo,$nombre,$cantidad,$fecha){
             include_once('SingletonConexionDB.php');
-            $i = conexionSingleton::getInstance();
-            $con = $i -> getConexion();
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
             //$sql="update Articulo set nombre='$nombre',cantidad=$cantidad,fecha_registro='$fecha' where codigo='$codigo'";
             $sql="update Articulo set nombre='$nombre',cantidad=$cantidad where codigo='$codigo'";
             //echo $sql."<br>";
@@ -74,8 +74,8 @@
 
         public function eliminarArticulo($codigo){
             include_once('SingletonConexionDB.php');
-            $i = conexionSingleton::getInstance();
-            $con = $i -> getConexion();
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
             $sql="delete from Articulo where codigo='$codigo'";
             $query=mysqli_query($con,$sql);
             if($query){

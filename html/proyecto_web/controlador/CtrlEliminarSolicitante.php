@@ -8,10 +8,11 @@
             include_once('../modelo/Solicitante.php');
             $s = new Solicitante;
             $used = $s -> isUsed($codigo);
-            $result = $s -> eliminarSolicitante($codigo);
+            
             if($used == false){
+                $result = $s -> eliminarSolicitante($codigo);
                 if($result){
-                echo json_encode("true");
+                    echo json_encode("true");
                 }else{
                     echo json_encode("false");
                 }    

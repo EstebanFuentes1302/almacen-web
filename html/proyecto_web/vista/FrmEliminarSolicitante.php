@@ -16,37 +16,24 @@
                     <a class="back" href="../controlador/CtrlShowMenuSolicitante.php">&lt; Volver al Menú</a>
                     <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
                 </div>
-            <h1 align="center">Eliminar Solicitante</h1>
+                <h1 align="center">Eliminar Solicitante</h1>
                 <form id="formBuscarSolicitante" method="post">
-                <!--<div class="div-buscar">
-                    <p class="txtFormulario">Buscar Código</p>
-                    <input class="txtFieldFormulario" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
-                    <button class="button-search" type="submit" name="btnBuscar" id="btnBuscar">
-                        <img class="icon-buscar" src="../img/icons/lupa.png">
-                    </button>
-                </div>-->
-                  <table width="624" border="0" align="center">
-                    <tbody>
-                      <tr>
-                        <td class="txtForm" width="149" height="35" >Buscar Código</td>
-                        <td width="465" align="center" valign="middle">
-                            <input class="txtFieldFormulario" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
-                          <button class="button-search" type="submit" name="btnBuscar" id="btnBuscar">
-                                <img class="icon-buscar" src="../img/icons/lupa.png">
-                            </button>
-                            </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                <p class="txtError" id="txtErrorCodigo">El código de solicitante debe tener 8 dígitos y comenzar con "2"</p>
+                    <div class="div-buscar">
+                        <p class="txtFormBuscar">Buscar Código</p>
+                        <input class="txtFieldFormulario" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
+                        <button class="button-search" type="submit" name="btnBuscar" id="btnBuscar">
+                                    <img class="icon-buscar" src="../img/icons/lupa.png">
+                        </button>
+                        <button type="button" class="button-ver" name="btnVerArticulos" id="btnVerArticulos" title="Ver Artículos" onClick="verSolicitantes()">
+                                <img class="icon-menu" src="../img/icons/tabla.png">Ver Solicitantes
+                        </button>
+                        <p class="txtError" id="txtErrorCodigo">El código de solicitante debe tener 8 dígitos y comenzar con "2"</p>
+                    </div>
                 </form>
             <hr class="hr">
             <div class="div-Form">
                 <form id="formEliminarSolicitante" method="post">
-                <table id="tblEliminarSolicitante" width="416" border="0" align="center">
-                  <tbody id="tbodyEliminarSolicitante">
-                  </tbody>
-                </table>
+                <div class="div-Form" id="divSolicitante"></div>
                 </form>    
             </div>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

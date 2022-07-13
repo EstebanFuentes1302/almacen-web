@@ -19,10 +19,30 @@
             <h1 align="center">Gestión de Solicitantes</h1>
             <hr class="hr">
             <div class="div-menu" align="center">
-                <a class="button-menu2" href="../controlador/CtrlShowRegistrarSolicitante.php">Registrar Solicitante</a><br>
-                <a class="button-menu2" href="../controlador/CtrlShowModificarSolicitante.php">Modificar Solicitante</a><br>
-                <a class="button-menu2" href="../controlador/CtrlShowEliminarSolicitante.php">Eliminar Solicitante</a><br>
-                <a class="button-menu2" href="../controlador/CtrlShowVerSolicitantes.php">Registro de Solicitante</a><br>
+                <a class="button-menu2" href="../controlador/CtrlShowRegistrarSolicitante.php">
+                    <div class="div-button-content">
+                        <img class="icon-menu" src="../img/icons/registrar_solicitante.png">
+                        <p class="txtButton">Registrar Solicitante</p>
+                    </div>
+                </a>
+                <a class="button-menu2" href="../controlador/CtrlShowModificarSolicitante.php">
+                    <div class="div-button-content">
+                        <img class="icon-menu" src="../img/icons/modificar_solicitante.png">
+                        <p class="txtButton">Modificar Solicitante</p>
+                    </div>
+                </a>
+                <a class="button-menu2" href="../controlador/CtrlShowEliminarSolicitante.php">
+                    <div class="div-button-content">
+                        <img class="icon-menu" src="../img/icons/eliminar.png">
+                        <p class="txtButton">Eliminar Solicitante</p>
+                    </div>
+                </a>
+                <a class="button-menu2" href="../controlador/CtrlShowVerSolicitantes.php">
+                    <div class="div-button-content">
+                        <img class="icon-menu" src="../img/icons/tabla.png">
+                        <p class="txtButton">Registro de Solicitante</p>
+                    </div>
+                </a>
             </div>
             </body>
             </html>

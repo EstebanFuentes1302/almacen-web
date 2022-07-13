@@ -7,20 +7,26 @@
             $codigo=$_POST['codigo'];
             if(isset($codigo)){
                 $p = new Pedido;
-                $pedido = $p -> buscarPedido($codigo);
-                if($pedido){
-                    $json = array(
-                        'codigo_pedido' => $pedido['codigo_pedido'],
-                        'codigo_articulo' => $pedido['codigo_articulo'],
-                        'codigo_solicitante' => $pedido['codigo_solicitante'],
-                        'cantidad' => $pedido['cantidad'],
-                        'fecha_registro' => $pedido['fecha_pedido']
-                        
-                    );
-                    echo json_encode($json);
+                $dev = $p -> isDevuelto($codigo);
+                if($dev == false){
+                    $pedido = $p -> buscarPedido($codigo);
+                    if($pedido){
+                        $json = array(
+                            'codigo_pedido' => $pedido['codigo_pedido'],
+                            'codigo_articulo' => $pedido['codigo_articulo'],
+                            'codigo_solicitante' => $pedido['codigo_solicitante'],
+                            'cantidad' => $pedido['cantidad'],
+                            'fecha_registro' => $pedido['fecha_pedido']
+
+                        );
+                        echo json_encode($json);
+                    }else{
+                        echo json_encode("null");
+                    }
                 }else{
-                    echo json_encode("null");
-                }      
+                    echo json_encode("dev");
+                }
+                      
             }else{
                   echo json_encode("null");
             }

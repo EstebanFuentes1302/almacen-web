@@ -90,8 +90,8 @@ $('#formBuscarDevolucion').submit(function(e){
             type: 'POST',
             data: { codigo },
             success: function(response){
-                //console.log(JSON.parse(response));
-                if(JSON.parse(response) != 'null'){
+                console.log(JSON.parse(response));
+                if(JSON.parse(response) != 'null' && JSON.parse(response) != 'dev'){
                     Swal.fire({
                         title: 'Pedido Encontrado!',
                         text: 'El pedido ha sido encontrado',
@@ -99,62 +99,80 @@ $('#formBuscarDevolucion').submit(function(e){
                         background: '#121212',
                         color: 'white'
                     })
-                    document.getElementById('formRegistrarDevolucion').style.display = 'block';
                     //console.log(response);
                     let pedido = JSON.parse(response);
                     let template = '';
                     codigo_articulo = pedido.codigo_articulo;
                     cantidad = pedido.cantidad;
-                    template+= `
-                        <tr>
-                          <td class="txtForm" width="169" height="35">Código de Pedido</td>
-                          <td width="333" align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtCodigo" id="txtCodigo" value="${pedido.codigo_pedido}"></td>
-                        </tr>
-                        <tr>
-                          <td class="txtForm" width="169" height="35">Código de Artículo</td>
-                          <td width="333" align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtNombre" id="txtNombre" value="${pedido.codigo_articulo}"></td>
-                        </tr>
-                        <tr>
-                          <td class="txtForm" height="35">Código de Solicitante</td>
-                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtCodigoSolicitante" id="txtCodigoSolicitante" value="${pedido.codigo_solicitante}"></td>
-                          </tr>
-                        <tr>
-                          <td class="txtForm" height="35">Cantidad</td>
-                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtCantidad" id="txtCantidad" value="${pedido.cantidad}"></td>
-                        </tr>
-                        <tr>
-                          <td class="txtForm" height="35">Fecha de Pedido</td>
-                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${pedido.fecha_registro}"></td>
-                        </tr>
-                        <tr>
-                          <td class="txtForm" height="35">Fecha de Devolución</td>
-                          <td align="center" valign="middle"><input class="dateForm" type="date" name="fecha_devolucion" id="fecha_devolucion"></td>
-                        </tr>`
-                    template2=`
-                        <tr>
-                          <td class="txtForm" height="35">Detalles</td>
-                          <td align="center" valign="middle"><textarea class="txtAreaForm" name="txtaDetalles" id="txtaDetalles"></textarea></td>
-                        </tr>`
-                    template3=`
-                        <tr>
-                            <td colspan="3"><p class="txtError" id="txtaErrorDetalles">Ha superado el límite de caracteres</p></td>
-                        </tr>
-                        <tr>
-                          <td height="39" colspan="2" align="center" valign="middle"><input class="button-submit" type="submit" name="btnDevolver" id="btnDevolver" value="Devolver Pedido">
-                            </td>
-                        </tr>
+                    template = '';
+                    template += `
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Código de Pedido</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtCodigo" id="txtCodigo" value="${pedido.codigo_pedido}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Código de Artículo</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtNombre" id="txtNombre" value="${pedido.codigo_articulo}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Código de Solicitante</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtCodigoSolicitante" id="txtCodigoSolicitante" value="${pedido.codigo_solicitante}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Cantidad</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtCantidad" id="txtCantidad" value="${pedido.cantidad}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Fecha de Pedido</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${pedido.fecha_registro}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Fecha de Devolución</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="dateForm" type="date" name="fecha_devolucion" id="fecha_devolucion">
+                            </div>
+                        </div>
+                        <p class="txtError" id="txtErrorFecha">La fecha está incompleta</p>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Detalles</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <textarea class="txtAreaForm" name="txtaDetalles" id="txtaDetalles"></textarea>
+                            </div>
+                        </div>
+                        <p class="txtError" id="txtaErrorDetalles">Ha excedido el límite de caracteres</p>
+                        <input class="button-submit" type="submit" name="btnDevolver" id="btnDevolver" value="Devolver Pedido">
                     `;
-                    $('#tbodyDevolucion').html(template);
-                    $('#tbodyDevolucion2').html(template2);
-                    $('#tbodyDevolucion3').html(template3);
+                    document.getElementById('divDevolverPedido').innerHTML = template;
                     const formRegistrarDevolucionInputs = document.querySelectorAll('#formRegistrarDevolucion input');
-                    //console.log(formModificarArticuloInputs);
-                    
                     formRegistrarDevolucionInputs.forEach((input)=>{
                         input.addEventListener('keyup', validarFormRegistrarDevolucion);
                         input.addEventListener('blur', validarFormRegistrarDevolucion);
                     })
-                }else{
+                }else if(JSON.parse(response) == 'null'){
                     Swal.fire({
                     title: 'Error',
                     text: 'No se pudo encontrar Pedido',
@@ -162,9 +180,14 @@ $('#formBuscarDevolucion').submit(function(e){
                     background: '#121212',
                     color: 'white'
                     })
-                    $('#tbodyDevolucion').html('');
-                    $('#tbodyDevolucion2').html('');
-                    $('#tbodyDevolucion3').html('');
+                }else if(JSON.parse(response) == 'dev'){
+                    Swal.fire({
+                    title: 'Error',
+                    text: 'El pedido ya ha sido devuelto, no se puede modificar',
+                    icon: 'error',
+                    background: '#121212',
+                    color: 'white'
+                    })
                 }
             },
             fail: function(response){
@@ -212,7 +235,7 @@ $('#formRegistrarDevolucion').submit(function(e){
                         color: 'white'
                     });
                 $('#formRegistrarPedido').trigger('reset');
-                document.getElementById('formRegistrarDevolucion').style.display = 'none';
+                document.getElementById('divDevolverPedido').innerHTML = '';
             }else if(JSON.parse(response)=='false'){
                 Swal.fire({
                 title: 'Error',
@@ -230,7 +253,7 @@ $('#formRegistrarDevolucion').submit(function(e){
                 color: 'white'
                 })
                 $('#formRegistrarPedido').trigger('reset');
-                document.getElementById('formRegistrarDevolucion').style.display = 'none';
+                document.getElementById('divDevolverPedido').innerHTML = '';
             }
         })    
     }else{
@@ -243,3 +266,17 @@ $('#formRegistrarDevolucion').submit(function(e){
         })
     }
 })
+
+function verPedidos(){
+    let action = 'popup';
+    $.ajax({
+        url: '../controlador/CtrlShowVerPedidos.php',
+        data: { action },
+        type: 'POST',
+        success: function (response){
+            var VerArticulosPopUp = window.open('', '', 'width=1200, height=900');
+            VerArticulosPopUp.document.write(response);
+        }
+    });
+    
+}

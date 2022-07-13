@@ -5,13 +5,13 @@
     $codigo_articulo=$_POST['codigo_articulo'];
     $cantidad=$_POST['cantidad'];
     $oldcantidad = $_POST['oldcantidad'];
+    $estado = $_POST['estado'];
     if($sesion!=null){
-        if(isset($codigo) && isset($codigo_articulo) && isset($cantidad) && isset($oldcantidad)){
+        if(isset($codigo) && isset($codigo_articulo) && isset($cantidad) && isset($oldcantidad) && isset($estado)){
             include_once('../modelo/Pedido.php');
-            
             $fecha=$_POST['txtFecha'];
             $p = new Pedido;
-            $result = $p -> modificarPedido($codigo,$codigo_articulo,$cantidad,$oldcantidad);
+            $result = $p -> modificarPedido($codigo, $codigo_articulo, $cantidad, $estado, $oldcantidad);
             if($result){
                 echo json_encode('true');
             }else{

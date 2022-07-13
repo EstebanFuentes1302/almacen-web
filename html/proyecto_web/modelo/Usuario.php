@@ -5,8 +5,8 @@
     {
         public function validarUsuario($usuario, $password){
 
-            $i = conexionSingleton::getInstance();
-            $con = $i -> getConexion();
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
 
             $sql = "select * from Usuario where id_usuario='$usuario' and password='$password'";
             $query = mysqli_query($con, $sql);

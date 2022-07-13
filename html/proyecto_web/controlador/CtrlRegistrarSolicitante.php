@@ -3,22 +3,25 @@
     $sesion=$_SESSION['usuario'];
 
     if($sesion!=null){
+        include_once('../modelo/Solicitante.php');
+        $s = new Solicitante;
+        $codigo = $s -> getAutoIncrement();
+        $nombre = $_POST['txtNombreSolicitante'];
         
-        $nombre=$_POST['txtNombreSolicitante'];
         $email=$_POST['txtCorreo'];
         $telefono=$_POST['txtTelefono'];
         
         //PARA EL ARCHIVO DE IMAGEN
-        $nombre_imagen=$_FILES['foto']['name'];
-        $temporal=$_FILES['foto']['tmp_name'];
-        $carpeta='../img/solicitante';
-        $ruta_foto=$carpeta.'/'.$nombre_imagen;
+        $ext = end(explode(".", $_FILES['foto']['name'])); 
+        $nombre_imagen = "$codigo.$ext";
+        $temporal = $_FILES['foto']['tmp_name'];
+        $carpeta = '../img/solicitante';
+        $ruta_foto = $carpeta.'/'.$nombre_imagen;
         //echo $ruta_foto;
         
         if(isset($nombre) && isset($email) && isset($telefono) && isset($temporal)){
-            if(move_uploaded_file($temporal,$ruta_foto)){
-            include_once('../modelo/Solicitante.php');
-            $s = new Solicitante;
+            if(move_uploaded_file($temporal, $ruta_foto)){
+            
             $registrar = $s -> registrarSolicitante($nombre, $email, $telefono, $ruta_foto);
             if($registrar){
                 echo json_encode('true');

@@ -18,21 +18,15 @@
                 </div>
             <h1 align="center">Modificar Solicitante</h1>
             <form id="formBuscarSolicitante" method="post">
-                <div class="divForm">
-                    <div class="div-form-row">
-                        <div class="div-txt-form-row">
-                            <p class="txtForm">Buscar Código</p>
-                        </div>
-                        <div class="div-input-form-row">
-                            <input class="txtFieldForm" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
-                        </div>
-                        <button class="button-search" type="submit" name="btnBuscar" id="btnBuscar">
+                <div class="div-buscar">
+                    <p class="txtFormBuscar">Buscar Código</p>
+                    <input class="txtFieldForm" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
+                    <button class="button-search" type="submit" name="btnBuscar" id="btnBuscar">
                             <img class="icon-buscar" src="../img/icons/lupa.png">
-                        </button>
-                        <button type="button" class="button-ver" name="btnVerArticulos" id="btnVerArticulos" title="Ver Artículos" onClick="verSolicitantes()">
-                            <img class="icon-menu" src="../img/icons/tabla.png">Ver Solicitantes
-                        </button>
-                    </div>
+                    </button>
+                    <button type="button" class="button-ver" name="btnVerArticulos" id="btnVerArticulos" title="Ver Artículos" onClick="verSolicitantes()">
+                        <img class="icon-menu" src="../img/icons/tabla.png">Ver Solicitantes
+                    </button>
                 </div>
                 <p class="txtError" id="txtErrorCodigo">El código de solicitante debe tener 8 dígitos y comenzar con "2"</p>
             </form>

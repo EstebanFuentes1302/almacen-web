@@ -150,11 +150,12 @@ $('#formBuscarSolicitante').submit(function(e){
                         </div>
                         <p class="txtError" id="txtErrorTelefono">El teléfono debe tener 9 dígitos y comenzar con "9"</p>
                         <div class="div-form-row">
-                            <span class="txtBlock">Foto</span>
-                            <div class="div-input-form-row">
-                                <img class="fotoShow" src="${solicitante.foto}" width="200px" height="200px">
-                            </div>
+                            <p class="txtBlock">Foto</p>
                         </div>
+                        <div class="div-form-row">
+                            <img class="fotoShow" src="${solicitante.foto}" width="200px" height="200px">
+                        </div>
+
                         <input class="button-submit" type="submit" name="btnModificar" id="btnModificar" value="Modificar">
                     `;
 
@@ -265,7 +266,7 @@ function verSolicitantes(){
         type: 'POST',
         success: function (response){
             console.log(response);
-            var VerArticulosPopUp = window.open('', '', 'width=700, height=900');
+            var VerArticulosPopUp = window.open('', '', 'width=800, height=900');
             VerArticulosPopUp.document.write(response);
         }
     });

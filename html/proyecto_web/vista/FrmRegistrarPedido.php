@@ -79,7 +79,6 @@
                             <input class="txtFieldForm" type="date" name="date" id="date">
                         </div>
                     </div>
-                    
                     <p class="txtError" id="txtErrorFecha">La fecha está incompleta</p>
                     <input class="button-submit" type="submit" name="btnRegistrarPedido" id="btnRegistrarPedido" value="Registrar Pedido">
                     <input class="reset" type="reset" name="btnLimpiar" id="btnLimpiar" value="Limpiar">

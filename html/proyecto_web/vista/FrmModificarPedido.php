@@ -18,38 +18,26 @@
                 </div>
                 <h1>Modificar Pedido</h1>
                 <form id=formBuscarPedido method="post">
-                  <table width="648" border="0" align="center">
-                    <tbody>
-                      <tr>
-                        <td class="txtForm" width="135" height="35">Buscar Código</td>
-                        <td width="503" align="center" valign="middle">
-                        <input class=txtFieldForm name="txtCodigoBuscar" type="text" id="txtCodigoBuscar" placeholder="Código de Pedido">
-                        <button class="button-search" type="submit" name="btnBuscar" id="btnBuscar">
+                    <div class="div-buscar">
+                        <p class="txtFormBuscar">Buscar Código</p>
+                       <input class=txtFieldForm name="txtCodigoBuscar" type="text" id="txtCodigoBuscar" placeholder="Código de Pedido">
+                        <button class="button-search" type="button" name="btnBuscar" id="btnBuscar" onclick="buscarPedido()">
                                 <img class="icon-buscar" src="../img/icons/lupa.png">
-                            </button>
-                          </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                    <p class="txtError" id="txtErrorCodigo">El código de artículo debe contener un número entre 1001 y 9999</p>
+                        </button>
+                        <button type="button" class="button-ver" name="btnVerPedidos" id="btnVerPedidos" title="Ver Pedidos" onClick="verPedidos()">
+                            <img class="icon-menu" src="../img/icons/tabla.png">Ver Pedidos
+                        </button>
+                        <p class="txtError" id="txtErrorCodigo">El código de artículo debe contener un número entre 1001 y 9999</p>
+                    </div>
                 </form>
-
-                <div class="div-Form">
-                    <hr class="hr">
-                        <form id="formModificarPedido" method="post"?>
-                        <table id="tblModificarPedido" width="512" border="0" align="center">
-                          <tbody id="tbodyPedido">
-
-                          </tbody>
-                        <tr>
-                            <td colspan="2"><p class="txtError" id="txtErrorCantidad">La cantidad debe ser un número entero</p></td>
-                        </tr>
-                            <tbody id="tbodyPedido2">
-
-                            </tbody>
-                        </table>
-                        </form>
-                </div>
+                <hr class="hr">
+                
+                    
+                <form id="formModificarPedido">
+                    <div id="divModificarPedido" class="div-Form"> 
+                    </div>
+                </form>
+                
 
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
                 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

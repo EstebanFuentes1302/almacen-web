@@ -18,28 +18,28 @@
             </div>
             <h1>Gestión de Pedidos</h1>
             <hr class="hr">
-            <div class="div-menu" align="center">
+            <div class="div-menu">
 
                 <a class="button-menu2" href="../controlador/CtrlShowRegistrarPedido.php">
                     <img class="icon-menu" src="../img/icons/registrar_pedido.png">
-                    Registrar Pedido
+                    <p class="txtButton">Registrar Pedido</p>
                 </a>
-                <br>
                 <a class="button-menu2" href="../controlador/CtrlShowModificarPedido.php">
-                    <img class="icon-menu" src="../img/icons/modificar_pedido.png">
-                    Modificar Pedido
+                    <div class="div-button-content">
+                        <img class="icon-menu" src="../img/icons/modificar_pedido.png">
+                        <p class="txtButton">Modificar Pedido</p>
+                    </div>
                 </a>
-                <br>
-                <a class="button-menu2" href="../controlador/CtrlShowEliminarPedido.php">
+                <!--<a class="button-menu2" href="../controlador/CtrlShowEliminarPedido.php">
                     <img class="icon-menu" src="../img/icons/eliminar.png">
                     Eliminar Pedido
-                </a>
-                <br>
+                </a>-->
                 <a class="button-menu2" href="../controlador/CtrlShowVerPedidos.php">
-                    <img class="icon-menu" src="../img/icons/tabla.png">
-                    Registro de Pedidos
+                    <div class="div-button-content">
+                        <img class="icon-menu" src="../img/icons/tabla.png">
+                        <p class="txtButton">Registro de Pedidos</p>
+                    </div>
                 </a>
-                <br>
             </div>
             </body>
             </html>

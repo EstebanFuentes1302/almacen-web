@@ -21,12 +21,13 @@
             <div class="div-menu" align="center">
                 <a class="button-menu2" href="../controlador/CtrlShowRegistrarDevolucion.php">
                     <img class="icon-menu" src="../img/icons/devolver.png">
-                    Devolver Pedido
+                    <p class="txtButton">Devolver Pedido</p>
                 </a>
-                <br>
                 <a class="button-menu2" href="../controlador/CtrlShowVerDevoluciones.php">
-                    <img class="icon-menu" src="../img/icons/tabla.png">
-                    Registro de Devoluciones
+                    <div class="div-button-content">
+                        <img class="icon-menu" src="../img/icons/tabla.png">
+                        <p class="txtButton">Registro de Devoluciones</p>
+                    </div>
                 </a>
             </div>
             </body>

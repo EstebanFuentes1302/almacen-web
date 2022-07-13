@@ -68,9 +68,8 @@ var cod_articulo = null;
 var old_cantidad = null;
 
 
-$('#formBuscarPedido').submit(function(e){
-    e.preventDefault();
-    codigo = $('#txtCodigoBuscar').val();
+function buscarPedido(){
+     codigo = $('#txtCodigoBuscar').val();
     //console.log(codigo);
     if(camposBuscar['codigo']){
         $.ajax({
@@ -79,7 +78,7 @@ $('#formBuscarPedido').submit(function(e){
             data: { codigo },
             success: function(response){
                 console.log(JSON.parse(response));
-                if(JSON.parse(response) != 'null'){
+                if(JSON.parse(response) != 'dev' && JSON.parse(response) != 'null'){
                     Swal.fire({
                         title: 'Pedido Encontrado!',
                         text: 'El pedido ha sido encontrado',
@@ -87,48 +86,74 @@ $('#formBuscarPedido').submit(function(e){
                         background: '#121212',
                         color: 'white'
                     })
-                    document.getElementById('tblModificarPedido').style.display = 'block';
                     //console.log(response);
                     let pedido = JSON.parse(response);
                     let template = '';
                     cod_articulo = pedido.codigo_articulo;
                     old_cantidad = pedido.cantidad;
                     template+= `
-                        <tr>
-                          <td class="txtForm" width="169" height="35">Código de Pedido</td>
-                          <td width="333" align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtCodigo" id="txtCodigo" value="${pedido.codigo_pedido}"></td>
-                        </tr>
-                        <tr>
-                          <td class="txtForm" width="169" height="35">Código de Artículo</td>
-                          <td width="333" align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtNombre" id="txtNombre" value="${pedido.codigo_articulo}"></td>
-                        </tr>
-                        <tr>
-                          <td class="txtForm" height="35">Código de Solicitante</td>
-                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtCodigoSolicitante" id="txtCodigoSolicitante" value="${pedido.codigo_solicitante}"></td>
-                          </tr>
-                        <tr>
-                          <td class="txtForm" height="35">Cantidad</td>
-                          <td align="center" valign="middle"><input class="txtFieldForm" type="text" name="txtCantidad" id="txtCantidad" value="${pedido.cantidad}"></td>
-                        </tr>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Código de Pedido</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtCodigo" id="txtCodigo" value="${pedido.codigo_pedido}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Código de Artículo</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtNombre" id="txtNombre" value="${pedido.codigo_articulo}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Código de Solicitante</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtCodigoSolicitante" id="txtCodigoSolicitante" value="${pedido.codigo_solicitante}">
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Cantidad</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldForm" type="text" name="txtCantidad" id="txtCantidad" value="${pedido.cantidad}">
+                            </div>
+                        </div>
+                        <p class="txtError" id="txtErrorCantidad">La cantidad debe ser un número entero</p>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Estado</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <select id="sEstado" class="selectForm">
+                                    <option value="Entregado">Entregado</option>
+                                    <option value="Por Entregar">Por Entregar</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="div-form-row">
+                            <div class="div-txt-form-row">
+                                <span class="txtForm">Fecha de Pedido</span>
+                            </div>
+                            <div class="div-input-form-row">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${pedido.fecha_registro}">
+                            </div>
+                        </div>
+                        <input class="button-submit" type="submit" name="btnModificar" id="btnModificar" value="Modificar">
                     `;
-                    template2=`
-                        <tr>
-                          <td class="txtForm" height="35">Fecha de Pedido</td>
-                          <td align="center" valign="middle"><input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${pedido.fecha_registro}"></td>
-                        </tr>
-                        <tr>
-                          <td height="39" colspan="2" align="center" valign="middle"><input class="button-submit" type="submit" name="btnModificar" id="btnModificar" value="Modificar"></td>
-                      </tr>
-                    `;
-                    $('#tbodyPedido').html(template);
-                    $('#tbodyPedido2').html(template2);
+                    document.getElementById('divModificarPedido').innerHTML = template;
                     const formModificarPedidoInputs = document.querySelectorAll('#formModificarPedido input');
                     //console.log(formModificarArticuloInputs);
                     formModificarPedidoInputs.forEach((input)=>{
                         input.addEventListener('keyup',validarFormModificarPedido);
                         input.addEventListener('blur',validarFormModificarPedido);
                     })
-                }else{
+                }else if(JSON.parse(response) == 'null'){
                     Swal.fire({
                     title: 'Error',
                     text: 'No se pudo encontrar Pedido',
@@ -136,7 +161,14 @@ $('#formBuscarPedido').submit(function(e){
                     background: '#121212',
                     color: 'white'
                     })
-                    $('#tbodyArticulo').html('');
+                }else if(JSON.parse(response) == 'dev'){
+                    Swal.fire({
+                    title: 'Error',
+                    text: 'El pedido ya ha sido devuelto, no se puede modificar',
+                    icon: 'error',
+                    background: '#121212',
+                    color: 'white'
+                    })
                 }
             },
             fail: function(response){
@@ -149,16 +181,8 @@ $('#formBuscarPedido').submit(function(e){
                 })
             }
         })
-    }else{
-        Swal.fire({
-                title: 'Error',
-                text: 'Los datos ingresados no son correctos',
-                icon: 'error',
-                background: '#121212',
-                color: 'white'
-        })
     }
-});
+}
 
 $('#formModificarPedido').submit(function(e){
     e.preventDefault();
@@ -166,55 +190,65 @@ $('#formModificarPedido').submit(function(e){
     let cantidad = $('#txtCantidad').val();
     let codigo_articulo = cod_articulo;
     let oldcantidad = old_cantidad;
-    //let dataModificar={codigo, nombre, cantidad}
-    //console.log(JSON.stringify(dataModificar));
-    //console.log(codigo);
-    if(oldcantidad != cantidad){
-        if(camposModificar['cantidad']){
-            $.ajax({
-                url: '../controlador/CtrlModificarPedido.php',
-                type: 'POST',
-                data: {codigo, codigo_articulo, cantidad, oldcantidad},
-                success: function(response){
-                    console.log(response);
-                    if(JSON.parse(response)=='true'){
-                        Swal.fire({
-                            title: 'Pedido Modificado!',
-                            text: 'El artículo ha sido modificado correctamente',
-                            icon: 'success',
-                            background: '#121212',
-                            color: 'white'
-                            })
-                        }
-
-                    },
-                    fail: function(res){
-                        Swal.fire({
-                        title: 'Error',
-                        text: 'Error al modificar Pedido',
-                        icon: 'error',
+    let estado = $('#sEstado').val();
+    
+    if(camposModificar['cantidad']){
+        $.ajax({
+            url: '../controlador/CtrlModificarPedido.php',
+            type: 'POST',
+            data: {codigo, codigo_articulo, cantidad, oldcantidad, estado},
+            success: function(response){
+                console.log(response);
+                if(JSON.parse(response) == 'true'){
+                    Swal.fire({
+                        title: 'Pedido Modificado!',
+                        text: 'El pedido ha sido modificado correctamente',
+                        icon: 'success',
                         background: '#121212',
                         color: 'white'
                         })
-                    }
-                });    
-        }else{
-            Swal.fire({
+                }else if(JSON.parse(response) == 'false'){
+                    Swal.fire({
+                    title: 'Error',
+                    text: 'Error al modificar Pedido',
+                    icon: 'error',
+                    background: '#121212',
+                    color: 'white'
+                    })
+                }
+            },
+            fail: function(res){
+                Swal.fire({
                 title: 'Error',
-                text: 'Los datos ingresados no son correctos',
+                text: 'Error al modificar Pedido',
                 icon: 'error',
                 background: '#121212',
                 color: 'white'
-            })
-        }
+                })
+            }
+            });    
     }else{
         Swal.fire({
-                title: 'Aviso',
-                text: 'No se han realizado cambios',
-                icon: 'warning',
-                background: '#121212',
-                color: 'white'
+            title: 'Error',
+            text: 'Los datos ingresados no son correctos',
+            icon: 'error',
+            background: '#121212',
+            color: 'white'
         })
     }
     
 });
+
+function verPedidos(){
+    let action = 'popup';
+    $.ajax({
+        url: '../controlador/CtrlShowVerPedidos.php',
+        data: { action },
+        type: 'POST',
+        success: function (response){
+            var VerArticulosPopUp = window.open('', '', 'width=1200, height=900');
+            VerArticulosPopUp.document.write(response);
+        }
+    });
+    
+}

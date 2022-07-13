@@ -101,7 +101,7 @@ $('#formRegistrarSolicitante').submit(function(e){
                 contentType: false,
                 processData: false,
                 success: function (response){
-                    //console.log(response);
+                    console.log(response);
                     if(JSON.parse(response)=='true'){
                         Swal.fire({
                                 title: 'Solicitante Registrado!',
@@ -121,9 +121,9 @@ $('#formRegistrarSolicitante').submit(function(e){
                         })
                     }else if(JSON.parse(response) == 'noupload'){
                         Swal.fire({
-                        title: 'Warning',
+                        title: 'Error',
                         text: 'No se puede subir la foto',
-                        icon: 'error',
+                        icon: 'warning',
                         background: '#121212',
                         color: 'white'
                         })
