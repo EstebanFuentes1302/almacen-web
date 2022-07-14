@@ -20,11 +20,8 @@ class FrmVerPedidos
                 <table class="tblShow">
                     <tr>
                         <td class="txtHeader" width="70px" align="center" valign="middle">Código de Pedido</td>
-                        <td class="txtHeader" width="80px" align="center" valign="middle">Código de Artículo</td>
-                        <td class="txtHeader" width="120px" align="center" valign="middle">Nombre de Artículo</td>
                         <td class="txtHeader" width="90px" align="center" valign="middle">Código de Solicitante</td>
                         <td class="txtHeader" width="150px" align="center" valign="middle">Nombre de Solicitante</td>
-                        <td class="txtHeader" width="60px" align="center" valign="middle">Cantidad</td>
                         <td class="txtHeader" width="80px" align="center" valign="middle">Estado</td>
                         <td class="txtHeader" width="100px" align="center" valign="middle">Fecha de Registro</td>
                     </tr>
@@ -40,11 +37,8 @@ class FrmVerPedidos
                     ?>
                         <tr>
                             <td class="txtRow" height="35" align="center" valign="middle"><?php echo $pedido['codigo_pedido']?></td>
-                            <td class="txtRow" align="center" valign="middle"><?php echo $pedido['codigo_articulo']?></td>
-                            <td class="txtRow" align="center" valign="middle"><?php echo $articulo['nombre']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $pedido['codigo_solicitante']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $solicitante['nombre']?></td>
-                            <td class="txtRow" align="center" valign="middle"><?php echo $pedido['cantidad']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $pedido['estado']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $pedido['fecha_pedido']?></td>
                   </tr>
@@ -74,11 +68,8 @@ class FrmVerPedidos
                 <table class="tblShow">
                     <tr>
                         <td class="txtHeader" width="70px" align="center" valign="middle">Código de Pedido</td>
-                        <td class="txtHeader" width="80px" align="center" valign="middle">Código de Artículo</td>
-                        <td class="txtHeader" width="120px" align="center" valign="middle">Nombre de Artículo</td>
                         <td class="txtHeader" width="90px" align="center" valign="middle">Código de Solicitante</td>
                         <td class="txtHeader" width="150px" align="center" valign="middle">Nombre de Solicitante</td>
-                        <td class="txtHeader" width="60px" align="center" valign="middle">Cantidad</td>
                         <td class="txtHeader" width="80px" align="center" valign="middle">Estado</td>
                         <td class="txtHeader" width="100px" align="center" valign="middle">Fecha de Registro</td>
                     </tr>
@@ -86,22 +77,18 @@ class FrmVerPedidos
                         include_once('../modelo/Articulo.php');
                         include_once('../modelo/Solicitante.php');
                         while($pedido = mysqli_fetch_array($pedidos)){
-                            $a = new Articulo;
-                            $articulo = $a -> buscarArticulo($pedido['codigo_articulo']);
                             $s = new Solicitante;
                             $solicitante = $s -> buscarSolicitante($pedido['codigo_solicitante']);
                             
                     ?>
                         <tr>
                             <td class="txtRow" height="35" align="center" valign="middle"><?php echo $pedido['codigo_pedido']?></td>
-                            <td class="txtRow" align="center" valign="middle"><?php echo $pedido['codigo_articulo']?></td>
-                            <td class="txtRow" align="center" valign="middle"><?php echo $articulo['nombre']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $pedido['codigo_solicitante']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $solicitante['nombre']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $pedido['cantidad']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $pedido['estado']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $pedido['fecha_pedido']?></td>
-                  </tr>
+                      </tr>
                     <?php                
                         }
                     ?>

@@ -102,29 +102,12 @@ function buscarPedido(){
                         </div>
                         <div class="div-form-row">
                             <div class="div-txt-form-row">
-                                <span class="txtForm">Código de Artículo</span>
-                            </div>
-                            <div class="div-input-form-row">
-                                <input class="txtFieldFormReadonly" readonly type="text" name="txtNombre" id="txtNombre" value="${pedido.codigo_articulo}">
-                            </div>
-                        </div>
-                        <div class="div-form-row">
-                            <div class="div-txt-form-row">
                                 <span class="txtForm">Código de Solicitante</span>
                             </div>
                             <div class="div-input-form-row">
                                 <input class="txtFieldFormReadonly" readonly type="text" name="txtCodigoSolicitante" id="txtCodigoSolicitante" value="${pedido.codigo_solicitante}">
                             </div>
                         </div>
-                        <div class="div-form-row">
-                            <div class="div-txt-form-row">
-                                <span class="txtForm">Cantidad</span>
-                            </div>
-                            <div class="div-input-form-row">
-                                <input class="txtFieldForm" type="text" name="txtCantidad" id="txtCantidad" value="${pedido.cantidad}">
-                            </div>
-                        </div>
-                        <p class="txtError" id="txtErrorCantidad">La cantidad debe ser un número entero</p>
                         <div class="div-form-row">
                             <div class="div-txt-form-row">
                                 <span class="txtForm">Estado</span>

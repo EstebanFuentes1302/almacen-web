@@ -4,6 +4,10 @@ const formRegistrarPedidoInputs = document.querySelectorAll('#formRegistrarPedid
 var codigo_articulo;
 var codigo_solicitante;
 
+var Articulos = [];
+
+
+
 const expresiones = {
     nombre: /^(([ \u00c0-\u00ffa-zA-Z'\-])+){3,}$/,
     form_nombre: /^((\w|[ \u0021-\u002f]|[\u00c0-\u00ff])+){2,}/,
@@ -80,16 +84,14 @@ formRegistrarPedidoInputs.forEach((input)=>{
 
 $('#formRegistrarPedido').submit(function(e){
     e.preventDefault();
-    
     const data = {
         cod_solicitante: codigo_solicitante,
-        cod_articulo: codigo_articulo,
+        articulos: JSON.stringify(Articulos),
         date: $('#date').val(),
-        cantidad: $('#txtCantidad').val(),
         estado: $('#sEstado').val()
     }
-    if(codigo_solicitante != '' && codigo_articulo != '' && campos ['cantidad'] && campos['date']){
-        $.post('../controlador/CtrlRegistrarPedido.php',data, function (response){
+    if(codigo_solicitante != '' && codigo_articulo != '' && campos['date']){
+        $.post('../controlador/CtrlRegistrarPedido.php', data, function (response){
             //console.log(response);
             if(JSON.parse(response)=='true'){
                 Swal.fire({
@@ -100,8 +102,6 @@ $('#formRegistrarPedido').submit(function(e){
                         color: 'white'
                     });
                 $('#formRegistrarPedido').trigger('reset');
-                document.getElementById('divArticulo').innerHTML = '';
-                document.getElementById('divSolicitante').innerHTML = '';
                 codigo_articulo = null;
                 codigo_solicitante = null;
             }else if(JSON.parse(response)=='false'){
@@ -141,66 +141,108 @@ function verArticulos(){
 
 function buscarArticulo(){
     let codigo = $('#txtCodigoArticulo').val();
+    let cantidad = $('#txtCantidadArticulo').val();
+    let rep = false;
+    let verifcantidad = false;
     if(campos['cod_articulo']){
+        for(let elem of Articulos){
+            if(codigo == elem.codigo_articulo){
+                rep = true;
+            }
+        }
         $.ajax({
-                url: '../controlador/CtrlBuscarArticulo.php',
-                type: 'POST',
-                data: { codigo },
-                success: function(response){
-                    //console.log(response);
-                    if(JSON.parse(response) != 'null'){
-                        //console.log(response);
-                        let articulo = JSON.parse(response);
-                        codigo_articulo = articulo.codigo;
-                        let temp = '';
-                        temp = `
-                            <div class="div-ver">
-                                <table class="tblShow">
-                                    <tbody>
-                                        <tr>
-                                          <th class="txtHeader">Código</th>
-                                          <th class="txtHeader">Nombre</th>
-                                          <th class="txtHeader">Cantidad</th>
-                                          <th class="txtHeader" width="150px">Fecha de Registro</th>
-                                        </tr>
-                                        <tr>
-                                          <td class="txtRow">${articulo.codigo}</td>
-                                          <td class="txtRow">${articulo.nombre}</td>
-                                          <td class="txtRow">${articulo.cantidad}</td>
-                                          <td class="txtRow">${articulo.fecha_registro}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        `;
-                        document.getElementById('divArticulo').innerHTML = temp;
-                        const formModificarArticuloInputs = document.querySelectorAll('#formModificarArticulo input');
+            url: '../controlador/CtrlBuscarArticulo.php',
+            type: 'POST',
+            data: { codigo },
+            success: function(response){
+                //console.log(response);
+                if(JSON.parse(response) != 'null'){
+                    $.ajax({
+                        url: '../controlador/CtrlVerificarCantidadArticulo.php',
+                        type: 'POST',
+                        data: {
+                            codigo: codigo,
+                            cantidad: cantidad
+                        },
+                        success: function(response){
+                            //console.log(response);
+                            if(JSON.parse(response) == 'true'){
+                                verifcantidad = true;
+                            }else if(JSON.parse(response) == 'false'){
+                                verifcantidad = false;
+                            }
+                        },
+                        fail: function(){
+                            Swal.fire({
+                            title: 'Error',
+                            text: 'Error al verificar Stock',
+                            icon: 'error',
+                            background: '#121212',
+                            color: 'white'
+                            })
+                        }
+                        });
+                    if(rep == false){
+                        if(verifcantidad == true){
+                            let articulo = JSON.parse(response);
+                            let Articulo = {
+                                codigo_articulo: articulo.codigo,
+                                cantidad: cantidad
+                            }
+                            Articulos.push(Articulo);
+                            //console.log(JSON.stringify(Articulos));
+                            let temp = '';
+                            temp = `
+                                <tr>
+                                  <td class="txtRow">${articulo.codigo}</td>
+                                  <td class="txtRow">${articulo.nombre}</td>
+                                  <td class="txtRow">${cantidad}</td>
+                                  <td class="txtRow">${articulo.fecha_registro}</td>
+                                </tr>
+                            `;
+                            var tableRef = document.getElementById('tblArticulos').getElementsByTagName('tbody')[0];
+                            var newRow = tableRef.insertRow(tableRef.rows.length);
+                            newRow.innerHTML = temp;
+                        }else{
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'La cantidad ingresada supera al stock del producto',
+                                icon: 'error',
+                                background: '#121212',
+                                color: 'white'
+                            })
+                        }
+                    //console.log(response); 
                     }else{
                         Swal.fire({
+                            title: 'Error',
+                            text: 'El articulo ya ha sido agregado',
+                            icon: 'error',
+                            background: '#121212',
+                            color: 'white'
+                        })
+                    }    
+                }else if(JSON.parse(response) == 'null'){
+                    Swal.fire({
                         title: 'Error',
                         text: 'No se pudo encontrar Artículo',
                         icon: 'error',
                         background: '#121212',
                         color: 'white'
-                        })
-                        /*$('#tbodyArticulo').html('');
-                        $('#tbodyArticulo2').html('');
-                        $('#tbodyArticulo3').html('');*/
-                        document.getElementById('divArticulo').innerHTML = '';
-                    }
-
-                },
-                fail: function(response){
-                    Swal.fire({
-                    title: 'Error',
-                    text: 'Error al encontrar Artículo',
-                    icon: 'error',
-                    background: '#121212',
-                    color: 'white'
                     })
                 }
-
-            });
+                
+            },
+            fail: function(){
+                Swal.fire({
+                title: 'Error',
+                text: 'Error al encontrar Artículo',
+                icon: 'error',
+                background: '#121212',
+                color: 'white'
+                })
+            }
+        }); 
     }else{
         Swal.fire({
                 title: 'Error',
@@ -239,32 +281,22 @@ function buscarSolicitante(){
             success: function(response){
                 //console.log(response);
                 if(JSON.parse(response) != 'null'){
-                    //console.log(response);
                     
                     let solicitante = JSON.parse(response);
                     codigo_solicitante = solicitante.codigo_solicitante;
                     let template = '';
                     template+= `
-                        <div class="div-ver">
-                            <table class="tblShow">
-                                <tbody>
-                                    <tr>
-                                      <th class="txtHeader">Código</th>
-                                      <th class="txtHeader">Nombre</th>
-                                      <th class="txtHeader">Correo Electrónico</th>
-                                      <th class="txtHeader">Teléfono</th>
-                                    </tr>
-                                    <tr>
-                                      <td class="txtRow">${solicitante.codigo_solicitante}</td>
-                                      <td class="txtRow">${solicitante.nombre}</td>
-                                      <td class="txtRow">${solicitante.email}</td>
-                                      <td class="txtRow">${solicitante.telefono}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <tr>
+                          <td class="txtRow">${solicitante.codigo_solicitante}</td>
+                          <td class="txtRow">${solicitante.nombre}</td>
+                          <td class="txtRow">${solicitante.email}</td>
+                          <td class="txtRow">${solicitante.telefono}</td>
+                        </tr>
                     `;
-                    document.getElementById('divSolicitante').innerHTML = template;
+                    var tableRef = document.getElementById('tblSolicitante').getElementsByTagName('tbody')[0];
+
+                    var newRow = tableRef.insertRow(tableRef.rows.length);
+                    newRow.innerHTML = template;
                 }else{
                     Swal.fire({
                     title: 'Error',

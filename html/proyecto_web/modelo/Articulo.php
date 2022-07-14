@@ -84,5 +84,25 @@
                 return(false);
             }
         }
+        
+        public function verificarCantidad($codigo, $cantidad){
+            include_once('SingletonConexionDB.php');
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
+            $sql = "select cantidad from Articulo where codigo='$codigo'";
+            $result = mysqli_query($con, $sql);
+            
+            if(mysqli_num_rows($result) > 0){
+                $arr = mysqli_fetch_assoc($result);
+                $oldcantidad = $arr['cantidad'];
+                if($cantidad <= $oldcantidad){
+                    return(true);
+                }else{
+                    return(false);
+                }
+            }else{
+                return(false);
+            }
+        }
     }
 ?>

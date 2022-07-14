@@ -26,6 +26,12 @@
                         <div class="div-input-form-row">
                             <input class="txtFieldForm" type="text" name="txtCodigoArticulo" id="txtCodigoArticulo">
                         </div>
+                        <div class="div-txt-form-row div-txt-form-row-small">
+                            <span class="txtForm">Cantidad</span>
+                        </div>
+                        <div class="div-input-form-row div-input-form-row-small">
+                            <input class="txtFieldForm txtFieldShort" type="text" name="txtCantidadArticulo" id="txtCantidadArticulo">
+                        </div>
                         <button class="button-search" type="button" name="btnBuscar" id="btnBuscar" onClick="buscarArticulo()">
                             <img class="icon-buscar" src="../img/icons/lupa.png">
                         </button>
@@ -34,7 +40,18 @@
                         </button>
                     </div>
                     <p class="txtError" id="txtErrorCodigoArticulo">El código del artículo debe contener un número del 1001 al 9999</p>
-                    <div id="divArticulo" class="div-form-row"></div>
+                    <div id="divArticulo" class="div-form-row">
+                        <table id="tblArticulos" class="tblShow">
+                            <tbody id="tbodyArticulos">
+                                <tr>
+                                  <th class="txtHeader">Código</th>
+                                  <th class="txtHeader">Nombre</th>
+                                  <th class="txtHeader">Cantidad</th>
+                                  <th class="txtHeader" width="150px">Fecha de Registro</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="div-form-row">
                         <div class="div-txt-form-row">
                             <span class="txtForm">Código de solicitante</span>
@@ -50,14 +67,17 @@
                         </button>
                     </div>
                     <p class="txtError" id="txtErrorCodigoSolicitante">El código de solicitante es un número de 8 dígitos y comienza con (1-9)</p>
-                    <div id="divSolicitante" class="div-form-row"></div>
-                    <div class="div-form-row">
-                        <div class="div-txt-form-row">
-                            <span class="txtForm">Cantidad</span>
-                        </div>
-                        <div class="div-input-form-row">
-                            <input class="txtFieldForm" type="text" name="txtCantidad" id="txtCantidad">
-                        </div>
+                    <div id="divArticulo" class="div-form-row">
+                        <table id="tblSolicitante" class="tblShow">
+                            <tbody id="tbodyArticulos">
+                                <tr>
+                                  <th class="txtHeader">Código</th>
+                                  <th class="txtHeader">Nombre</th>
+                                  <th class="txtHeader">Correo Electrónico</th>
+                                  <th class="txtHeader">Teléfono</th>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <p class="txtError" id="txtErrorCantidad">La cantidad debe ser un número entero</p>
                     <div class="div-form-row">

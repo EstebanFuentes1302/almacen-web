@@ -327,10 +327,9 @@ textarea::-webkit-scrollbar-thumb {
 
 .div-buscar{
     overflow: hidden;
+    padding: 10px 0px;
     margin: 0px 0px;
-    /*vertical-align: middle;*/
     text-align: center;
-    /*justify-content: space-between;*/
 }
 
 .div-form-row{
@@ -348,6 +347,10 @@ textarea::-webkit-scrollbar-thumb {
     width: 200px;
 }
 
+.div-txt-form-row-small{
+    width: 80px;
+}
+
 .div-txt-form-row > *{
     vertical-align: middle;
 }
@@ -355,6 +358,10 @@ textarea::-webkit-scrollbar-thumb {
 .div-input-form-row{
     display: inline-block;
     width: 300px;
+}
+
+.div-input-form-row-small{
+    width: auto;
 }
 
 .div-button-content{
@@ -370,6 +377,10 @@ textarea::-webkit-scrollbar-thumb {
     font-weight: 300; 
     letter-spacing: 1px;
     color: white;
+}
+
+.txtFieldShort{
+    width: 40px;
 }
 
 .txtButton{

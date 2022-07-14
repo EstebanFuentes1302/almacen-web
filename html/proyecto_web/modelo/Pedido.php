@@ -4,35 +4,18 @@
     
     class Pedido
     {
-        public function registrarPedido($cod_articulo, $cod_solicitante, $estado, $fecha, $cantidad){
+        public function registrarPedido($cod_solicitante, $estado, $fecha){
             include_once('SingletonConexionDB.php');
             conexionSingleton::getInstance();
             $con = conexionSingleton::getConexion();
-            $sql="select cantidad from Articulo where codigo='$cod_articulo'";
-            $query=mysqli_query($con,$sql);
-            $result=mysqli_fetch_array($query);
-            if($result){
-                if(($result['cantidad'])>=$cantidad){
-                    $newcantidad=$result['cantidad']-$cantidad;
-                    $sql2="update Articulo set cantidad=$newcantidad where codigo='$cod_articulo'";
-                    $query2=mysqli_query($con,$sql2);
-                    if($query2){
-                        $sql3="insert into Pedido(codigo_articulo,codigo_solicitante,estado,fecha_pedido,cantidad) values('$cod_articulo','$cod_solicitante','$estado','$fecha',$cantidad)";
-                        $query3=mysqli_query($con,$sql3);
-                        if($query3){
-                            return(true);
-                        }else{
-                            return(false);
-                        }
-                    }else{
-                        return(false);
-                    }
-                }else{
-                    return false;
-                }
+            $code = $this -> getAutoIncrement();
+            $sql = "insert into Pedido(codigo_solicitante,estado,fecha_pedido) values('$cod_solicitante','$estado','$fecha')";
+            $query = mysqli_query($con, $sql);
+            if($query){
+                return($code);
             }else{
                 return(false);
-            }
+            }  
         }
 
         public function buscarPedido($codigo){
@@ -73,7 +56,7 @@
                     return(false);
                 }
             }else{
-                return("aaaaaaa");
+                return(false);
             }
         }
 
@@ -145,7 +128,22 @@
             $sql = "select * from Pedido";
             $result = mysqli_query($con,$sql);
             return($result);
-        }    
+        }
+        
+        private function getAutoIncrement(){
+            include_once('SingletonConexionDB.php');
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
+            $sql = "SHOW TABLE STATUS FROM bd_almacen";
+            $result = mysqli_query($con, $sql);
+            while($arr = mysqli_fetch_assoc($result)){
+                if($arr['Name'] == "Pedido"){
+                    $auto = $arr['Auto_increment'];
+                    break;
+                }
+            }
+            return($auto);
+        }
     }
 
 ?>
