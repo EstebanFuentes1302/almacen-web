@@ -27,7 +27,7 @@
                 <a class="button-menu2" href="../controlador/CtrlShowModificarPedido.php">
                     <div class="div-button-content">
                         <img class="icon-menu" src="../img/icons/modificar_pedido.png">
-                        <p class="txtButton">Modificar Pedido</p>
+                        <p class="txtButton">Modificar Estado</p>
                     </div>
                 </a>
                 <!--<a class="button-menu2" href="../controlador/CtrlShowEliminarPedido.php">

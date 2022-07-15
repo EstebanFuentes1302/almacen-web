@@ -31,33 +31,18 @@
             }
         }
 
-        public function modificarPedido($codigo, $codigo_articulo, $cantidad, $estado, $oldcantidad){
+        public function modificarPedido($codigo, $estado){
             include_once('SingletonConexionDB.php');
             conexionSingleton::getInstance();
             $con = conexionSingleton::getConexion();
-            $diff = $cantidad - $oldcantidad;
-            $sql = "select cantidad from Articulo where codigo='$codigo_articulo'";
-            
+            $sql = "update Pedido set estado='$estado' where codigo_pedido='$codigo'";
             $result = mysqli_query($con, $sql);
-            $c = mysqli_fetch_array($result);
-            if($c){
-                $sum = $c['cantidad'] - $diff;
-                if($sum >= 0){
-                    $sql2 = "update Pedido set cantidad=$cantidad, estado='$estado' where codigo_pedido='$codigo'";
-                    $query = mysqli_query($con, $sql2);
-                    if($query){
-                        $sql3 = "update Articulo set cantidad=$sum where codigo='$codigo_articulo'";
-                        $query2 = mysqli_query($con,$sql3);
-                        return(true);
-                    }else{
-                        return(false);
-                    }                
-                }else{
-                    return(false);
-                }
+            if($result){
+                return(true); 
             }else{
                 return(false);
             }
+                     
         }
 
         public function isDevuelto($codigo){
@@ -73,26 +58,14 @@
             }
         }
 
-        public function devolverPedido($codigo_pedido, $codigo_articulo, $cantidad){
+        public function devolverPedido($codigo_pedido){
             include_once('SingletonConexionDB.php');
             conexionSingleton::getInstance();
             $con = conexionSingleton::getConexion();
-            $sql = "select cantidad from Articulo where codigo='$codigo_articulo'";
-            $result=mysqli_query($con,$sql);
-            $c=mysqli_fetch_array($result);
-            if($c){
-                $sum=$c['cantidad']+$cantidad;
-                $sql2 = "update Articulo set cantidad=$sum where codigo='$codigo_articulo'";
-                $query = mysqli_query($con,$sql2);
-                if($query){
-                    $sql3 = "update Pedido set estado='Devuelto' where codigo_pedido='$codigo_pedido'";
-                    $query2 = mysqli_query($con, $sql3);
-                    if($query2){
-                        return(true);
-                    }else{
-                        return(false);
-                    }
-                }
+            $sql = "update Pedido set estado='Devuelto' where codigo_pedido='$codigo_pedido'";
+            $query = mysqli_query($con, $sql);
+            if($query){
+                return(true);
             }else{
                 return(false);
             }

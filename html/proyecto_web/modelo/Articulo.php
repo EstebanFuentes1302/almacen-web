@@ -104,5 +104,27 @@
                 return(false);
             }
         }
+        
+        public function actualizarStock($cantidad, $codigo){
+            include_once('SingletonConexionDB.php');
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
+            $sql = "select cantidad from Articulo where codigo='$codigo'";
+            $query = mysqli_query($con, $sql);
+            if(mysqli_num_rows($query) > 0){
+                $articulo = mysqli_fetch_assoc($query);
+                $oldcantidad = $articulo['cantidad'];
+                $newcantidad = $cantidad + $oldcantidad;
+                $sql2 = "update Articulo set cantidad=$newcantidad where codigo='$codigo'";
+                $query2 = mysqli_query($con, $sql2);
+                if($query2){
+                    return(true);
+                }else{
+                    return(false);
+                }
+            }else{
+                return(false);
+            }
+        }
     }
 ?>

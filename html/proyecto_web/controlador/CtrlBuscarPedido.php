@@ -11,15 +11,13 @@
                 if($dev == false){
                     $pedido = $p -> buscarPedido($codigo);
                     if($pedido){
-                        $json = array(
+                        /*$json = array(
                             'codigo_pedido' => $pedido['codigo_pedido'],
-                            'codigo_articulo' => $pedido['codigo_articulo'],
                             'codigo_solicitante' => $pedido['codigo_solicitante'],
-                            'cantidad' => $pedido['cantidad'],
+                            'estado' => $pedido['estado'],
                             'fecha_registro' => $pedido['fecha_pedido']
-
-                        );
-                        echo json_encode($json);
+                        );*/
+                        echo json_encode($pedido);
                     }else{
                         echo json_encode("null");
                     }

@@ -555,8 +555,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .hr{
-    
-    margin: 15px auto;
+    margin: 5px auto 15px auto;
     width: 750px;
 }
 
@@ -605,9 +604,10 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .txtError{
-    text-align: center;
-    color:#D4070A;
     display: none;
+    text-align: center;
+    margin: 10px 0px 0px 0px;
+    color:#D4070A;
     padding: 1px;
 }
 

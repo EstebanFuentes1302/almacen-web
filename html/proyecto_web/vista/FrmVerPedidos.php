@@ -77,6 +77,8 @@ class FrmVerPedidos
                         include_once('../modelo/Articulo.php');
                         include_once('../modelo/Solicitante.php');
                         while($pedido = mysqli_fetch_array($pedidos)){
+                            $a = new Articulo;
+                            $articulo = $a -> buscarArticulo($pedido['codigo_articulo']);
                             $s = new Solicitante;
                             $solicitante = $s -> buscarSolicitante($pedido['codigo_solicitante']);
                             
@@ -85,10 +87,9 @@ class FrmVerPedidos
                             <td class="txtRow" height="35" align="center" valign="middle"><?php echo $pedido['codigo_pedido']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $pedido['codigo_solicitante']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $solicitante['nombre']?></td>
-                            <td class="txtRow" align="center" valign="middle"><?php echo $pedido['cantidad']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $pedido['estado']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $pedido['fecha_pedido']?></td>
-                      </tr>
+                  </tr>
                     <?php                
                         }
                     ?>

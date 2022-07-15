@@ -21,7 +21,7 @@
                     if($query3){
                         return(true);
                     }else{
-                        return($sql3);
+                        return(false);
                     }
                 }else{
                     return(false);
@@ -31,6 +31,18 @@
             }
         }
         
+        public function getArticulosPedido($codigo_pedido){
+            include_once('SingletonConexionDB.php');
+            conexionSingleton::getInstance();
+            $con = conexionSingleton::getConexion();
+            $sql = "select * from Rel_Pedido_Articulo where codigo_pedido='$codigo_pedido'";
+            $result = mysqli_query($con, $sql);
+            if(mysqli_num_rows($result) > 0){
+                return($result);
+            }else{
+                return(null);
+            }
+        }
     }
     
 ?>

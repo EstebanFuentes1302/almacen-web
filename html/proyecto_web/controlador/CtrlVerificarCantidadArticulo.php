@@ -7,7 +7,7 @@
         include_once('../modelo/Articulo.php');
         $a = new Articulo;
         $result = $a -> verificarCantidad($codigo, $cantidad);
-        if($result){
+        if($result == true){
             echo json_encode('true');
         }else{
             echo json_encode('false');

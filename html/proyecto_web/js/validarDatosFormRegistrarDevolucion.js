@@ -90,7 +90,7 @@ $('#formBuscarDevolucion').submit(function(e){
             type: 'POST',
             data: { codigo },
             success: function(response){
-                console.log(JSON.parse(response));
+                //console.log(JSON.parse(response));
                 if(JSON.parse(response) != 'null' && JSON.parse(response) != 'dev'){
                     Swal.fire({
                         title: 'Pedido Encontrado!',
@@ -116,14 +116,6 @@ $('#formBuscarDevolucion').submit(function(e){
                         </div>
                         <div class="div-form-row">
                             <div class="div-txt-form-row">
-                                <span class="txtForm">Código de Artículo</span>
-                            </div>
-                            <div class="div-input-form-row">
-                                <input class="txtFieldFormReadonly" readonly type="text" name="txtNombre" id="txtNombre" value="${pedido.codigo_articulo}">
-                            </div>
-                        </div>
-                        <div class="div-form-row">
-                            <div class="div-txt-form-row">
                                 <span class="txtForm">Código de Solicitante</span>
                             </div>
                             <div class="div-input-form-row">
@@ -132,10 +124,10 @@ $('#formBuscarDevolucion').submit(function(e){
                         </div>
                         <div class="div-form-row">
                             <div class="div-txt-form-row">
-                                <span class="txtForm">Cantidad</span>
+                                <span class="txtForm">Estado</span>
                             </div>
                             <div class="div-input-form-row">
-                                <input class="txtFieldFormReadonly" readonly type="text" name="txtCantidad" id="txtCantidad" value="${pedido.cantidad}">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtEstado" id="txtEstado" value="${pedido.estado}">
                             </div>
                         </div>
                         <div class="div-form-row">
@@ -143,7 +135,7 @@ $('#formBuscarDevolucion').submit(function(e){
                                 <span class="txtForm">Fecha de Pedido</span>
                             </div>
                             <div class="div-input-form-row">
-                                <input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${pedido.fecha_registro}">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${pedido.fecha_pedido}">
                             </div>
                         </div>
                         <div class="div-form-row">
@@ -217,15 +209,13 @@ $('#formRegistrarDevolucion').submit(function(e){
     
     const data = {
         codigo: codigo,
-        codigo_articulo: codigo_articulo,
         fecha_devolucion: $('#fecha_devolucion').val(),
-        cantidad: cantidad,
         detalles: $('#txtaDetalles').val()
     }
     
     if(camposRegistrar['date'] && $('#txtaDetalles').val().length<=100){
         $.post('../controlador/CtrlRegistrarDevolucion.php',data, function (response){
-            //console.log(response);
+            console.log(response);
             if(JSON.parse(response) == 'true'){
                 Swal.fire({
                         title: 'Pedido Devuelto!',

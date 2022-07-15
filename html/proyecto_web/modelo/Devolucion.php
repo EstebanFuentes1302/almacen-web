@@ -2,7 +2,7 @@
     
     class Devolucion{
         
-        public function registrarDevolucion($codigo_pedido,$fecha_devolucion,$detalles){
+        public function registrarDevolucion($codigo_pedido, $fecha_devolucion, $detalles){
             include_once('SingletonConexionDB.php');
             conexionSingleton::getInstance();
             $con = conexionSingleton::getConexion();

@@ -93,7 +93,6 @@ $('#formBuscarArticulo').submit(function(e){
                         background: '#121212',
                         color: 'white'
                     })
-                    //document.getElementById('tblModificarArticulo').style.display = 'block';
                     //console.log(response);
                     let articulo = JSON.parse(response);
                     let temp = '';
@@ -182,7 +181,6 @@ $('#formBuscarArticulo').submit(function(e){
 
 $('#formModificarArticulo').submit(function(e){
     e.preventDefault();
-    //console.log($('#txtNombre').val());
     let nombre = $('#txtNombre').val();
     let cantidad = $('#txtCantidad').val();
     

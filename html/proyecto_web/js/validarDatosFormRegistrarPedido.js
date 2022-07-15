@@ -101,6 +101,8 @@ $('#formRegistrarPedido').submit(function(e){
                         background: '#121212',
                         color: 'white'
                     });
+                document.getElementById('tblArticulos').style.display = 'none';
+                document.getElementById('tblSolicitante').style.display = 'none';
                 $('#formRegistrarPedido').trigger('reset');
                 codigo_articulo = null;
                 codigo_solicitante = null;
@@ -160,12 +162,12 @@ function buscarArticulo(){
                     $.ajax({
                         url: '../controlador/CtrlVerificarCantidadArticulo.php',
                         type: 'POST',
+                        async: false,
                         data: {
                             codigo: codigo,
                             cantidad: cantidad
                         },
                         success: function(response){
-                            //console.log(response);
                             if(JSON.parse(response) == 'true'){
                                 verifcantidad = true;
                             }else if(JSON.parse(response) == 'false'){
@@ -181,9 +183,11 @@ function buscarArticulo(){
                             color: 'white'
                             })
                         }
-                        });
+                    });
                     if(rep == false){
                         if(verifcantidad == true){
+                            document.getElementById('tblArticulos').style.display = 'block';
+                
                             let articulo = JSON.parse(response);
                             let Articulo = {
                                 codigo_articulo: articulo.codigo,
@@ -281,7 +285,7 @@ function buscarSolicitante(){
             success: function(response){
                 //console.log(response);
                 if(JSON.parse(response) != 'null'){
-                    
+                    document.getElementById('tblSolicitante').style.display = 'block';
                     let solicitante = JSON.parse(response);
                     codigo_solicitante = solicitante.codigo_solicitante;
                     let template = '';

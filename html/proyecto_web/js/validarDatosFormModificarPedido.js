@@ -47,7 +47,7 @@ formBuscarPedidoInputs.forEach((input)=>{
     input.addEventListener('blur', validarFormBuscarPedido);
 })
 
-const validarFormModificarPedido = (e) => {
+/*const validarFormModificarPedido = (e) => {
     switch(e.target.name){
         case "txtCantidad":
             if(expresiones.form_cantidad.test(e.target.value)){
@@ -61,12 +61,10 @@ const validarFormModificarPedido = (e) => {
             }
         break;
     }
-}
+}*/
 
 var codigo = null;
-var cod_articulo = null;
-var old_cantidad = null;
-
+var estado = null;
 
 function buscarPedido(){
      codigo = $('#txtCodigoBuscar').val();
@@ -77,7 +75,7 @@ function buscarPedido(){
             type: 'POST',
             data: { codigo },
             success: function(response){
-                console.log(JSON.parse(response));
+                //console.log(JSON.parse(response));
                 if(JSON.parse(response) != 'dev' && JSON.parse(response) != 'null'){
                     Swal.fire({
                         title: 'Pedido Encontrado!',
@@ -86,12 +84,11 @@ function buscarPedido(){
                         background: '#121212',
                         color: 'white'
                     })
-                    //console.log(response);
                     let pedido = JSON.parse(response);
+                    console.log(JSON.parse(response));
+                    estado = pedido.estado;
                     let template = '';
-                    cod_articulo = pedido.codigo_articulo;
-                    old_cantidad = pedido.cantidad;
-                    template+= `
+                    template += `
                         <div class="div-form-row">
                             <div class="div-txt-form-row">
                                 <span class="txtForm">Código de Pedido</span>
@@ -124,18 +121,18 @@ function buscarPedido(){
                                 <span class="txtForm">Fecha de Pedido</span>
                             </div>
                             <div class="div-input-form-row">
-                                <input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${pedido.fecha_registro}">
+                                <input class="txtFieldFormReadonly" readonly type="text" name="txtFecha" id="txtFecha" value="${pedido.fecha_pedido}">
                             </div>
                         </div>
                         <input class="button-submit" type="submit" name="btnModificar" id="btnModificar" value="Modificar">
                     `;
                     document.getElementById('divModificarPedido').innerHTML = template;
-                    const formModificarPedidoInputs = document.querySelectorAll('#formModificarPedido input');
-                    //console.log(formModificarArticuloInputs);
+                    
+                    /*const formModificarPedidoInputs = document.querySelectorAll('#formModificarPedido input');
                     formModificarPedidoInputs.forEach((input)=>{
                         input.addEventListener('keyup',validarFormModificarPedido);
                         input.addEventListener('blur',validarFormModificarPedido);
-                    })
+                    })*/
                 }else if(JSON.parse(response) == 'null'){
                     Swal.fire({
                     title: 'Error',
@@ -169,31 +166,29 @@ function buscarPedido(){
 
 $('#formModificarPedido').submit(function(e){
     e.preventDefault();
-    
-    let cantidad = $('#txtCantidad').val();
-    let codigo_articulo = cod_articulo;
-    let oldcantidad = old_cantidad;
     let estado = $('#sEstado').val();
-    
-    if(camposModificar['cantidad']){
+    if($('#sEstado').val() == estado){
         $.ajax({
             url: '../controlador/CtrlModificarPedido.php',
             type: 'POST',
-            data: {codigo, codigo_articulo, cantidad, oldcantidad, estado},
+            data: {codigo, estado},
             success: function(response){
                 console.log(response);
                 if(JSON.parse(response) == 'true'){
                     Swal.fire({
-                        title: 'Pedido Modificado!',
+                        title: 'Estado Modificado!',
                         text: 'El pedido ha sido modificado correctamente',
                         icon: 'success',
                         background: '#121212',
                         color: 'white'
                         })
+                    document.getElementById('divModificarPedido').innerHTML = '';
+                    codigo = null;
+                    estado = null;
                 }else if(JSON.parse(response) == 'false'){
                     Swal.fire({
                     title: 'Error',
-                    text: 'Error al modificar Pedido',
+                    text: 'Error al modificar estado',
                     icon: 'error',
                     background: '#121212',
                     color: 'white'
@@ -203,21 +198,13 @@ $('#formModificarPedido').submit(function(e){
             fail: function(res){
                 Swal.fire({
                 title: 'Error',
-                text: 'Error al modificar Pedido',
+                text: 'Error al modificar estado',
                 icon: 'error',
                 background: '#121212',
                 color: 'white'
                 })
             }
-            });    
-    }else{
-        Swal.fire({
-            title: 'Error',
-            text: 'Los datos ingresados no son correctos',
-            icon: 'error',
-            background: '#121212',
-            color: 'white'
-        })
+        });    
     }
     
 });

@@ -2,29 +2,50 @@
     session_start();
     $sesion=$_SESSION['usuario'];
     $codigo = $_POST['codigo'];
-    $cantidad= $_POST['cantidad'];
-    $codigo_articulo = $_POST['codigo_articulo'];
     if($sesion!=null){
-        if(isset($codigo) && isset($cantidad) && isset($codigo_articulo)){
+        if(isset($codigo)){
             include_once('../modelo/Pedido.php');
+            include_once('../modelo/Articulo.php');
             include_once('../modelo/Devolucion.php');
+            include_once('../modelo/RelPedidoArticulo.php');
             $d = new Devolucion;
             $p = new Pedido;
+            $a = new Articulo;
+            $rel = new RelPedidoArticulo;
             $dev = $p -> isDevuelto($codigo);
             if($dev == false){
-                $fecha_devolucion=str_replace("/","-",$_POST['fecha_devolucion']);
-                $detalles=$_POST['detalles'];
-                $devolver = $p -> devolverPedido($codigo,$codigo_articulo,$cantidad);
-                if($devolver){
-                    $registrar = $d -> registrarDevolucion($codigo, $fecha_devolucion, $detalles);
-                    if($registrar){
-                        echo json_encode('true');
+                $fecha_devolucion = str_replace("/","-",$_POST['fecha_devolucion']);
+                $detalles = $_POST['detalles'];
+                
+                $registrar = $d -> registrarDevolucion($codigo, $fecha_devolucion, $detalles);
+                if($registrar){
+                    $articulos = $rel -> getArticulosPedido($codigo);
+                    if($articulos != null){
+                        $ver = true;
+                        
+                        while($articulo = mysqli_fetch_assoc($articulos)){
+                            $v = $a -> actualizarStock($articulo['cantidad'], $articulo['codigo_articulo']);
+                            if($v == false){
+                                $ver = false;
+                            }
+                        }
+                        if($ver){
+                            $devolver = $p -> devolverPedido($codigo);
+                            if($devolver){
+                                echo json_encode('true');
+                            }else{
+                                echo json_encode('false');
+                            }
+                        }else{
+                            echo json_encode('false');
+                        }
                     }else{
                         echo json_encode('false');
                     }
                 }else{
                     echo json_encode('false');
-                }    
+                }
+                   
             }else{
                 echo json_encode('dev');
             }
