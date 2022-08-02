@@ -2,7 +2,7 @@
     session_start();
     $sesion=$_SESSION['usuario'];
 
-    if($sesion!=null){
+    if($sesion != null){
         include_once('../vista/FrmRegistrarPedido.php');
         $frm = new FrmRegistrarPedido;
         $frm -> frmRegistrarPedidoShow();

@@ -27,8 +27,8 @@
                     <button type="button" class="button-ver" name="btnVerArticulos" id="btnVerArticulos" title="Ver Artículos" onClick="verSolicitantes()">
                         <img class="icon-menu" src="../img/icons/tabla.png">Ver Solicitantes
                     </button>
+                    <p class="txtError" id="txtErrorCodigo">El código de solicitante debe tener 8 dígitos y comenzar con "2"</p>
                 </div>
-                <p class="txtError" id="txtErrorCodigo">El código de solicitante debe tener 8 dígitos y comenzar con "2"</p>
             </form>
                 <hr class="hr">
                 <form id="formModificarSolicitante">

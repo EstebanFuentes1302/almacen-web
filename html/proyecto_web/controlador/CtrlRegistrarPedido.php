@@ -21,18 +21,17 @@
                     if($v == false){
                         $verif = false;
                     }
-                    //echo "$codigo_pedido\t$articulo->codigo_articulo\t$articulo->cantidad\n";
                 }
                 if($verif == true){
                     echo json_encode('true');
                 }else{
-                    echo json_encode('c');
+                    echo json_encode('false');
                 }
             }else{
-                echo json_encode('b');
+                echo json_encode('false');
             }
         }else{
-            echo json_encode('a');
+            echo json_encode('false');
         }
     }else{
         include_once('../vista/FrmMensaje.php');

@@ -20,7 +20,7 @@
                 <form id="formBuscarSolicitante" method="post">
                     <div class="div-buscar">
                         <p class="txtFormBuscar">Buscar Código</p>
-                        <input class="txtFieldFormulario" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
+                        <input class="txtFieldForm" name="txtCodigoBuscar" type="text" id="txtCodigoBuscar">
                         <button class="button-search" type="submit" name="btnBuscar" id="btnBuscar">
                                     <img class="icon-buscar" src="../img/icons/lupa.png">
                         </button>

@@ -27,7 +27,7 @@ class FrmRegistrarSolicitante
                             <input class="txtFieldForm" type="text" name="txtNombreSolicitante" id="txtNombreSolicitante">
                         </div>
                     </div>
-                    <p class="txtError" id="txtErrorNombre">El nombre del solicitante debe contener al menos 2 dígitos</p>
+                    <span class="txtError" id="txtErrorNombre">El nombre del solicitante debe contener al menos 2 dígitos</span>
                     <div class="div-form-row">
                         <div class="div-txt-form-row">
                             <p class="txtForm">Correo Electrónico</p>
@@ -36,7 +36,7 @@ class FrmRegistrarSolicitante
                             <input class="txtFieldForm" type="email" name="txtCorreo" id="txtCorreo">
                         </div>
                     </div>
-                    <p class="txtError" id="txtErrorCorreo">El formato del correo es incorrecto (ejemplo: alonso.peves@hot.com)</p>
+                    <span class="txtError" id="txtErrorCorreo">El formato del correo es incorrecto (ejemplo: alonso.peves@hot.com)</span>
                     <div class="div-form-row">
                         <div class="div-txt-form-row">
                             <p class="txtForm">Teléfono</p>
@@ -45,7 +45,7 @@ class FrmRegistrarSolicitante
                             <input class="txtFieldForm" type="text" name="txtTelefono" id="txtTelefono">
                         </div>
                     </div>
-                    <p class="txtError" id="txtErrorTelefono">El número de celular debe contener 9 dígitos y empezar con 9</p>
+                    <span class="txtError" id="txtErrorTelefono">El número de celular debe contener 9 dígitos y empezar con 9</span>
                     <div class="div-form-row">
                         <div class="div-txt-form-row">
                             <p class="txtForm">Foto</p>
@@ -54,7 +54,7 @@ class FrmRegistrarSolicitante
                             <input class="fileForm" type="file" name="foto" id="foto">
                         </div>
                     </div>
-                    <p class="txtError" id="txtErrorFoto">La foto debe ser en formato jpg, jpeg o png</p>
+                    <span class="txtError" id="txtErrorFoto">La foto debe ser en formato jpg, jpeg o png</span>
                     <input class="button-submit" type="submit" name="btnRegistrarSolicitante" id="btnRegistrarSolicitante" value="Registrar Solicitante">
                     <input class="reset" type="reset" name="btnLimpiar" id="btnLimpiar" value="Limpiar">
                 </div>

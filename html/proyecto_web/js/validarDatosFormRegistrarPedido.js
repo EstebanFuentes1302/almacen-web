@@ -6,8 +6,6 @@ var codigo_solicitante;
 
 var Articulos = [];
 
-
-
 const expresiones = {
     nombre: /^(([ \u00c0-\u00ffa-zA-Z'\-])+){3,}$/,
     form_nombre: /^((\w|[ \u0021-\u002f]|[\u00c0-\u00ff])+){2,}/,
@@ -95,12 +93,12 @@ $('#formRegistrarPedido').submit(function(e){
             //console.log(response);
             if(JSON.parse(response)=='true'){
                 Swal.fire({
-                        title: 'Pedido Registrado!',
-                        text: 'El pedido ha sido registrado correctamente',
-                        icon: 'success',
-                        background: '#121212',
-                        color: 'white'
-                    });
+                    title: 'Pedido Registrado!',
+                    text: 'El pedido ha sido registrado correctamente',
+                    icon: 'success',
+                    background: '#121212',
+                    color: 'white'
+                });
                 document.getElementById('tblArticulos').style.display = 'none';
                 document.getElementById('tblSolicitante').style.display = 'none';
                 $('#formRegistrarPedido').trigger('reset');

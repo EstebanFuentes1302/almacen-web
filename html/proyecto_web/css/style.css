@@ -11,8 +11,7 @@ body{
 h1{
     display: block;
     text-align: center;
-    text-shadow: 2px 2px 3px white;
-    font-family: 'Roboto', sans-serif;
+    text-shadow: 1px 2px 5px white;
     font-weight: 120;
     letter-spacing: 2px;
     color: white;
@@ -20,28 +19,9 @@ h1{
     margin: 0px 0px 20px 0px;
 }
 
-/*textarea::-webkit-scrollbar {
-    width: 1em;
+.h1-inside{
+    margin: 10px 0px;
 }
-
-textarea::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-}
-
-textarea::-webkit-scrollbar-button {
-    border-radius: 10px;
-    background-color: #C5C5C5;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-}
-
-textarea::-webkit-scrollbar-corner {
-    display: none;
-}
-
-textarea::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
-}*/
 
 .h1-left{
     text-align: left;
@@ -77,6 +57,12 @@ textarea::-webkit-scrollbar-thumb {
 .link-p:hover{
     transform: scale(0.97);
     border-radius: 10px 10px 10px 10px;
+}
+
+.background-gray{
+    border-style: hidden;
+    border-radius: 10px;
+    background: #2B2B2B;
 }
 
 .tblMensaje{
@@ -336,7 +322,7 @@ textarea::-webkit-scrollbar-thumb {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 25px 0px;
+    margin: 15px 0px 0px 0px;
     width: 100%;
     text-align: center;
 }
@@ -364,10 +350,29 @@ textarea::-webkit-scrollbar-thumb {
     width: auto;
 }
 
+.div-input-form-row-medium{
+    width: auto;
+}
+
 .div-button-content{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.div-float-col{
+    width: 50%;
+    float: left;
+}
+
+.div-column{
+    padding: 10px 10px 25px 10px;
+    margin: 0px 35px;
+}
+
+.div-container{
+    overflow: hidden;
+    height: auto;
 }
 
 .txtBlock{
@@ -381,6 +386,10 @@ textarea::-webkit-scrollbar-thumb {
 
 .txtFieldShort{
     width: 40px;
+}
+
+.txtFieldMedium{
+    width: 60px;
 }
 
 .txtButton{
@@ -431,7 +440,7 @@ textarea::-webkit-scrollbar-thumb {
     border-radius: 40px;
     padding: 10px 15px;
     caret-color: white;
-    margin: auto 10px;
+    margin: auto auto;
     color: white;
     font-size: 17px;
 }
@@ -488,7 +497,7 @@ textarea::-webkit-scrollbar-thumb {
     border-color: white;
     border-radius: 40px;
     padding: 10px 15px;
-    margin: 20px 5px;
+    margin: 0px 0px;
     font-size: 17px;
     color:white;
 }
@@ -559,6 +568,13 @@ textarea::-webkit-scrollbar-thumb {
     width: 750px;
 }
 
+/*.hr-vertical{
+    width: 2%;
+    height: 500px;
+    margin: 0px;
+}*/
+
+
 .txtHeader{
     padding: 12px;
     margin: 30px auto; 
@@ -612,7 +628,7 @@ textarea::-webkit-scrollbar-thumb {
 }
 
 .txtErrorShow{
-    display:block;
+    display: block;
 }
 
 .icon-buscar{

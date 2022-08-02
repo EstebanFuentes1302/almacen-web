@@ -17,17 +17,15 @@
         $temporal = $_FILES['foto']['tmp_name'];
         $carpeta = '../img/solicitante';
         $ruta_foto = $carpeta.'/'.$nombre_imagen;
-        //echo $ruta_foto;
         
         if(isset($nombre) && isset($email) && isset($telefono) && isset($temporal)){
             if(move_uploaded_file($temporal, $ruta_foto)){
-            
-            $registrar = $s -> registrarSolicitante($nombre, $email, $telefono, $ruta_foto);
-            if($registrar){
-                echo json_encode('true');
-            }else{
-                echo json_encode('false');
-            }
+                $registrar = $s -> registrarSolicitante($nombre, $email, $telefono, $ruta_foto);
+                if($registrar){
+                    echo json_encode('true');
+                }else{
+                    echo json_encode('false');
+                }
             }else{
                 echo json_encode('noupload');
             }

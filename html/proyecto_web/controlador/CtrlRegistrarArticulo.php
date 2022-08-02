@@ -2,7 +2,7 @@
     session_start();
     $sesion=$_SESSION['usuario'];
     
-    if($sesion!=null){
+    if($sesion != null){
         $nombre_articulo=$_POST['nombre'];
         $cantidad=$_POST['cantidad'];
         $fecha=str_replace("/","-",$_POST['fecha']);
@@ -16,13 +16,6 @@
             }else{
                 echo json_encode('false');
             }
-            /*$registrar=registrarArticulo($nombre_articulo,$cantidad,$fecha);
-            
-            if($registrar){
-                echo json_encode('true');
-            }else{
-                echo json_encode('false');
-            }*/
         }else{
             include_once('../vista/FrmMensaje.php');
             frmMensajeShow("<p class='p'>No es el acceso correcto<p>","<a class='link-p'  href='../controlador/CtrlShowMenuArticulo.php>Volver</a>");
