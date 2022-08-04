@@ -4,5 +4,5 @@
 _notes/
 /bower_components/
 /node_modules/
-/html/proyecto_web/js/test.html
-/html/proyecto_web/modelo
+/js/test.html
+/modelo
