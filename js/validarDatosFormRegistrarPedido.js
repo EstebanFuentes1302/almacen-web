@@ -26,6 +26,7 @@ const campos = {
 }
 
 const validarFormRegistrarPedido = (e) => {
+    console.log(e.target.name);
     switch(e.target.name){
         case "txtCodigoArticulo":
             if(expresiones.codigo.test(e.target.value)){
@@ -38,13 +39,13 @@ const validarFormRegistrarPedido = (e) => {
                 campos['cod_articulo']=false;
             }
             break;
-        case "txtCantidad":
+        case "txtCantidadArticulo":
             if(expresiones.form_cantidad.test(e.target.value)){
-                document.getElementById('txtCantidad').classList.remove('txtFieldFormIncorrecto');
+                document.getElementById('txtCantidadArticulo').classList.remove('txtFieldFormIncorrecto');
                 document.getElementById('txtErrorCantidad').classList.remove('txtErrorShow');
                 campos['cantidad']=true;
             }else{
-                document.getElementById('txtCantidad').classList.add('txtFieldFormIncorrecto');
+                document.getElementById('txtCantidadArticulo').classList.add('txtFieldFormIncorrecto');
                 document.getElementById('txtErrorCantidad').classList.add('txtErrorShow');
                 campos['cantidad']=false;
             }
@@ -76,8 +77,8 @@ const validarFormRegistrarPedido = (e) => {
 }
 
 formRegistrarPedidoInputs.forEach((input)=>{
-    input.addEventListener('keyup',validarFormRegistrarPedido);
-    input.addEventListener('blur',validarFormRegistrarPedido);
+    input.addEventListener('keyup', validarFormRegistrarPedido);
+    input.addEventListener('blur', validarFormRegistrarPedido);
 });
 
 $('#formRegistrarPedido').submit(function(e){
@@ -144,7 +145,7 @@ function buscarArticulo(){
     let cantidad = $('#txtCantidadArticulo').val();
     let rep = false;
     let verifcantidad = false;
-    if(campos['cod_articulo']){
+    if(campos['cod_articulo'] && campos['cantidad']){
         for(let elem of Articulos){
             if(codigo == elem.codigo_articulo){
                 rep = true;
@@ -266,7 +267,7 @@ function verSolicitantes(){
         type: 'POST',
         success: function (response){
             console.log(response);
-            var VerArticulosPopUp = window.open('', '', 'width=700, height=900');
+            var VerArticulosPopUp = window.open('', '', 'width=900, height=900');
             VerArticulosPopUp.document.write(response);
         }
     });

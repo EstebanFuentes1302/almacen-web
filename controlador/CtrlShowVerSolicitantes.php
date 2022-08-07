@@ -1,8 +1,9 @@
 <?php
     session_start();
+    error_reporting(0);
     $sesion=$_SESSION['usuario'];
     $action = $_POST['action'];
-
+    
     if(!isset($action)){
         $action = '';
     }

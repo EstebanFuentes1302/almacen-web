@@ -1,7 +1,7 @@
 <?php
     session_start();
     $sesion=$_SESSION['usuario'];
-
+    //error_reporting(0);
     if($sesion!=null){
         include_once('../modelo/Solicitante.php');
         $s = new Solicitante;
@@ -12,7 +12,8 @@
         $telefono=$_POST['txtTelefono'];
         
         //PARA EL ARCHIVO DE IMAGEN
-        $ext = end(explode(".", $_FILES['foto']['name'])); 
+        $end_name = explode(".", $_FILES['foto']['name']);
+        $ext = end($end_name); 
         $nombre_imagen = "$codigo.$ext";
         $temporal = $_FILES['foto']['tmp_name'];
         $carpeta = '../img/solicitante';

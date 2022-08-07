@@ -40,6 +40,7 @@
                                     </button>
                                 </div>
                                 <p class="txtError" id="txtErrorCodigoArticulo">El código del artículo debe contener un número del 1001 al 9999</p>
+                                <p class="txtError" id="txtErrorCantidad">La cantidad ingresada es incorrecta</p>
                                 <div class="div-form-row">
                                     <button type="button" class="button-ver" name="btnVerArticulos" id="btnVerArticulos" title="Ver Artículos" onClick="verArticulos()">
                                         <img class="icon-menu" src="../img/icons/tabla.png">Ver Articulos

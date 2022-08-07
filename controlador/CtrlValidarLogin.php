@@ -4,7 +4,7 @@
         include_once('../modelo/Usuario.php');
         $usuario = trim($_POST['txtUsuario']);
         $password = trim($_POST['txtPassword']);
-        
+        $con = mysqli_connect('45.77.103.82','Root','Rootxd','bd_almacen');
         $u = new Usuario;
         $result = $u -> validarUsuario($usuario, $password);
         if($result){
@@ -16,13 +16,13 @@
         }else{
             include_once('../vista/FrmMensaje.php');
             $frm = new FrmMensaje;
-            $frm -> frmMensajeShow("<p class='p'>Los datos ingresados no coinciden con una cuenta<p>","<a class='link-p' href='controlador/CtrlShowLogin.php'>Volver</a>");
+            $frm -> frmMensajeShow("<p class='p'>Los datos ingresados no coinciden con una cuenta<p>","<a class='link-p' href='../controlador/CtrlShowLogin.php'>Volver</a>");
             die();
         }
     }else{
        include_once('../vista/FrmMensaje.php');
         $frm = new FrmMensaje;
-        $frm -> frmMensajeShow("<p class='p'>Acceso Denegado, no ha iniciado sesión<p>","<a class='link-p' href='controlador/CtrlShowLogin.php'>Inicio de sesión</a>");
+        $frm -> frmMensajeShow("<p class='p'>Acceso Denegado, no ha iniciado sesión<p>","<a class='link-p' href='../controlador/CtrlShowLogin.php'>Inicio de sesión</a>");
         die();
     }
 ?>

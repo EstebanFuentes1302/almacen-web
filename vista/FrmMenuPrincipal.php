@@ -10,7 +10,7 @@
             <title>Menú Principal</title>
             </head>
             <body>
-                <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+                <a class="logout" href="controlador/CtrlLogout.php">Cerrar Sesión</a>
                 <h1 class="h1-left">MENÚ PRINCIPAL</h1>
                 <div class="div-menu" align="center">
                     <div>

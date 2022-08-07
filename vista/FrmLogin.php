@@ -1,4 +1,5 @@
 <?php
+    error_reporting(0);
     class FrmLogin
     {
         public function frmLoginShow(){
@@ -13,7 +14,7 @@
 
             <body>
                 <h1 align="center">Inicio de Sesión</h1>
-                <form id="formIniciarSesion" method="post" action="../controlador/CtrlValidarLogin.php">
+                <form id="formIniciarSesion" method="post" action="controlador/CtrlValidarLogin.php">
                     <div class="div-Form">
                         <div class="div-form-row">
                             <div class="div-txt-form-row">
