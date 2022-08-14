@@ -152,10 +152,6 @@ a{
 
 .button-menu:hover {
     filter: invert();
-    /*background-color: #FFFFFF;
-    border-color: black;
-    box-shadow: 1.5px 1.5px 10px rgba(255,255,255,1.00);
-    color: black;*/
     transform: translateY(-10px);
 }
 
@@ -182,10 +178,6 @@ a{
 
 .button-submit:hover {
     filter: invert();
-    /*background-color: #FFFFFF;
-    border-color: black;
-    box-shadow: 3px 3px 8px rgba(255,255,255,1.00);
-    color: black;*/
     transform: scale(1.10);
 }
 
@@ -286,11 +278,8 @@ a{
 }
 
 .topPanel{
-    /*display: flex;*/
     overflow: hidden;
     text-align: center;
-    /*justify-content: center;
-    align-items: center;*/
     margin: 0px 0px 5px 0px;
     height: auto;
     width: auto;
@@ -381,7 +370,6 @@ a{
 }
 
 @media only screen and (min-width: 0px) {
-  /* For tablets: */
   .div-float-col{
         width: 100%;
         float: left;
@@ -397,7 +385,6 @@ a{
 }
 
 @media only screen and (min-width: 1140px) {
-  /* For tablets: */
   .div-float-col{
         width: 50%;
         float: left;
