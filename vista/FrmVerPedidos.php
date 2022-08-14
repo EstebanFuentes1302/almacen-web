@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 class FrmVerPedidos
 {
     public function frmVerPedidosShow($pedidos){
@@ -12,9 +13,9 @@ class FrmVerPedidos
         </head>
         <body>
             <div class="topPanel">
-                    <a class="back" href="../controlador/CtrlShowMenuPedido.php">&lt; Ir Al Menú</a>
-                    <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
-                </div>
+                <a class="back" href="../controlador/CtrlShowMenuPedido.php">&lt; Ir Al Menú</a>
+                <a class="logout" href="../controlador/CtrlLogout.php">Cerrar Sesión</a>
+            </div>
         <h1 align="center">Pedidos Registrados</h1>
             <div class="div-ver">
                 <table class="tblShow">
@@ -24,13 +25,12 @@ class FrmVerPedidos
                         <td class="txtHeader" width="150px" align="center" valign="middle">Nombre de Solicitante</td>
                         <td class="txtHeader" width="80px" align="center" valign="middle">Estado</td>
                         <td class="txtHeader" width="100px" align="center" valign="middle">Fecha de Registro</td>
+                        <td class="txtHeader" width="100px" align="center" valign="middle">Acción</td>
                     </tr>
                     <?php
                         include_once('../modelo/Articulo.php');
                         include_once('../modelo/Solicitante.php');
                         while($pedido = mysqli_fetch_array($pedidos)){
-                            $a = new Articulo;
-                            $articulo = $a -> buscarArticulo($pedido['codigo_articulo']);
                             $s = new Solicitante;
                             $solicitante = $s -> buscarSolicitante($pedido['codigo_solicitante']);
                             
@@ -41,6 +41,7 @@ class FrmVerPedidos
                             <td class="txtRow" align="center" valign="middle"><?php echo $solicitante['nombre']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $pedido['estado']?></td>
                             <td class="txtRow" align="center" valign="middle"><?php echo $pedido['fecha_pedido']?></td>
+                            <td class="txtRow" align="center" valign="middle"><?php echo "<a href='../controlador/CtrlShowVerProforma.php?c=$pedido[codigo_pedido]'>Ver Proforma</a>"?></td>
                   </tr>
                     <?php                
                         }

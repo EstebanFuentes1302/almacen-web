@@ -28,6 +28,7 @@
                             </div>
                         </div>
                         <p class="txtError" id="txtErrorNombre">El nombre del artículo debe contener al menos 2 dígitos</p>
+                        <p class="txtError" id="txtErrorNombreLength">La cantidad máxima de caracteres es de 50</p>
                         <div class="div-form-row">
                             <div class="div-txt-form-row">
                                 <span class="txtForm">Cantidad</span>

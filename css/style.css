@@ -63,6 +63,10 @@ form{
     border-radius: 10px 10px 10px 10px;
 }
 
+a{
+    color: #80FD7E;
+}
+
 .background-gray{
     border-style: hidden;
     border-radius: 10px;
@@ -609,11 +613,16 @@ form{
 
 
 .txtHeader{
+    text-align: center;
     padding: 12px;
     margin: 30px auto; 
-    font-weight: 400; 
+    font-weight: bold; 
     letter-spacing: 1px;
     color: white;
+}
+
+.txtHeaderProforma{
+    background-color: #2F2F2F;
 }
 
 .tblShow{
@@ -624,6 +633,47 @@ form{
     border-radius: 15px;
     color: white;
 }
+
+.tblProforma{
+    border-collapse: collapse;
+    color: white;
+    width: 600px;
+    vertical-align: middle;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    border-radius: 15px;
+    margin: auto;
+}
+
+.td-proforma{
+    text-align: center;
+    padding: 15px 10px;
+    border-bottom: none;
+    border-top: none;
+}
+
+.td-proforma:nth-child(n){
+    border-right-style: solid;
+    border-right-color: white;
+    border-right-width: 1px;
+}
+
+.td-proforma:last-child{
+    border-right-style: none;
+}
+
+.tr-proforma{
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    border-bottom-width: 1px;
+    border-bottom-radius: inherit;
+}
+
+.tr-proforma:last-child{
+    border-bottom: none;
+}
+
 
 .txtRow{
     /*margin: 30px auto; */

@@ -1,11 +1,12 @@
 <?php
+    error_reporting(0);
     session_start();
     $sesion=$_SESSION['usuario'];
     $action = $_POST['action'];
     if(!isset($action)){
         $action = '';
     }
-
+    
     if($sesion!=null){  
         include_once('../modelo/Pedido.php');
         include_once('../vista/FrmVerPedidos.php');

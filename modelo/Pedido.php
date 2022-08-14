@@ -1,7 +1,5 @@
 
-<?php
-    //include 'SingletonConexionDB.php';
-    
+<?php    
     class Pedido
     {
         public function registrarPedido($cod_solicitante, $estado, $fecha){

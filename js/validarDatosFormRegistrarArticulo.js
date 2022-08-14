@@ -30,6 +30,15 @@ const validarFormRegistrarArticulo = (e) => {
                 document.getElementById('txtErrorNombre').classList.add('txtErrorShow');
                 campos['nombre']=false;
             }
+            if(e.target.value.length <= 50){
+                document.getElementById('txtNombreArticulo').classList.remove('txtFieldFormIncorrecto');
+                document.getElementById('txtErrorNombreLength').classList.remove('txtErrorShow');
+                campos['nombre']=true;
+            }else{
+                document.getElementById('txtNombreArticulo').classList.add('txtFieldFormIncorrecto');
+                document.getElementById('txtErrorNombreLength').classList.add('txtErrorShow');
+                campos['nombre']=false;
+            }
         break;
         case "txtCantidad":
             if(expresiones.form_cantidad.test(e.target.value)){
@@ -70,7 +79,7 @@ $('#formRegistrarArticulo').submit(function(e){
         fecha: $('#date').val()
     }
     if(campos['nombre'] && campos ['cantidad'] && date){
-        $.post('../controlador/CtrlRegistrarArticulo.php',data, function (response){
+        $.post('../controlador/CtrlRegistrarArticulo.php', data, function (response){
             console.log(response);
             if(JSON.parse(response)=='true'){
                 Swal.fire({

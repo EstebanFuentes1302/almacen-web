@@ -8,7 +8,7 @@ class FrmVerArticulos
         <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../css/style.css">
-        <title>Ver Pedidos</title>
+        <title>Ver Artículos</title>
         </head>
         <body>
             <div class="topPanel">
